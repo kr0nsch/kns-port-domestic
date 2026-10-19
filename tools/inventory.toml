@@ -13,9 +13,9 @@
 # Ключ командной строки --source ID=ПУТЬ[@РЕВИЗИЯ] заменяет path и rev источника или базовой линии;
 # неизвестный ID добавляет источник.
 #
-# Библиотека: ветка integrate (выпуск 1.0 — все семейства ФБ, влитые в фундамент) видна из основной
-# рабочей копии ../plc-process-lib, потому что git worktree делят одни ветки. Когда integrate
-# вольют в main и удалят, отчёт сам перейдёт на HEAD основной рабочей копии.
+# Ревизии закреплены на коммитах, с которых сделан перенос (upstream/SOURCES.json): библиотека — тег
+# v1.0.0, флагман — коммит 505ce14 ветки main. После переноса дельты оригинала (tools/upstream_delta.py
+# --apply) ревизии здесь меняют на новые коммиты из upstream/SOURCES.json и пересобирают отчёт.
 
 [output]
 markdown = "docs/inventory.md"
@@ -26,7 +26,7 @@ id = "lib"
 title = "Библиотека plc-process-lib"
 path = "../plc-process-lib"
 path_env = "PL_REPO"
-rev = ["integrate", "HEAD"]
+rev = "v1.0.0"
 rev_env = "PL_REV"
 dirs = ["src", "tests"]
 baseline = "template"
@@ -36,7 +36,7 @@ id = "kns"
 title = "Флагман kns-pump-station"
 path = "../kns-pump-station"
 path_env = "KNS_REPO"
-rev = "HEAD"
+rev = "505ce149a0e0fb72b5cce79e72876722abeba9d0"
 rev_env = "KNS_REV"
 dirs = ["src", "tests"]
 baseline = "template"

@@ -38,11 +38,19 @@ import stlayout as L  # noqa: E402
 
 SCHEMA_VERSION = 1
 DEFAULT_THRESHOLD = 0.5
+# Перенос этого репозитория: снимки оригинала (upstream/, коммиты — upstream/SOURCES.json) и адаптированный
+# код (targets/astra/). Одинаковые метки у оригинала и адаптированного дерева — объекты сравниваются только
+# внутри пары (у библиотеки и флагмана есть одноимённые объекты, например GVL_Const).
 DEFAULT_ORIGS = (
-    os.path.join(REPO_ROOT, "..", "kns-pump-station", "src"),
-    os.path.join(REPO_ROOT, "..", "plc-process-lib", "src"),
+    "kns-pump-station=" + os.path.join(REPO_ROOT, "upstream", "kns-pump-station", "src"),
+    "plc-process-lib=" + os.path.join(REPO_ROOT, "upstream", "plc-process-lib", "src"),
 )
-DEFAULT_ADAPTED = (os.path.join(REPO_ROOT, "targets", "astra", "src"),)
+DEFAULT_ADAPTED = (
+    "kns-pump-station=" + os.path.join(REPO_ROOT, "targets", "astra", "src"),
+    "plc-process-lib=" + os.path.join(REPO_ROOT, "targets", "astra", "lib", "src"),
+)
+# PRG_Main библиотеки — программа её рабочей сборки, в библиотеку не входит (config.json: library.exclude)
+DEFAULT_EXCLUDE = ("plc-process-lib:PRG_Main",)
 DEFAULT_MD = os.path.join(REPO_ROOT, "docs", "port_metrics.md")
 DEFAULT_JSON = os.path.join(REPO_ROOT, "docs", "port_metrics.json")
 NEW_LABEL = "новые объекты"
@@ -84,6 +92,10 @@ _MAIN_SUFFIXES = (
 )
 
 _MARKER_RE = re.compile(r"^//\s*PORT\s*:\s*(?:\[(?P<tag>[^\]]*)\])?\s*(?P<reason>.*?)\s*$")
+# Маркер проверки: код оставлен в форме CODESYS, поведение Astra.IDE не подтверждено (tools/port_checks.py)
+CHECK_PHRASE = "проверить в Astra.IDE"
+# Пункт чек-листа A1…K4; F1–F4 — визуализация, а F01…F93 — факты (с ведущим нулём или двузначные)
+_ITEM_RE = re.compile(r"\b(?:[A-EG-K]\d{1,2}|F[1-9])\b")
 
 
 @dataclass(frozen=True)
@@ -163,6 +175,8 @@ class Marker:
     explicit: bool
     raw_tag: str | None = None
     used: bool = False
+    check: bool = False
+    items: tuple[str, ...] = ()
 
     @property
     def unknown_tag(self) -> bool:
@@ -177,6 +191,8 @@ class Marker:
             "raw_tag": self.raw_tag,
             "reason": self.reason,
             "used": self.used,
+            "check": self.check,
+            "items": list(self.items),
         }
 
 
@@ -192,6 +208,7 @@ class Hunk:
     line: int
     text: str
     marked: bool = False
+    category: str | None = None
 
     def to_json(self, path: str) -> dict[str, object]:
         return {"path": path, "line": self.line, "kind": self.kind, "text": self.text}
@@ -263,6 +280,12 @@ class FileResult:
     adapted_path: str | None = None
     markers: list[Marker] = field(default_factory=list)
     hunks: list[Hunk] = field(default_factory=list)
+    # Категория нового или переписанного файла — по первому маркеру правки
+    category: str | None = None
+
+    @property
+    def change_markers(self) -> list[Marker]:
+        return [m for m in self.markers if not m.check]
 
     @property
     def unmarked(self) -> list[Hunk]:
@@ -293,6 +316,7 @@ class ObjectResult:
     counts: LineCounts
     orig_name: str | None = None
     files: list[FileResult] = field(default_factory=list)
+    layout_kind: str = L.KIND_POU
 
     @property
     def markers(self) -> int:
@@ -345,8 +369,17 @@ class Report:
         return [(f, h) for f in self.files for h in f.unmarked]
 
     @property
+    def change_markers(self) -> list[Marker]:
+        return [m for m in self.markers if not m.check]
+
+    @property
+    def check_markers(self) -> list[Marker]:
+        return [m for m in self.markers if m.check]
+
+    @property
     def stale_markers(self) -> list[Marker]:
-        return [m for m in self.markers if not m.used]
+        """Маркеры правки, не относящиеся ни к одной правке (маркеры проверки правкой не являются)."""
+        return [m for m in self.change_markers if not m.used]
 
     def totals(self) -> LineCounts:
         total = LineCounts()
@@ -478,12 +511,29 @@ def _window(adapted: TextLines, hunk: Hunk) -> tuple[int, int]:
     return max(prev, 1), max(nxt, 1)
 
 
+def is_check_reason(reason: str) -> bool:
+    """Маркер проверки: причина начинается с «проверить в Astra.IDE» — это не правка кода."""
+    return reason.lower().startswith(CHECK_PHRASE.lower())
+
+
+def marker_items(reason: str) -> tuple[str, ...]:
+    """Пункты чек-листа из последних скобок причины: «… (C1)», «… (E1, E2)»."""
+    paren = re.search(r"\(([^()]*)\)\s*$", reason)
+    return tuple(_ITEM_RE.findall(paren.group(1))) if paren else ()
+
+
 def _make_markers(path: str, parsed: Iterable[tuple[int, str | None, str]]) -> list[Marker]:
     result = []
     for line, raw_tag, reason in parsed:
         tag, explicit = classify(raw_tag, reason)
-        result.append(Marker(path, line, tag, reason, explicit, raw_tag))
+        check = is_check_reason(reason)
+        items = marker_items(reason)
+        result.append(Marker(path, line, tag, reason, explicit, raw_tag, check=check, items=items))
     return result
+
+
+def _first_category(markers: Iterable[Marker]) -> str | None:
+    return next((m.tag for m in markers if not m.check), None)
 
 
 def compare_texts(
@@ -506,7 +556,14 @@ def compare_texts(
         n = len(new.lines)
         for marker in markers:
             marker.used = True
-        return FileResult(role, STATUS_NEW, LineCounts(adapted=n, added=n, span=n), display, markers=markers)
+        return FileResult(
+            role,
+            STATUS_NEW,
+            LineCounts(adapted=n, added=n, span=n),
+            display,
+            markers=markers,
+            category=_first_category(markers),
+        )
     counts, hunks = _hunks(significant_lines(orig, with_comments), new)
     if not hunks:
         return FileResult(role, STATUS_UNCHANGED, counts, display, markers=markers)
@@ -518,18 +575,23 @@ def compare_texts(
             added=max(0, counts.adapted - counts.orig),
             span=counts.span,
         )
-        result = FileResult(role, STATUS_REWRITTEN, rewritten, display, markers=markers)
+        result = FileResult(
+            role, STATUS_REWRITTEN, rewritten, display, markers=markers, category=_first_category(markers)
+        )
         for marker in markers:
             marker.used = True
-        if not markers:
+        if not result.change_markers:
             result.hunks = [Hunk(HUNK_FILE, 0, counts.orig, 0, counts.adapted, 1, new.lines[0])]
         return result
     for hunk in hunks:
         first, last = _window(new, hunk)
         for marker in markers:
-            if first <= marker.line <= last:
+            # Маркер проверки отмечает место без правки и правку не помечает
+            if not marker.check and first <= marker.line <= last:
                 hunk.marked = True
                 marker.used = True
+                if hunk.category is None:
+                    hunk.category = marker.tag
     return FileResult(role, STATUS_CHANGED, counts, display, markers=markers, hunks=hunks)
 
 
@@ -656,10 +718,10 @@ def _compare_entries(
     if orig is not None and adapted is not None:
         # Новый файл в перенесённом объекте (метод, свойство) требует собственного маркера
         for result in files:
-            if result.status == STATUS_NEW and not result.markers:
+            if result.status == STATUS_NEW and not result.change_markers:
                 text = adapted.files[result.role][1].split("\n", 1)[0]
                 result.hunks = [Hunk(HUNK_FILE, 0, 0, 0, result.counts.adapted, 1, text)]
-    elif adapted is not None and not any(result.markers for result in files):
+    elif adapted is not None and not any(result.change_markers for result in files):
         # Новый объект: достаточно одного маркера в любом его файле (обычно в объявлении)
         files[0].hunks = [Hunk(HUNK_FILE, 0, 0, 0, files[0].counts.adapted, 1, adapted.obj.name)]
     return ObjectResult(
@@ -670,6 +732,7 @@ def _compare_entries(
         counts=counts,
         orig_name=orig.obj.name if orig is not None else None,
         files=files,
+        layout_kind=some.obj.kind,
     )
 
 
@@ -682,43 +745,53 @@ def build_report(
     renames: Sequence[tuple[str, str]] = (),
     base: str = REPO_ROOT,
 ) -> tuple[Report, list[str]]:
-    """Сравнивает раскладки. Возвращает отчёт и ошибки раскладки (с ошибками отчёт неполон)."""
+    """Сравнивает раскладки. Возвращает отчёт и ошибки раскладки (с ошибками отчёт неполон).
+
+    Адаптированное дерево с той же меткой, что у оригинала, сравнивается только с ним (пара);
+    остальные адаптированные деревья — со всеми оригиналами без пары.
+    """
     if not 0.0 <= threshold < 1.0:
         raise UsageError(f"порог должен быть в диапазоне [0, 1): {threshold}")
     warnings: list[str] = []
     errors: list[str] = []
-    orig_entries: list[_Entry] = []
-    adapted_entries: list[_Entry] = []
-    for sources, bucket in ((origs, orig_entries), (adapted, adapted_entries)):
+    orig_groups: dict[str | None, list[_Entry]] = {}
+    adapted_groups: dict[str | None, list[_Entry]] = {}
+    paired = {s.label for s in adapted} & {s.label for s in origs}
+    for sources, groups in ((origs, orig_groups), (adapted, adapted_groups)):
         for source in sources:
             entries, errs = load_tree(source, base)
             errors.extend(errs)
-            bucket.extend(e for e in entries if not _excluded(e, exclude))
-    orig_index = _index(orig_entries, "оригинал", warnings)
-    adapted_index = _index(adapted_entries, "адаптированный код", warnings)
+            key = source.label if source.label in paired else None
+            groups.setdefault(key, []).extend(e for e in entries if not _excluded(e, exclude))
     rename_map: dict[str, str] = {}  # имя в адаптированном коде -> имя в оригинале (нижний регистр)
+    all_orig = {e.obj.name.lower() for es in orig_groups.values() for e in es}
+    all_adapted = {e.obj.name.lower() for es in adapted_groups.values() for e in es}
     for old, new in renames:
-        if old.lower() not in orig_index:
+        if old.lower() not in all_orig:
             warnings.append(f"--map {old}={new}: в оригинале нет объекта {old}")
-        if new.lower() not in adapted_index:
+        if new.lower() not in all_adapted:
             warnings.append(f"--map {old}={new}: в адаптированном коде нет объекта {new}")
         rename_map[new.lower()] = old.lower()
     renamed = set(rename_map.values())
     objects: list[ObjectResult] = []
-    matched: set[str] = set()
-    for key, entry in adapted_index.items():
-        if key in rename_map:
-            orig_key: str | None = rename_map[key]
-        else:
-            # Имя оригинала, переименованного в другой объект, занято: одноимённый объект — новый
-            orig_key = None if key in renamed else key
-        orig_entry = orig_index.get(orig_key) if orig_key is not None else None
-        if orig_entry is not None and orig_key is not None:
-            matched.add(orig_key)
-        objects.append(_compare_entries(orig_entry, entry, threshold, with_comments))
-    for key, entry in orig_index.items():
-        if key not in matched:
-            objects.append(_compare_entries(entry, None, threshold, with_comments))
+    for key in sorted(set(orig_groups) | set(adapted_groups), key=lambda k: (k is not None, k or "")):
+        suffix = f" ({key})" if key is not None else ""
+        orig_index = _index(orig_groups.get(key, []), "оригинал" + suffix, warnings)
+        adapted_index = _index(adapted_groups.get(key, []), "адаптированный код" + suffix, warnings)
+        matched: set[str] = set()
+        for name, entry in adapted_index.items():
+            if name in rename_map:
+                orig_key: str | None = rename_map[name]
+            else:
+                # Имя оригинала, переименованного в другой объект, занято: одноимённый объект — новый
+                orig_key = None if name in renamed else name
+            orig_entry = orig_index.get(orig_key) if orig_key is not None else None
+            if orig_entry is not None and orig_key is not None:
+                matched.add(orig_key)
+            objects.append(_compare_entries(orig_entry, entry, threshold, with_comments))
+        for name, entry in orig_index.items():
+            if name not in matched:
+                objects.append(_compare_entries(entry, None, threshold, with_comments))
 
     label_order = {s.label: i for i, s in enumerate(origs)}
     label_order.setdefault(NEW_LABEL, len(label_order))
@@ -732,17 +805,94 @@ def build_report(
     }
 
     def sort_key(obj: ObjectResult) -> tuple[int, int, str, str]:
-        main = adapted_index.get(obj.name.lower()) or orig_index.get((obj.orig_name or obj.name).lower())
-        kind = main.obj.kind if main else L.KIND_POU
         return (
             label_order.get(obj.label, len(label_order)),
-            category_order[kind_category[kind]],
+            category_order[kind_category[obj.layout_kind]],
             obj.name.lower(),
             obj.name,
         )
 
     objects.sort(key=sort_key)
     return Report(threshold, with_comments, list(origs), list(adapted), objects, warnings), errors
+
+
+@dataclass
+class CategoryStats:
+    """Правки одной категории: маркеры, объекты и файлы с правками, строки."""
+
+    tag: str
+    changes: int = 0
+    checks: int = 0
+    objects: set[str] = field(default_factory=set)
+    files: set[str] = field(default_factory=set)
+    orig_lines: int = 0
+    added_lines: int = 0
+
+    def to_json(self) -> dict[str, object]:
+        return {
+            "category": self.tag,
+            "change_markers": self.changes,
+            "check_markers": self.checks,
+            "objects": len(self.objects),
+            "files": len(self.files),
+            "orig_lines_touched": self.orig_lines,
+            "lines_added": self.added_lines,
+        }
+
+
+def category_stats(report: Report) -> list[CategoryStats]:
+    """Правки по категориям в порядке CATEGORIES.
+
+    Строки участка правки относятся к категории первого маркера правки в его окне; новый или
+    переписанный файл — к первому маркеру правки файла, а без него — к первому маркеру правки
+    объекта (новому объекту достаточно одного маркера). Строки оригинала — изменённые, переписанные
+    и удалённые; добавленные — строки адаптированного кода в участках правок и новых файлах.
+    """
+    stats = {cat.tag: CategoryStats(cat.tag) for cat in CATEGORIES}
+    for marker in report.markers:
+        slot = stats.get(marker.tag, stats[OTHER_TAG])
+        if marker.check:
+            slot.checks += 1
+        else:
+            slot.changes += 1
+    for obj in report.objects:
+        object_category = _first_category(m for f in obj.files for m in f.markers)
+        for f in obj.files:
+            touched: list[tuple[str, int, int]] = []
+            if f.status in (STATUS_NEW, STATUS_REWRITTEN):
+                tag = f.category or object_category
+                if tag is not None:
+                    touched.append((tag, f.counts.rewritten, f.counts.adapted))
+            elif f.status == STATUS_CHANGED:
+                for hunk in f.hunks:
+                    if hunk.category is not None:
+                        touched.append(
+                            (hunk.category, hunk.orig_end - hunk.orig_start, hunk.adapted_end - hunk.adapted_start)
+                        )
+            for tag, orig_lines, added in touched:
+                slot = stats.get(tag, stats[OTHER_TAG])
+                slot.objects.add(f"{obj.label}:{obj.name}")
+                slot.files.add(f.display)
+                slot.orig_lines += orig_lines
+                slot.added_lines += added
+    return [st for st in stats.values() if st.changes or st.checks or st.files]
+
+
+def _item_key(item: str) -> tuple[str, int]:
+    match = re.match(r"([A-Z])(\d+)", item)
+    return (match.group(1), int(match.group(2))) if match else ("~", 0)
+
+
+def check_items(report: Report) -> list[tuple[str, int, list[str]]]:
+    """Маркеры проверки по пунктам чек-листа: (пункт, маркеров, категории)."""
+    rows: dict[str, tuple[int, list[str]]] = {}
+    for marker in report.check_markers:
+        for item in marker.items or ("—",):
+            count, tags = rows.get(item, (0, []))
+            if marker.tag not in tags:
+                tags = [*tags, marker.tag]
+            rows[item] = (count + 1, tags)
+    return [(item, rows[item][0], rows[item][1]) for item in sorted(rows, key=_item_key)]
 
 
 # ---------------------------------------------------------------------------
@@ -833,6 +983,19 @@ def methodology_md() -> list[str]:
         "в квадратных скобках необязательна: без неё категория определяется по ключевым словам причины,",
         "иначе — `other`. Маркеры в блочных комментариях `(* *)` не распознаются.",
         "",
+        "**Маркер проверки** — `// PORT: [категория] проверить в Astra.IDE — что (пункт)`: код оставлен в",
+        "форме CODESYS, потому что поведение Astra.IDE по документации вендора не подтверждено. Это не",
+        "правка: такой маркер не помечает участок правки и не считается лишним. Расстановку маркеров",
+        "проверки по правилам ведёт `tools/port_checks.py`; пункт в скобках — раздел 9 чек-листа миграции.",
+        "",
+        "**Пары деревьев.** Адаптированное дерево с той же меткой, что у оригинала (`--orig МЕТКА=…`,",
+        "`--adapted МЕТКА=…`), сравнивается только с ним: у библиотеки и флагмана есть одноимённые объекты.",
+        "",
+        "**Категория строк.** Строки участка правки относятся к категории первого маркера правки в его",
+        "окне, новый или переписанный файл — к первому маркеру правки файла (без него — объекта).",
+        "«Строк оригинала затронуто» — изменённые, переписанные и удалённые строки участков; «добавлено» —",
+        "строки адаптированного кода в участках правок и новых файлах.",
+        "",
         "Проверка пометок (с `--strict` нарушения дают код выхода 1):",
         "",
         "- участок правок в изменённом файле без маркера в своих строках;",
@@ -897,17 +1060,71 @@ def _summary_md(report: Report) -> list[str]:
 
 
 def _markers_md(report: Report) -> list[str]:
-    markers = report.markers
-    out = ["## Маркеры PORT по категориям", ""]
-    if not markers:
+    out = ["## Правки по категориям", ""]
+    stats = category_stats(report)
+    if not report.markers:
         return [*out, "Маркеров нет.", ""]
-    out += _header("Категория", "Причина правки", "Маркеров", "Из них без метки (по ключевым словам)")
-    for cat in CATEGORIES:
-        mine = [m for m in markers if m.tag == cat.tag]
-        if mine:
-            out.append(_row(f"`{cat.tag}`", cat.title, len(mine), sum(1 for m in mine if not m.explicit)))
-    out.append(_row("**Всего**", "", len(markers), sum(1 for m in markers if not m.explicit)))
+    out += [
+        "Маркер правки — `// PORT: [категория] причина` у изменённого кода; маркер проверки —",
+        "`// PORT: [категория] проверить в Astra.IDE — …` у кода, оставленного в форме CODESYS, пока",
+        "пункт чек-листа не проверен в среде. Строки участка правки относятся к категории его маркера.",
+        "",
+        *_header(
+            "Категория",
+            "Причина",
+            "Маркеров правки",
+            "Объектов с правками",
+            "Файлов с правками",
+            "Строк оригинала затронуто",
+            "Строк добавлено",
+            "Маркеров проверки",
+        ),
+    ]
+    titles = {cat.tag: cat.title for cat in CATEGORIES}
+    for st in stats:
+        out.append(
+            _row(
+                f"`{st.tag}`",
+                titles[st.tag],
+                st.changes,
+                len(st.objects),
+                len(st.files),
+                st.orig_lines,
+                st.added_lines,
+                st.checks,
+            )
+        )
+    all_objects = set().union(*(st.objects for st in stats)) if stats else set()
+    all_files = set().union(*(st.files for st in stats)) if stats else set()
+    out.append(
+        _row(
+            "**Всего**",
+            "",
+            len(report.change_markers),
+            len(all_objects),
+            len(all_files),
+            sum(st.orig_lines for st in stats),
+            sum(st.added_lines for st in stats),
+            len(report.check_markers),
+        )
+    )
+    implicit = sum(1 for m in report.markers if not m.explicit)
+    if implicit:
+        out += ["", f"Маркеров без метки (категория по ключевым словам причины): {implicit}."]
     out.append("")
+    items = check_items(report)
+    if items:
+        out += [
+            "### Маркеры проверки по пунктам чек-листа",
+            "",
+            "Пункты — раздел 9 `docs/migration_checklist.md`. Когда пункт подтверждён в Astra.IDE, его маркеры",
+            'снимает `python tools/port_checks.py --resolve <пункт> --note "…"`; если не подтверждён — код',
+            "переписывается, и маркеры проверки сменяются маркерами правки.",
+            "",
+            *_header("Пункт", "Маркеров проверки", "Категории"),
+        ]
+        out += [_row(item, n, ", ".join(f"`{t}`" for t in tags)) for item, n, tags in items]
+        out.append("")
     return out
 
 
@@ -1056,9 +1273,10 @@ def render_json(report: Report) -> str:
     """Отчёт docs/port_metrics.json (машиночитаемый, все файлы)."""
     by_category: dict[str, dict[str, int]] = {}
     for marker in report.markers:
-        slot = by_category.setdefault(marker.tag, {"markers": 0, "implicit": 0})
+        slot = by_category.setdefault(marker.tag, {"markers": 0, "implicit": 0, "changes": 0, "checks": 0})
         slot["markers"] += 1
         slot["implicit"] += 0 if marker.explicit else 1
+        slot["checks" if marker.check else "changes"] += 1
     data: dict[str, object] = {
         "schema": SCHEMA_VERSION,
         "params": {"threshold": report.threshold, "with_comments": report.with_comments, "command": report.command},
@@ -1072,9 +1290,13 @@ def render_json(report: Report) -> str:
         },
         "markers": {
             "total": len(report.markers),
+            "changes": len(report.change_markers),
+            "checks": len(report.check_markers),
             "by_category": {cat.tag: by_category[cat.tag] for cat in CATEGORIES if cat.tag in by_category},
+            "check_items": {item: n for item, n, _ in check_items(report)},
             "items": [m.to_json() for m in report.markers],
         },
+        "categories": [st.to_json() for st in category_stats(report)],
         "unmarked": [h.to_json(f.display) for f, h in report.unmarked],
         "stale_markers": [{"path": m.path, "line": m.line, "reason": m.reason} for m in report.stale_markers],
         "objects": [o.to_json() for o in report.objects],
@@ -1098,14 +1320,15 @@ def build_parser() -> argparse.ArgumentParser:
         "--orig",
         action="append",
         metavar="[МЕТКА=]КАТАЛОГ",
-        help="раскладка оригинала (каталог src); можно повторять. По умолчанию ../kns-pump-station/src"
-        " и ../plc-process-lib/src рядом с репозиторием",
+        help="раскладка оригинала (каталог src); можно повторять. По умолчанию — снимки upstream/kns-pump-station/src"
+        " и upstream/plc-process-lib/src (с исключением plc-process-lib:PRG_Main)",
     )
     parser.add_argument(
         "--adapted",
         action="append",
         metavar="[МЕТКА=]КАТАЛОГ",
-        help="раскладка адаптированного кода; можно повторять. По умолчанию targets/astra/src",
+        help="раскладка адаптированного кода; можно повторять. По умолчанию targets/astra/src и"
+        " targets/astra/lib/src (метки — как у оригиналов)",
     )
     parser.add_argument(
         "--threshold",
@@ -1132,6 +1355,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--json", default=DEFAULT_JSON, help="отчёт JSON (по умолчанию docs/port_metrics.json)")
     parser.add_argument("--dry-run", action="store_true", help="только посчитать и вывести итог, файлы не писать")
     parser.add_argument(
+        "--check",
+        action="store_true",
+        help="не писать отчёты, а сравнить с существующими: код 1, если они устарели",
+    )
+    parser.add_argument(
         "--strict",
         action="store_true",
         help="код выхода 1 при правках без маркера, неизвестной категории или маркере без причины",
@@ -1150,7 +1378,9 @@ def _parse_renames(items: Sequence[str]) -> list[tuple[str, str]]:
     return result
 
 
-def command_line(origs: Sequence[Source], adapted: Sequence[Source], args: argparse.Namespace) -> str:
+def command_line(
+    origs: Sequence[Source], adapted: Sequence[Source], args: argparse.Namespace, exclude: Sequence[str] = ()
+) -> str:
     """Команда для отчёта: только входные параметры, пути — относительно репозитория.
 
     Пути вывода (--md, --json) в команду не попадают: в отчёте не остаётся путей пользователя.
@@ -1163,7 +1393,7 @@ def command_line(origs: Sequence[Source], adapted: Sequence[Source], args: argpa
         parts += ["--threshold", str(args.threshold)]
     if args.with_comments:
         parts.append("--with-comments")
-    for pattern in args.exclude:
+    for pattern in exclude:
         parts += ["--exclude", pattern]
     for item in args.map:
         parts += ["--map", item]
@@ -1177,7 +1407,8 @@ def summary(report: Report) -> str:
     return (
         f"port_metrics: строк оригинала {t.orig} — без изменений {_pct(t.unchanged, t.orig)}, "
         f"изменено {_pct(t.changed, t.orig)}, переписано {_pct(t.rewritten, t.orig)}, "
-        f"удалено {_pct(t.removed, t.orig)}; добавлено {t.added}; маркеров PORT {len(report.markers)}, "
+        f"удалено {_pct(t.removed, t.orig)}; добавлено {t.added}; маркеров PORT {len(report.markers)} "
+        f"(правок {len(report.change_markers)}, проверок {len(report.check_markers)}), "
         f"правок без маркера {len(report.unmarked)}"
     )
 
@@ -1199,6 +1430,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     except SystemExit as exc:  # --help — 0, ошибка аргументов — 2
         return 0 if exc.code in (0, None) else 2
     base = REPO_ROOT
+    # Исключения по умолчанию относятся к деревьям по умолчанию
+    exclude = list(args.exclude) or ([] if args.orig else list(DEFAULT_EXCLUDE))
     try:
         origs = [parse_source(s, base) for s in (args.orig or DEFAULT_ORIGS)]
         adapted = [parse_source(s, base) for s in (args.adapted or DEFAULT_ADAPTED)]
@@ -1207,7 +1440,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             adapted,
             threshold=args.threshold,
             with_comments=args.with_comments,
-            exclude=args.exclude,
+            exclude=exclude,
             renames=_parse_renames(args.map),
             base=base,
         )
@@ -1219,12 +1452,20 @@ def main(argv: Sequence[str] | None = None) -> int:
             print(err, file=sys.stderr)
         print(f"port_metrics: ошибки раскладки ({len(errors)}), отчёт не записан", file=sys.stderr)
         return 1
-    report.command = command_line(origs, adapted, args)
+    report.command = command_line(origs, adapted, args, exclude)
     for warning in report.warnings:
         print(f"предупреждение: {warning}", file=sys.stderr)
-    if not args.dry_run:
-        L.write_text(os.path.abspath(args.md), render_md(report))
-        L.write_text(os.path.abspath(args.json), render_json(report))
+    outputs = ((os.path.abspath(args.md), render_md(report)), (os.path.abspath(args.json), render_json(report)))
+    stale = False
+    if args.check:
+        for path, text in outputs:
+            current = L.read_text(path) if os.path.exists(path) else None
+            if current != text:
+                stale = True
+                print(f"port_metrics: отчёт устарел: {_display_path(path, base)}", file=sys.stderr)
+    elif not args.dry_run:
+        for path, text in outputs:
+            L.write_text(path, text)
     if not args.quiet:
         print(summary(report))
     if args.strict:
@@ -1233,7 +1474,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             print(problem, file=sys.stderr)
         if problems:
             return 1
-    return 0
+    return 1 if stale else 0
 
 
 if __name__ == "__main__":

@@ -343,8 +343,8 @@ python tools\codesys\cds.py roundtrip
    ```bash
    # фикстура всех конструкций и исходники ../plc-process-lib (та ветка, что выгружена)
    python tools/plcopen/verify_codesys.py
-   # адаптированный код (этап 2) и вариант «только TC6» для сведения
-   python tools/plcopen/verify_codesys.py --case astra=targets/astra --structural
+   # адаптированная библиотека и вариант «только TC6» для сведения (для targets/astra ещё не выполнялось)
+   python tools/plcopen/verify_codesys.py --case astra-lib=targets/astra/lib --structural
    ```
 
 2. Итог — таблица в консоли, `build/plcopen/verify.md` и `verify.json`. Код 0 — всё импортировано без
@@ -368,12 +368,11 @@ CODESYS 3.5; в Astra.IDE их сверить (пункт B2 чек-листа).
 3. Файл импорта:
 
    ```bash
-   # итерация 1: фикстура конструкций и библиотека как есть (--root — рабочая копия библиотеки;
-   # выпуск 1.0 — ветка integrate, её рабочая копия, например ../_wt/plc-process-lib-integrate)
+   # по желанию — пробный проект: фикстура всех конструкций (пункты C1–C16 чек-листа)
    python tools/st_to_plcopen.py --root tools/plcopen/tests/fixtures/constructs --out build/plcopen/constructs.xml --xsd auto
-   python tools/st_to_plcopen.py --root ../plc-process-lib --out build/plcopen/plc-process-lib.xml --xsd auto
-   # дальше: адаптированный код (тот же файл есть в артефакте CI build-reports)
-   python tools/st_to_plcopen.py --src targets/astra/src --out build/plcopen/astra.xml --xsd auto
+   # адаптированный код: библиотека, затем приложение (те же файлы есть в артефакте CI build-reports)
+   python tools/st_to_plcopen.py --root targets/astra/lib --name plc-process-lib --out build/plcopen/astra-lib.xml --xsd auto
+   python tools/st_to_plcopen.py --root targets/astra --name kns-pump-station --out build/plcopen/astra-app.xml --xsd auto
    ```
 
    Если среда не принимает файл целиком — пересобрать с `--namespace tc6_0200` (так пишет экспорт

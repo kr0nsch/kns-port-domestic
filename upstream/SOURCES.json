@@ -1,0 +1,43 @@
+{
+  "_doc": [
+    "Откуда взяты исходники переноса. Снимок upstream/<id>/src — дерево src коммита commit (git archive) с заменой substitutions:",
+    "плейсхолдеры портфолио в оригинале заменены так же, как во всём репозитории (знаки угловых скобок записаны кодами \\u003c и",
+    "\\u003e, чтобы ключи не заменил сам скрипт подстановки). По снимку tools/port_metrics.py считает метрики, а",
+    "tools/upstream_delta.py — дельту до новой версии оригинала. Поля commit, ref, date и snapshot_date обновляет",
+    "tools/upstream_delta.py --apply; вручную их не правят."
+  ],
+  "sources": [
+    {
+      "id": "kns-pump-station",
+      "title": "флагман КНС-1",
+      "url": "https://github.com/kr0nsch/kns-pump-station",
+      "repo": "../kns-pump-station",
+      "repo_env": "KNS_REPO",
+      "ref": "main",
+      "commit": "505ce149a0e0fb72b5cce79e72876722abeba9d0",
+      "date": "2026-10-19T20:17:41+03:00",
+      "subdir": "src",
+      "snapshot": "upstream/kns-pump-station/src",
+      "target": "targets/astra/src",
+      "exclude": [],
+      "substitutions": {"\u003cИМЯ ФАМИЛИЯ\u003e": "kr0nsch", "\u003cGITHUB_USER\u003e": "kr0nsch"},
+      "snapshot_date": "2026-10-19"
+    },
+    {
+      "id": "plc-process-lib",
+      "title": "библиотека plc-process-lib 1.0.0",
+      "url": "https://github.com/kr0nsch/plc-process-lib",
+      "repo": "../plc-process-lib",
+      "repo_env": "PL_REPO",
+      "ref": "v1.0.0",
+      "commit": "bd9df2a4c0266b7d4992763d5151f21cae490609",
+      "date": "2026-10-19T15:08:14+03:00",
+      "subdir": "src",
+      "snapshot": "upstream/plc-process-lib/src",
+      "target": "targets/astra/lib/src",
+      "exclude": ["POUs/PRG_Main/"],
+      "substitutions": {},
+      "snapshot_date": "2026-10-19"
+    }
+  ]
+}

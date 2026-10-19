@@ -1,0 +1,2 @@
+xResetReq := TRUE;
+Reset := TRUE;

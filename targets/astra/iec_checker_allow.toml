@@ -1,0 +1,270 @@
+# Обоснования iec_checker для адаптированного приложения КНС-1 (targets/astra/src).
+# Записи до раздела «Сборка REGUL» — копия tools/check/iec_checker_allow.toml флагмана kns-pump-station
+# (коммит 505ce14, тот же, что у снимка upstream/kns-pump-station): код флагмана перенесён без правок,
+# поэтому и находки, и их разбор те же — подробности в docs/STATIC_ANALYSIS.md флагмана. При переносе
+# дельты флагмана (tools/upstream_delta.py) копию обновляют вместе с кодом.
+# Запуск: python tools/check/run_iec_checker.py --root targets/astra --allow targets/astra/iec_checker_allow.toml
+#
+# Обоснованные находки iec_checker (tools/check/run_iec_checker.py).
+# Обоснованная находка попадает в отчёт со статусом allowed и не роняет проверку.
+# Подробный разбор каждой записи — docs/STATIC_ANALYSIS.md; при изменении кода держите их согласованными.
+#
+# Ключи записи [[allow]]:
+#   id     — идентификатор правила iec_checker (шаблон fnmatch), например "PLCOPEN-CP3";
+#   file   — шаблон fnmatch пути исходника (src/POUs/...) или имени собранного файла (FB_X.st);
+#            '*' захватывает и '/';
+#   match  — необязательно: регулярное выражение по тексту сообщения;
+#   reason — обязательно: почему находка допустима.
+# ParserError и LexingError обосновать нельзя: их исправляют в коде или в понижении iec-checker.
+
+[[allow]]
+id = "PLCOPEN-CP3"
+file = "src/*"
+reason = "Переменная без явного начального значения получает значение по умолчанию своего типа (МЭК 61131-3, как в CODESYS); вариант сборки iec-checker убирает неконстантные начальные значения"
+
+[[allow]]
+id = "PLCOPEN-CP3"
+file = "tests/*"
+reason = "Как для src/: значения по умолчанию типов; результаты тестов присваиваются до чтения"
+
+[[allow]]
+id = "PLCOPEN-CP9"
+file = "tests/*"
+reason = "Наборы тестов — последовательные вызовы без ветвлений (классическая сложность — 1); завышенный подсчёт iec_checker 0.4, метрика для тестов не показательна"
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/POUs/*_Test/*_Test.decl.st"
+match = "variable: [A-Z][A-Z0-9]*(_[A-Z0-9]+)+$"
+reason = "Артефакт понижения: константы набора (VAR CONSTANT, UPPER_SNAKE_CASE) используются в методах-тестах, которые сборка выносит в отдельные функции"
+
+# ===== Команда К3: сгенерированный слой, полевой слой, журнал (docs/STATIC_ANALYSIS.md, раздел К3) =====
+
+[[allow]]
+id = "PLCOPEN-CP9"
+file = "src/POUs/Generated/*"
+match = "Code is too complex"
+reason = "Сгенерированный код (iolistgen, tools_project/generate.py): вызовы 29 устройств и присваивания по одному на строку без ветвлений логики; сложность растёт с числом устройств, а не с логикой"
+
+[[allow]]
+id = "PLCOPEN-L17"
+file = "src/POUs/Generated/PRG_Devices/PRG_Devices.impl.st"
+reason = "Сгенерированный код iolistgen: команда «применить уставки проекта» не пришла — делать нечего"
+
+[[allow]]
+id = "PLCOPEN-CP9"
+file = "src/POUs/Field/PRG_FieldIn/*"
+match = "Code is too complex"
+reason = "Линейное копирование выходов трёх адаптеров ПЧ в GVL_IO (имена у каждого насоса свои, DESIGN 8.1): одно ветвление (первый цикл); McCabe iec_checker 0.4 завышен"
+
+[[allow]]
+id = "PLCOPEN-L17"
+file = "src/POUs/Field/*"
+reason = "Ветки «иначе» нет по смыслу: первый цикл уже прошёл — признак имитации не меняется (решение D-02)"
+
+[[allow]]
+id = "PLCOPEN-CP9"
+file = "src/POUs/Log/*"
+match = "Code is too complex"
+reason = "Тела журнала, сводки тревог и даты — последовательность шагов с комментариями (DESIGN 9.1–9.3); классическая сложность (ветвления + 1): FB_AlarmSummary — 12, BuildView — 12, F_UtcToIso — 4, FB_EventLog.Store — 3; iec_checker 0.4 считает завышенно"
+
+[[allow]]
+id = "PLCOPEN-L17"
+file = "src/POUs/Log/*"
+reason = "IF без ELSE — нет действия по умолчанию: условие не выполнено — состояние не меняется (кольцо не полно, запись снимка отсутствует, команда не пришла, тревога не изменилась)"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Field/*"
+match = "variable: (FBVFDP10[1-3]|XCOMMOK|XREADY|XRUNNING|XFAULT|XWARNING|XREMOTE|RSPEEDACT_PCT|WCTW|UIFREF)$"
+reason = "Артефакт понижения: выходы адаптера пишут методы Decode/Encode, а экземпляры fbVfdP10n используются вызовами методов и чтением выходов (в PRG_FieldOut — PRG_FieldIn.fbVfdP10n) — это iec_checker 0.4 не считает использованием"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Log/*"
+match = "variable: (ASTRING|ASTSNAPSHOT|UIHEAD|UISNAPCOUNT|UICOUNT|UDISEQLAST|UDIOVERWRITTEN|XCLOCKVALID|ITFTIME|FBSYSTIME|STVIEW|STFEED|STEVENT|STRECORD|EEVENT|UISOURCECOUNT|AUIDEVNO|FBCSV|UIDIGITS|FBLOG|FBOPEN|FBWRITE|FBCLOSE|ABBUF)$"
+reason = "Артефакт понижения: переменные ФБ и параметры используются в методах (сборка выносит их в отдельные функции), структуры — обращениями к полям, экземпляры — вызовами методов; iec_checker 0.4 этого не связывает"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Log/*"
+match = "variable: (CRLF|SEP|STATION_TAG|PID_TAG|EVENT_PREFIX|DIGITS_YEAR|S_PER_HOUR|S_PER_MIN)$"
+reason = "Ложное срабатывание iec_checker 0.4: константы VAR CONSTANT используются как аргументы CONCAT и F_ZeroPad внутри вложенных вызовов"
+
+[[allow]]
+id = "PLCOPEN-L17"
+file = "tests/POUs/Log/*"
+reason = "Тесты: многоцикловый шаг (IF … THEN проверки и TEST_FINISHED) и подготовка первого вызова — ветки «иначе» нет по смыслу"
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/POUs/*/*.method.decl.st"
+match = "variable: (FBDUT|FBLOG|FBCSV|FBOPEN|FBREAD|FBCLOSE|FBSRC[0-9]?|STREC|STEVENT|UBITS)$"
+reason = "Ложное срабатывание iec_checker 0.4: экземпляры ФБ используются вызовами, методами и чтением выходов, структуры — обращениями к полям (VAR_INST и VAR методов-тестов)"
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/POUs/Log/FB_TestAlarmSource/FB_TestAlarmSource.decl.st"
+match = "variable: (UISLOTS|AFBALARM)$"
+reason = "Артефакт понижения: входы и тревоги тестового источника используются свойством AlarmCount и методами GetAlarm, AckAll"
+
+# =====================================================================================================
+# Логика станции (src/POUs/Station/) и её тесты (tests/POUs/Station/, tests/POUs/Fakes/) — раздел
+# команды «логика станции» (DESIGN.md, 15.1). Разбор — docs/STATIC_ANALYSIS.md, раздел «Логика станции».
+# =====================================================================================================
+
+[[allow]]
+id = "PLCOPEN-L17"
+file = "src/POUs/Station/*"
+reason = "IF без ELSE — у условия нет действия «иначе»: бит слова состояния, событие по смене, фиксация, переход автомата только при выполнении условия; пустая ветвь ELSE добавила бы шум (как в plc-process-lib)"
+
+[[allow]]
+id = "PLCOPEN-L17"
+file = "tests/POUs/Station/*"
+reason = "Тесты и их помощники: IF без ELSE — накопление признака (первое неверное сочетание, подменный насос следует запросу только в Auto); действия «иначе» нет"
+
+[[allow]]
+id = "PLCOPEN-L17"
+file = "tests/POUs/Fakes/*"
+reason = "Подменные объекты: кольцо журнала и запрос режима — действия «иначе» нет"
+
+[[allow]]
+id = "PLCOPEN-CP9"
+file = "src/POUs/Station/*"
+match = "Code is too complex"
+reason = "Тела ФБ станции — нормативные последовательности шагов DESIGN.md 6.x и 7 с пронумерованными шагами (ядро FB_StationCore — порядок цикла PRG_Station, FB_PumpRotation — снимок, подхват, передача роли, снятие и выдача запросов); деление на методы спрятало бы порядок. iec_checker 0.4 считает каждое логическое выражение и каждую ветвь вложенных циклов, метрика завышена; каждая ветвь покрыта юнит-тестами tests/POUs/Station (docs/STATIC_ANALYSIS.md)"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Station/*"
+match = "variable: (AFB|FB|ST)[A-Z0-9]*$"
+reason = "Ложное срабатывание iec_checker 0.4: экземпляры ФБ используются вызовом (fbStartLead(...), afbPumpProt[i](...)), методами (fbSysTime.Now(), afbAlarm[i].Ack()) и чтением выходов, структуры (stCfg, stRetain, stOld, stSts) — обращением к полям; это он не считает использованием"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Station/FB_StationCore/FB_StationCore.decl.st"
+match = "variable: (UIEXPORTLINES|UDIEXPORTERROR)$"
+reason = "Ложное срабатывание iec_checker 0.4: входы — аргументы вложенного вызова (rValue := UINT_TO_REAL(uiExportLines) в вызове LogEvent), такой аргумент он не считает использованием"
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/POUs/Station/*"
+match = "variable: ((AFB|FB|ST)[A-Z0-9]*|UBITS)$"
+reason = "Ложное срабатывание iec_checker 0.4: ФБ под тестом и подменные насосы используются вызовом, чтением выходов и параметрами помощников, структуры и объединения (stSts в SIZEOF, uBits) — обращением к полям"
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/POUs/Station/*"
+match = "variable: UISTEPS$"
+reason = "Ложное срабатывание iec_checker 0.4: вход помощника — верхняя граница цикла FOR uiStep := 1 TO uiSteps, такое использование он не учитывает"
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/POUs/Fakes/*"
+reason = "Подменные объекты: поля читают аксессоры свойств и методы, которые понижение iec-checker выносит в отдельные функции (тело ФБ пустое); параметр uiIndex метода GetAlarm подменного насоса намеренно не используется — тревог у него нет"
+
+# ===== Модель, имитация, часы контура (К2): src/POUs/Model, src/POUs/Time, tests/POUs/Model =====
+# Разбор — docs/STATIC_ANALYSIS.md, раздел «Модель объекта и часы контура».
+
+[[allow]]
+id = "PLCOPEN-L17"
+file = "src/POUs/Model/*"
+reason = "У условий модели нет действия «иначе»: команда не пришла, причины аварии нет, шаг времени 0, поле инъекции не изменилось, проверка неконечного значения; пустая ветвь ELSE только добавит шум (как в plc-process-lib)"
+
+[[allow]]
+id = "PLCOPEN-L17"
+file = "src/POUs/Time/FB_ScaledClock/*"
+reason = "Часы: «не ручной режим», «коэффициент не изменился», «базы уже заданы», «время не прошло» — действия «иначе» нет"
+
+[[allow]]
+id = "PLCOPEN-CP9"
+file = "src/POUs/Model/*"
+reason = "Тела модели — нормативная последовательность шагов DESIGN 11.1–11.2 с номерами шагов в комментариях; iec_checker 0.4 считает сложность завышенно (FB_PlantModel 171 при классической 28, FB_VfdSim 116 при 27, остальные ≤ 10 — docs/STATIC_ANALYSIS.md); деление на методы спрятало бы порядок шагов"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Model/FB_PlantModel/FB_PlantModel.decl.st"
+match = "STCFG|STCMD|STIO|STSTS|FBINFLOW|FBSTORMS|FBTANK|FBHYDRAULIC|AFBVFD|AFBAI|FBHS501|FBHS502|FBV1FB"
+reason = "Ложное срабатывание iec_checker 0.4: структуры используются обращениями к полям (stCfg.rLevelInit_m, stIo.xLS102), экземпляры ФБ — вызовом, методами и чтением выходов; это он использованием не считает"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Model/FB_HydraulicSolver/FB_HydraulicSolver.decl.st"
+match = "ARK"
+reason = "arK пишет метод Solve и читает метод FlowsAt; понижение выносит методы в отдельные функции, в теле ФБ переменная не видна"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Model/FB_StormGenerator/FB_StormGenerator.decl.st"
+match = "DWSTATE|STMANUAL"
+reason = "dwState используется только в методах Generate и Draw (понижение выносит их в функции); stManual — обращениями к полям (stManual.tDuration)"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Model/FB_VfdSim/FB_VfdSim.decl.st"
+match = "FBBOOT|FBWATCHDOG"
+reason = "Ложное срабатывание: экземпляры PL.FB_Delay используются вызовом, чтением xOut и методом Preset"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Model/F_FaultInjEqual/F_FaultInjEqual.decl.st"
+match = "STA|STB|UBITSA|UBITSB"
+reason = "Ложное срабатывание: VAR_IN_OUT CONSTANT-структуры и объединения U_RealBits используются обращениями к полям (stA.axVfdFault[uiI], uBitsA.dwValue)"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Model/F_PumpCurrent/F_PumpCurrent.decl.st"
+match = "STPUMP"
+reason = "Ложное срабатывание: структура характеристики используется обращениями к полям (stPump.rPnom_kW)"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Model/PRG_PlantModel/PRG_PlantModel.decl.st"
+match = "FBPLANT"
+reason = "Ложное срабатывание: экземпляр FB_PlantModel используется вызовом и чтением выходов (fbPlant.stIo.*)"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Time/FB_ScaledClock/FB_ScaledClock.decl.st"
+reason = "Тело FB_ScaledClock пустое, все переменные используются только в методах Now, Update, SetManual, AdvanceL, ScaledAt и свойстве Scale — понижение выносит их в отдельные функции"
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/POUs/Model/*.method.decl.st"
+match = "variable: (FB|ST|U)[A-Z0-9]+$"
+reason = "Ложное срабатывание iec_checker 0.4: экземпляры ФБ (fbDut, fbClock, fbOther…) используются вызовом, методами и чтением выходов, структуры (stCfg, stPump) и объединения (uBits) — обращениями к полям"
+
+[[allow]]
+id = "PLCOPEN-L17"
+file = "tests/POUs/Model/FB_StormGenerator_Test/StormCrossingMidnightContinues.method.impl.st"
+reason = "Поиск ливня суток 21 в списке: на остальных элементах делать нечего"
+
+# ===== Интеграция веток (сборка контура): PRG_Station, проверка подхвата насоса =====
+# Разбор — docs/STATIC_ANALYSIS.md, раздел «Сборка контура».
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/POUs/Field/FB_PlcStartAdoption_Test/*.method.decl.st"
+match = "variable: (FBES301|FBP101)$"
+reason = "Ложное срабатывание iec_checker 0.4: экземпляры устройств библиотеки (VAR_INST метода-теста) используются вызовом и чтением выходов (fbES301.xValue, fbP101.stSts)"
+
+# ---------------------------------------------------------------------------------------------------
+# Сборка REGUL: объекты, которых нет у флагмана (targets/astra/src/GVLs/Regul, targets/astra/src/POUs/Regul)
+# ---------------------------------------------------------------------------------------------------
+
+[[allow]]
+id = "PLCOPEN-L17"
+file = "src/POUs/Regul/*"
+reason = "Ветки «иначе» не нужны: в F_MbStatusOk_Regul результат FALSE присвоен до IF (значение вне диапазона — потеря связи), в PRG_ModbusMap_Regul IF — ранний выход в имитации"
+
+[[allow]]
+id = "PLCOPEN-CP9"
+file = "src/POUs/Regul/PRG_ModbusMap_Regul/*"
+match = "Code is too complex"
+reason = "Линейное копирование регистров трёх ПЧ и TT403 между массивами каналов и GVL_IO (имена у каждого насоса свои): одно ветвление — выход в имитации; McCabe iec_checker 0.4 завышен, как у PRG_FieldIn"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Regul/PRG_ModbusMap_Regul/*"
+match = "variable: (EP10[1-3]STATUS|ETT403STATUS|UTT403)$"
+reason = "Ложное срабатывание iec_checker 0.4: статусы каналов используются как аргументы TO_INT внутри вызова F_MbStatusOk_Regul, объединение uTT403 — обращениями к полям dwValue и rValue"

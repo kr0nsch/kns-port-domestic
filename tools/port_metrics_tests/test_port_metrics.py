@@ -403,7 +403,7 @@ def test_main_writes_reports(tmp_path: Path, capsys: pytest.CaptureFixture[str])
     assert data["schema"] == PM.SCHEMA_VERSION
     assert data["totals"]["orig_lines"] == 74
     assert data["markers"]["total"] == 12
-    assert data["markers"]["by_category"]["oop"] == {"markers": 6, "implicit": 1}
+    assert data["markers"]["by_category"]["oop"] == {"markers": 6, "implicit": 1, "changes": 6, "checks": 0}
     assert len(data["files"]) == 29
     assert len(data["unmarked"]) == 4
     # Повторный запуск даёт тот же отчёт
@@ -473,3 +473,113 @@ def test_buckets_always_sum_to_original(orig: list[str], adapted: list[str], thr
     if result.status != PM.STATUS_REWRITTEN:
         # В адаптированном файле каждая строка либо совпала, либо пришла из правки
         assert c.unchanged + c.added <= len(adapted) <= c.unchanged + c.changed + c.added
+
+
+# ---------------------------------------------------------------------------
+# Маркеры проверки, пары деревьев, категории, --check
+# ---------------------------------------------------------------------------
+
+
+def test_check_marker_is_not_a_change_and_not_stale() -> None:
+    orig = "a := 1;\nb := LTIME();\n"
+    adapted = "a := 1;\n// PORT: [time] проверить в Astra.IDE — оператор LTIME(), монотонность (C11)\nb := LTIME();\n"
+    result = PM.compare_texts(orig, adapted)
+    assert result.status == PM.STATUS_UNCHANGED
+    (marker,) = result.markers
+    assert (marker.check, marker.items, marker.tag) == (True, ("C11",), "time")
+    report = PM.Report(0.5, False, [], [], [PM.ObjectResult("F_X", "x", "FUNCTION", result.status, result.counts)])
+    report.objects[0].files = [result]
+    assert report.stale_markers == []
+    assert [m.reason for m in report.check_markers] == [marker.reason]
+
+
+def test_check_marker_does_not_mark_a_change() -> None:
+    orig = "a := 1;\nb := 2;\n"
+    adapted = "a := 1;\n// PORT: [oop] проверить в Astra.IDE — THIS^ (C2)\nb := 3;\n"
+    result = PM.compare_texts(orig, adapted, threshold=0.9)
+    assert [h.marked for h in result.hunks] == [False]
+    marked = PM.compare_texts(
+        orig, "a := 1;\n// PORT: [oop] проверить в Astra.IDE — THIS^ (C2)\nb := 3; // PORT: [oop] x\n"
+    )
+    assert [(h.marked, h.category) for h in marked.hunks] == [(True, "oop")]
+
+
+@pytest.mark.parametrize(
+    ("reason", "items"),
+    [
+        ("проверить в Astra.IDE — EXTENDS (C1)", ("C1",)),
+        ("проверить в Astra.IDE — тип статуса [F58] (E2)", ("E2",)),
+        ("проверить в Astra.IDE — визуализация (F1, F3)", ("F1", "F3")),
+        ("проверить в Astra.IDE — факт (F58)", ()),
+        ("правка без пункта", ()),
+    ],
+)
+def test_marker_items(reason: str, items: tuple[str, ...]) -> None:
+    assert PM.marker_items(reason) == items
+
+
+def test_paired_trees_match_only_within_pair(tmp_path: Path) -> None:
+    gvl = "{attribute 'qualified_only'}\nVAR_GLOBAL CONSTANT\n    X : INT := %d;\nEND_VAR\n"
+    _write_tree(
+        tmp_path,
+        {
+            "o/app/src/GVLs/GVL_Const.gvl.st": gvl % 1,
+            "o/lib/src/GVLs/GVL_Const.gvl.st": gvl % 2,
+            "a/app/src/GVLs/GVL_Const.gvl.st": gvl % 1,
+            "a/lib/src/GVLs/GVL_Const.gvl.st": gvl % 2,
+        },
+    )
+    base = str(tmp_path)
+    origs = [
+        PM.parse_source(f"app={tmp_path / 'o/app/src'}", base),
+        PM.parse_source(f"lib={tmp_path / 'o/lib/src'}", base),
+    ]
+    adapted = [
+        PM.parse_source(f"app={tmp_path / 'a/app/src'}", base),
+        PM.parse_source(f"lib={tmp_path / 'a/lib/src'}", base),
+    ]
+    report, errors = PM.build_report(origs, adapted, base=base)
+    assert errors == []
+    assert report.warnings == []
+    assert [(o.label, o.status) for o in report.objects] == [
+        ("app", PM.STATUS_UNCHANGED),
+        ("lib", PM.STATUS_UNCHANGED),
+    ]
+
+
+def test_category_stats_attribute_lines_and_files() -> None:
+    report = _fixture_report()
+    stats = {st.tag: st for st in PM.category_stats(report)}
+    # comm: новый объект FB_VfdLink_Regul (маркер в объявлении) — все его строки добавлены
+    vfd = _obj(report, "FB_VfdLink_Regul")
+    assert stats["comm"].added_lines == vfd.counts.adapted
+    assert stats["comm"].objects == {f"{PM.NEW_LABEL}:FB_VfdLink_Regul"}
+    assert stats["comm"].changes == 1 and stats["comm"].checks == 0
+    # строки категорий не больше общих итогов
+    t = report.totals()
+    assert sum(st.added_lines for st in stats.values()) <= t.added + t.unchanged
+    assert sum(st.orig_lines for st in stats.values()) <= t.changed + t.rewritten + t.removed
+
+
+def test_main_check_detects_stale_report(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
+    md, js = tmp_path / "m.md", tmp_path / "m.json"
+    assert PM.main(_fixture_args("--md", str(md), "--json", str(js), "--check", "-q")) == 1
+    assert "отчёт устарел" in capsys.readouterr().err
+    assert not md.exists()
+    assert PM.main(_fixture_args("--md", str(md), "--json", str(js), "-q")) == 0
+    assert PM.main(_fixture_args("--md", str(md), "--json", str(js), "--check", "-q")) == 0
+    data = json.loads(js.read_text(encoding="utf-8"))
+    assert data["markers"]["checks"] == 0 and data["markers"]["changes"] == 12
+    assert {row["category"] for row in data["categories"]} >= {"oop", "comm"}
+
+
+def test_default_trees_are_this_repository_port() -> None:
+    """Отчёт docs/port_metrics.md строится по деревьям по умолчанию: снимки upstream/ и targets/astra/."""
+    assert any(
+        s.startswith("kns-pump-station=") and s.endswith(os.path.join("upstream", "kns-pump-station", "src"))
+        for s in PM.DEFAULT_ORIGS
+    )
+    assert PM.DEFAULT_EXCLUDE == ("plc-process-lib:PRG_Main",)
+    data = json.loads((REPO_ROOT / "docs" / "port_metrics.json").read_text(encoding="utf-8"))
+    assert data["params"]["command"].startswith("python tools/port_metrics.py --orig kns-pump-station=upstream/")
+    assert data["unmarked"] == []

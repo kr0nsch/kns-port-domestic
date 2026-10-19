@@ -1,0 +1,18 @@
+// Назначение: режим работы устройства. Значения 0 нет намеренно: 0 в retain или в регистре
+//             Modbus значит «не инициализировано» и трактуется как Manual (санитизация во
+//             время работы). Приоритет: OutOfService > Local > Auto/Manual.
+// Автор:      kr0nsch
+// Версия:     0.1.0
+// Документ:   docs/ARCHITECTURE.md, раздел «Общие типы»
+{attribute 'qualified_only'}
+// PORT: [pragma] проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)
+{attribute 'strict'}
+TYPE E_DeviceMode :
+(
+    Auto         := 1,   // автомат: команды от логики (AI/DI: измерение)
+    Manual       := 2,   // ручной дистанционный (AI/DI: подмена значения)
+    Local        := 3,   // местный: аппаратный переключатель, ПЛК выходами не управляет
+    OutOfService := 4    // выведено из работы
+// PORT: [types] проверить в Astra.IDE — перечисление с базовым типом INT (C7)
+) INT;
+END_TYPE

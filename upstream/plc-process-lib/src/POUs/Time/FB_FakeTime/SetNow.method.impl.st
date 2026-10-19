@@ -1,0 +1,1 @@
+ltNow := ltValue;

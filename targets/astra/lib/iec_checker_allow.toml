@@ -1,0 +1,292 @@
+# Обоснования iec_checker для адаптированной библиотеки plc-process-lib (targets/astra/lib/src).
+# Копия tools/check/iec_checker_allow.toml библиотеки (тег v1.0.0, коммит bd9df2a, тот же, что у снимка
+# upstream/plc-process-lib): код библиотеки перенесён без правок, поэтому находки и их разбор те же —
+# подробности в docs/STATIC_ANALYSIS.md библиотеки. Записи для tests/ не используются: тесты coUnit не
+# переносятся (docs/ASSUMPTIONS.md). При переносе дельты библиотеки копию обновляют вместе с кодом.
+# Запуск: python tools/check/run_iec_checker.py --root targets/astra/lib --allow targets/astra/lib/iec_checker_allow.toml
+#
+# Обоснованные находки iec_checker (tools/check/run_iec_checker.py).
+# Обоснованная находка попадает в отчёт со статусом allowed и не роняет проверку.
+# Подробный разбор каждой записи — docs/STATIC_ANALYSIS.md; при изменении кода держите их согласованными.
+#
+# Ключи записи [[allow]]:
+#   id     — идентификатор правила iec_checker (шаблон fnmatch), например "PLCOPEN-CP3";
+#   file   — шаблон fnmatch пути исходника (src/POUs/...) или имени собранного файла (FB_X.st);
+#            '*' захватывает и '/';
+#   match  — необязательно: регулярное выражение по тексту сообщения;
+#   reason — обязательно: почему находка допустима.
+# ParserError и LexingError обосновать нельзя: их исправляют в коде или в понижении iec-checker.
+#
+# Тест tools/tests/test_run_iec_checker.py::test_integration_repository_sources требует, чтобы при
+# прогоне с --tests использовалась каждая запись. Записи семейства ФБ — в его разделе; новое
+# семейство добавляет свой раздел в конец файла.
+
+# =====================================================================================================
+# Общие (все семейства)
+# =====================================================================================================
+
+[[allow]]
+id = "PLCOPEN-CP3"
+file = "src/*"
+reason = "Переменная без явного начального значения получает значение по умолчанию своего типа (МЭК 61131-3, как в CODESYS); вариант сборки iec-checker убирает неконстантные начальные значения"
+
+[[allow]]
+id = "PLCOPEN-CP3"
+file = "tests/*"
+reason = "Как для src/: значения по умолчанию типов; результаты тестов присваиваются до чтения"
+
+[[allow]]
+id = "PLCOPEN-CP9"
+file = "tests/*"
+reason = "Наборы тестов — последовательные вызовы без ветвлений (классическая сложность — 1); завышенный подсчёт iec_checker 0.4, метрика для тестов не показательна"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/*"
+match = "variable: (ST|FB|ITF)[A-Z0-9_]*$"
+reason = "Ложное срабатывание iec_checker 0.4: обращение к полям структуры (stCfg.x), вызов экземпляра ФБ и его методов (fbDelay(...), fbSysTime.Now()) он не считает использованием. Префиксы st, fb, itf — правило имён CONTRIBUTING.md (префикс объединения u не включён: в верхнем регистре сообщения его не отличить от ui/udi)"
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/*"
+match = "variable: (ST|FB|ITF)[A-Z0-9_]*$"
+reason = "Как для src/: экземпляры ФБ под тестом и структуры используются через вызовы, поля и SIZEOF"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/*"
+match = "variable: A(ST|FB|ITF)[A-Z0-9_]*$"
+reason = "Ложное срабатывание iec_checker 0.4: массив структур или ФБ, к которому обращаются только через поле элемента (astCfg[i].ePriority). Понижение iec-checker пишет такое обращение как a.x[i], а обращение к полю iec_checker 0.4 использованием не считает — как у структур выше (tools/README.md, «Что понижение скрывает и добавляет»)"
+
+[[allow]]
+id = "UnusedVariable"
+file = "*"
+match = "variable: (UBITS|UBAD)$"
+reason = "Ложное срабатывание iec_checker 0.4: объединения используются только через поля (uBits.rValue / uBits.dwValue — U_RealBits, uBad.iValue / uBad.eMode — тестовое U_TestEnumInt)"
+
+[[allow]]
+id = "PLCOPEN-L17"
+file = "src/*"
+reason = "PLCopen L17 (у каждого IF ветвь ELSE) — правило стиля. Пустую ветвь ELSE iec_checker 0.4 не разбирает (ParserError), заглушка x := x; ухудшает чтение; там, где ELSE нет, состояние в этом вызове сознательно не меняется (docs/STATIC_ANALYSIS.md)"
+
+[[allow]]
+id = "PLCOPEN-L17"
+file = "tests/*"
+reason = "Как для src/: ветви без действия в тестовом устройстве и тестах не записываются (пустую ветвь iec_checker 0.4 не разбирает)"
+
+# =====================================================================================================
+# Основа: время, утилиты, общие типы (этап 1)
+# =====================================================================================================
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Time/FB_Delay/FB_Delay.decl.st"
+match = "TONDELAY|TOFFDELAY"
+reason = "Ложное срабатывание iec_checker 0.4: входы используются только как аргументы SEL(xIn, tOffDelay, tOnDelay)"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Util/F_LTimeToSec/F_LTimeToSec.decl.st"
+match = "LTIN"
+reason = "Ложное срабатывание iec_checker 0.4: вход используется только как аргумент вложенного преобразования ULINT_TO_LREAL(LTIME_TO_ULINT(ltIn))"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Time/FB_FakeTime/FB_FakeTime.decl.st"
+match = "LTNOW"
+reason = "Артефакт понижения: переменную используют только методы Now, SetNow, Advance, AdvanceL, которые сборка iec-checker выносит в отдельные функции; тела у ФБ нет"
+
+[[allow]]
+id = "PLCOPEN-CP9"
+file = "src/POUs/Util/FB_LimitMonitor/*"
+reason = "Классическая цикломатическая сложность тела — 5 (4 точки ветвления: условие выключения из двух частей, выбор источника времени, верхняя или нижняя уставка); iec_checker 0.4 считает завышенно (docs/STATIC_ANALYSIS.md)"
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/POUs/Helpers/FB_TestSink/FB_TestSink.decl.st"
+match = "EVENTS_MAX|ASTEVENT|UINEXT|UICOUNT"
+reason = "Артефакт понижения: константу и переменные приёмника используют только методы и свойства (OnAlarmEvent, GetEvent, Clear, Count), которые сборка iec-checker выносит в отдельные функции"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Util/FB_StartsWindow/FB_StartsWindow.decl.st"
+match = "ALTSTART|UINEXT|UIUSED"
+reason = "Артефакт понижения: кольцо и его индексы используют только методы Register, Count, TimeToFree, Clear, которые сборка iec-checker выносит в отдельные функции; тела у ФБ нет"
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/POUs/Suites/FB_Util_Test/StartsWindowRingCapacityMatchesConst.method.decl.st"
+match = "LTONE"
+reason = "Ложное срабатывание iec_checker 0.4: переменная нужна только как аргумент SIZEOF (размер элемента кольца)"
+
+# =====================================================================================================
+# Основа, этап 2: FB_Alarm, FB_DeviceBase, тестовое устройство и зонды времени выполнения
+# =====================================================================================================
+
+[[allow]]
+id = "PLCOPEN-CP9"
+file = "src/POUs/Alarm/FB_Alarm/*"
+reason = "Классическая цикломатическая сложность: тело 8, UpdateShelve 8, UpdateState 18 — таблица переходов ISA-18.2 (4 базовых и 3 наложенных состояния) в одной цепочке IF/ELSIF; дробить таблицу переходов — хуже для проверки по контракту. iec_checker 0.4 считает завышенно (docs/STATIC_ANALYSIS.md)"
+
+[[allow]]
+id = "PLCOPEN-CP9"
+file = "src/POUs/Base/FB_DeviceBase/*"
+reason = "Классическая цикломатическая сложность методов: RunAlarms 15, ProcessMode 11, FinishCycle 11 — шаги цикла устройства по контракту 9.3/10.5, каждый метод — один шаг; iec_checker 0.4 считает завышенно (docs/STATIC_ANALYSIS.md)"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Alarm/FB_Alarm/FB_Alarm.decl.st"
+match = "variable: (XSUPPRESS|XOUTOFSERVICE|UDIID|RVALUE|LTLASTCHANGE|UDISEQ|TSHELVEREQ|TSHELVEDUR|ESHELVEEND)$"
+reason = "Артефакт понижения: входы, выходы и переменные используют только методы Transit, UpdateShelve, UpdateState, Shelve, которые сборка iec-checker выносит в отдельные функции"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Base/FB_DeviceBase/FB_DeviceBase.decl.st"
+match = "variable: (LTNOW|LTPREVCALL|LTDT|XFIRSTCALL|EMODE|XMODEREQ|EMODEREQ|XMANUALISCHECK|EDEVTYPE|WCFGERR|XCFGEVEROK|ENE107|XFAULT|XAVAILABLE|XRESETREQ|XACKALLREQ|ECMDRESULT|UICMDSEQ|UIALARMCOUNT|AFBALARM|AXALMCOND|AXALMSUPPRESS|ARALMVALUE|WALMACTIVE|WALMUNACK|WALMSHELVED|WALMSUPPRESSED|EPRIOUNACK)$"
+reason = "Тело FB_DeviceBase пустое по контракту (9.1): переменные базы используют защищённые методы (вынесены сборкой iec-checker в функции) и тела наследников"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Base/FB_DeviceBase/OnModeChanged.method.decl.st"
+match = "variable: (EOLD|ENEW)$"
+reason = "Хук OnModeChanged в базе пуст по контракту (9.3): параметры использует переопределение наследника"
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/POUs/Helpers/FB_TestDevice/FB_TestDevice.decl.st"
+match = "variable: (CFG_GAIN|CFG_ALARM|FLT_LATCH|UIHOOKCALLS|EHOOKOLD|EHOOKNEW|XHOOKINFIRST|UDIHOOKTRACE)$"
+reason = "Артефакт понижения и ложное срабатывание: константы используют метод CheckConfig и аргументы SEL в вызове FinishCycle, журнал хука — метод OnModeChanged (вынесены сборкой iec-checker в функции)"
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/POUs/Helpers/FB_TestDeviceExt/FB_TestDeviceExt.decl.st"
+match = "variable: UIEXTHOOKCALLS$"
+reason = "Артефакт понижения: счётчик использует переопределение OnModeChanged (вынесено сборкой iec-checker в функцию)"
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/POUs/Suites/FB_DeviceBase_Test/SetSlotCfg.method.decl.st"
+match = "variable: UISLOT$"
+reason = "Ложное срабатывание iec_checker 0.4: вход используется только как индекс массива (stCfgDev.astAlarm[uiSlot])"
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/POUs/Suites/FB_Runtime_Test/FB_Runtime_Test.decl.st"
+match = "variable: (RT_SAMPLES|UIRTCOUNT|ALTRTSTAMP)$"
+reason = "Артефакт понижения: состояние многоциклового теста используют методы-тесты набора (вынесены сборкой iec-checker в функции)"
+
+# =====================================================================================================
+# Семейство входов: FB_AnalogInput, FB_DigitalInput (docs/fb/FB_AnalogInput.md, FB_DigitalInput.md,
+# раздел «Статанализ»)
+# =====================================================================================================
+
+[[allow]]
+id = "PLCOPEN-CP9"
+file = "src/POUs/Devices/FB_AnalogInput/*"
+reason = "Классическая цикломатическая сложность (решения IF/ELSIF/FOR без учёта AND/OR): тело 10 (нормативный порядок 9.4), CheckConfig 12 (11 проверок карты wCfgErr 11.5), ComputeValue 12 (цепочка 11.3: тип входа, корень, отсечка, ограничение шкалой, фильтр), ClassifySignal 9 (таблица NE 43), SelectValue 8 (таблица выбора значения), FaultBits 5, WarningBits 4, SubstRemainSec 3; каждый метод — один шаг цепочки по контракту. iec_checker 0.4 считает завышенно"
+
+[[allow]]
+id = "PLCOPEN-CP9"
+file = "src/POUs/Devices/FB_DigitalInput/*"
+reason = "Классическая цикломатическая сложность (решения IF/ELSIF без учёта AND/OR): тело 10 (нормативный порядок 9.4), SelectValue 5 (таблица выбора значения 12.3 и 2.6), CheckConfig 3; iec_checker 0.4 считает завышенно"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Devices/FB_AnalogInput/FB_AnalogInput.decl.st"
+match = "variable: (XCHANNELFAULT|LRFLT|XFLTINIT|RGOOD_EU|XCLAMPED)$"
+reason = "Артефакт понижения: вход xChannelFault читает только метод ClassifySignal, состояние фильтра и удержания (lrFlt, xFltInit, rGood_eu) и флаг xClamped — методы ComputeValue, SelectValue, WarningBits, которые сборка iec-checker выносит в отдельные функции"
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/POUs/Suites/FB_*Input_Test/*"
+match = "variable: (UENUM|UPRIO)$"
+reason = "Ложное срабатывание iec_checker 0.4: объединения U_AiDiTestEnum и U_TestEnumInt используются только через поля (uEnum.iValue / uEnum.eInput, uPrio.iValue / uPrio.ePriority) — значение вне строгого перечисления для тестов CheckConfig"
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/POUs/Suites/FB_*Input_Test/Set*.method.decl.st"
+match = "variable: (UIIDX|UISLOT)$"
+reason = "Ложное срабатывание iec_checker 0.4: вход помощника используется только как индекс массива (stCfgAi.astLimit[uiIdx], stCfgAi.astAlarm[uiSlot])"
+
+# =====================================================================================================
+# Семейство двигателей: FB_Motor, FB_MotorVfd и их наборы
+# =====================================================================================================
+
+[[allow]]
+id = "PLCOPEN-CP9"
+file = "src/POUs/Devices/FB_Motor/*"
+reason = "Тело FB_Motor — шаги нормативного порядка тела устройства (контракт 9.4) с номерами в комментариях: классическая цикломатическая сложность тела 85, по шагам — не больше 27 (автомат состояний 13.7 одной цепочкой, строка в строку с диаграммой), команды — 14, Reset — 8; методы — до 5. Вынос шагов в методы потребовал бы передавать stCmd/stRetain параметрами и переносить временные переменные в экземпляр без выигрыша для проверки по контракту; iec_checker 0.4 считает завышенно (docs/STATIC_ANALYSIS.md)"
+
+[[allow]]
+id = "PLCOPEN-CP9"
+file = "src/POUs/Devices/FB_MotorVfd/*"
+reason = "Классическая цикломатическая сложность тела FB_MotorVfd — 23 (точки расширения 14.2 — 6, задание скорости 14.3 с отложенными предустановками пуска и подхвата — 13, слежение — 3), CheckConfig — 8; iec_checker 0.4 считает завышенно (docs/STATIC_ANALYSIS.md)"
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/POUs/Suites/FB_Motor*_Test/Spin*.method.decl.st"
+match = "variable: UIN$"
+reason = "Ложное срабатывание iec_checker 0.4: вход помощника используется только как верхняя граница цикла FOR uiLoop := 1 TO uiN"
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/POUs/Suites/FB_Motor_Test/SetSlotPriority.method.decl.st"
+match = "variable: UISLOT$"
+reason = "Ложное срабатывание iec_checker 0.4: вход используется только как индекс массива (stCfgMot.astAlarm[uiSlot])"
+
+# =====================================================================================================
+# Семейство арматуры: FB_Valve, FB_ControlValve и их тесты
+# =====================================================================================================
+
+[[allow]]
+id = "PLCOPEN-CP9"
+file = "src/POUs/Devices/FB_Valve/*"
+reason = "Классическая цикломатическая сложность (решений IF/ELSIF/WHILE + 1): тело 11, DriveToTarget 22, HandleCommands 15, TrackPosition 15, RunTravelTimers 12, SelectTarget 10, SafeMoveOnFault 10, ResetFaults и CheckConfig по 8, SetOutputs 6, остальные методы 3–5; тело разбито на шаги цикла по контракту 9.4. iec_checker 0.4 считает завышенно (docs/fb/FB_Valve.md, «Статанализ»)"
+
+[[allow]]
+id = "PLCOPEN-CP9"
+file = "src/POUs/Devices/FB_ControlValve/*"
+reason = "Классическая цикломатическая сложность (решений IF/ELSIF/WHILE + 1): тело 19 (с гистерезисом плотного закрытия), SelectOutput 12, CheckConfig 8, OnModeChanged 2; выбор выхода по таблице 16.3 контракта вынесен в шаг SelectOutput. iec_checker 0.4 считает завышенно (docs/fb/FB_ControlValve.md, «Статанализ»)"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Devices/FB_Valve/FB_Valve.decl.st"
+match = "variable: (XAUTOOPEN|XEXTFAULT|XQOPEN|XQCLOSE|XQCOIL|EMANTARGET|ESOLCMD|ELASTEND|ELASTDIR|XENDBYLS|XRESETWIN|WILKPREV|XACTPREV|LTACTACCUM|XSUPERVISE|XPOSSUP|XMAYOPEN|XMAYCLOSE|XDRIVE|XENTERMOVE|XSAFEMOVEDONE|XUNSEATARMED)$"
+reason = "Артефакт понижения: эти входы, выходы и переменные используют только методы-шаги тела (ResetFaults, HandleCommands, SelectTarget, SuperviseLimits, TrackPosition, DriveToTarget, RunTravelTimers, SafeMoveOnFault, SetOutputs, CountOperations, OnModeChanged), которые сборка iec-checker выносит в отдельные функции"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Devices/FB_ControlValve/FB_ControlValve.decl.st"
+match = "variable: RPOSSPAUTO_PCT$"
+reason = "Артефакт понижения: вход использует только метод SelectOutput, который сборка iec-checker выносит в отдельную функцию"
+
+# =====================================================================================================
+# Семейство ПИД: FB_PID, помощник тестов FB_FopdtModel
+# =====================================================================================================
+
+[[allow]]
+id = "PLCOPEN-CP9"
+file = "src/POUs/Control/FB_PID/*"
+reason = "Классическая цикломатическая сложность: тело 27 (шаги нормативного порядка 9.4: первый вызов, LKG, старт выхода, Reset, отклонение Auto, режим, ShedToManual и признак сброса, цель задания, план расчёта), SelectOutput 16 (таблица выбора выхода 17.5 строка в строку), CheckConfig 14 (13 проверок карты wCfgErr), CalcStep 6; iec_checker 0.4 считает завышенно (docs/fb/FB_PID.md, раздел «Статанализ»)"
+
+[[allow]]
+id = "UnusedVariable"
+file = "src/POUs/Control/FB_PID/FB_PID.decl.st"
+match = "variable: (XSATHIGH|XSATLOW|LRV_PCT|LRPVPREV_EU|XSPINIT|XINDEADBAND|XOUTRATELIM)$"
+reason = "Артефакт понижения и ложное срабатывание iec_checker 0.4: переменные пишут и читают методы CalcStep, SelectOutput, OnModeChanged (сборка iec-checker выносит их в отдельные функции), тело читает xSatHigh, xSatLow, xInDeadband, xOutRateLim только как аргументы SEL в вызове FinishCycle"
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/POUs/Helpers/FB_FopdtModel/FB_FopdtModel.decl.st"
+match = "variable: (DT_S|RING_SIZE|RU_PCT|RGAIN|RT_S|RY|ARDELAY|UIHEAD|LRY)$"
+reason = "Артефакт понижения: константы, входы, выход и состояние модели использует только метод Step, который сборка iec-checker выносит в отдельную функцию; тела у ФБ нет"
+
+# =====================================================================================================
+# Интеграция: межсемейные тесты FB_Integration_Test
+# =====================================================================================================
+
+[[allow]]
+id = "UnusedVariable"
+file = "tests/POUs/Suites/FB_Integration_Test/LevelLoopStep.method.decl.st"
+match = "variable: UIN$"
+reason = "Ложное срабатывание iec_checker 0.4: вход помощника используется только как верхняя граница цикла FOR uiLoop := 1 TO uiN"

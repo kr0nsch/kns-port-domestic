@@ -1,0 +1,1 @@
+SnapshotCount := uiSnapCount;

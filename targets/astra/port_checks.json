@@ -1,0 +1,14 @@
+{
+  "_doc": [
+    "Решения по пунктам «проверить вручную» для tools/port_checks.py (docs/migration_checklist.md, раздел 9).",
+    "verified — пункт подтверждён в Astra.IDE: маркеры проверки этого пункта не нужны (port_checks --resolve).",
+    "failed — конструкция в Astra.IDE не работает: каждое её место — ошибка до переписывания (port_checks --fail).",
+    "Значение — дата, версия Astra.IDE и что увидели; ссылка на запись docs/BUILD_ERRORS.md, если есть."
+  ],
+  "trees": [
+    "targets/astra/src",
+    "targets/astra/lib/src"
+  ],
+  "verified": {},
+  "failed": {}
+}

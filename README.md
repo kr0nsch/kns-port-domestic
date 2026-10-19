@@ -1,9 +1,9 @@
 # kns-port-domestic
 
-[![CI](https://github.com/<GITHUB_USER>/kns-port-domestic/actions/workflows/ci.yml/badge.svg)](https://github.com/<GITHUB_USER>/kns-port-domestic/actions/workflows/ci.yml)
+[![CI](https://github.com/kr0nsch/kns-port-domestic/actions/workflows/ci.yml/badge.svg)](https://github.com/kr0nsch/kns-port-domestic/actions/workflows/ci.yml)
 
-Перенос флагмана КНС-1 ([kns-pump-station](https://github.com/<GITHUB_USER>/kns-pump-station)) и
-библиотеки [plc-process-lib](https://github.com/<GITHUB_USER>/plc-process-lib) из CODESYS V3.5 SP17
+Перенос флагмана КНС-1 ([kns-pump-station](https://github.com/kr0nsch/kns-pump-station)) и
+библиотеки [plc-process-lib](https://github.com/kr0nsch/plc-process-lib) из CODESYS V3.5 SP17
 Patch 3 (3.5.17.30) в отечественную среду Astra.IDE (РегЛаб, ПЛК REGUL) с подсчётом цены переноса.
 Здесь готовятся код и документы, а компилирует и испытывает в Astra.IDE инженер: ошибки среды
 возвращаются в репозиторий через [docs/BUILD_ERRORS.md](docs/BUILD_ERRORS.md) и закрываются правками
@@ -198,7 +198,7 @@ python tools/port_metrics.py --strict      # код 1 — правка без м
 
 ## Инструменты шаблона
 
-Репозиторий создан из [plc-repo-template](https://github.com/<GITHUB_USER>/plc-repo-template): раскладка
+Репозиторий создан из [plc-repo-template](https://github.com/kr0nsch/plc-repo-template): раскладка
 ST, линтер, сборка для статанализа и `tools/codesys/cds.py` (импорт, сборка и тесты в CODESYS из консоли)
 остаются без изменений. Ими пользуется эталонная проверка XML; описание — в
 [tools/README.md](tools/README.md) и [docs/MANUAL_STEPS.md](docs/MANUAL_STEPS.md).
@@ -249,4 +249,4 @@ compiles in Astra.IDE and pastes the compiler messages into `docs/BUILD_ERRORS.m
 
 ## Лицензия
 
-[MIT](LICENSE) © 2026 <ИМЯ ФАМИЛИЯ>
+[MIT](LICENSE) © 2026 kr0nsch

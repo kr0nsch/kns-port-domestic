@@ -1,6 +1,6 @@
-# CI kns-port-domestic (задания шаблона ПЛК-репозитория плюс проверки инструментов переноса):
-# проверки, которым не нужны CODESYS и Astra.IDE. pytest берёт каталоги тестов из pyproject.toml
-# (testpaths): тесты шаблона и инструментов переноса — tools/inventory_tests, tools/port_metrics_tests,
+# CI kns-port-domestic (задания шаблона ПЛК-репозитория плюс проверки переноса): проверки, которым не
+# нужны CODESYS и Astra.IDE. pytest берёт каталоги тестов из pyproject.toml (testpaths): тесты шаблона и
+# инструментов переноса — tools/inventory_tests, tools/port_metrics_tests, tools/port_tests,
 # tools/plcopen/tests (в том числе проверка XML по схеме TC6 2.01 с plcopen.org; без сети — пропуск).
 # Сборку в Astra.IDE выполняет инженер (docs/BUILD_ERRORS.md), импорт XML в CODESYS —
 # tools/plcopen/verify_codesys.py на Windows с CODESYS.
@@ -111,23 +111,23 @@ jobs:
         if: ${{ !cancelled() }}
         run: python tools/check/st_lint.py --strict
 
-      # Адаптированный код для Astra.IDE (этап 2): тот же линтер и PLCopen XML для импорта инженером —
-      # build/plcopen/astra.xml попадает в артефакт build-reports. Пока каталога нет, шаг сообщает об
-      # этом и завершается успешно. Метрики переноса (tools/port_metrics.py) считаются локально: им
-      # нужны соседние рабочие копии флагмана и библиотеки.
+      # Адаптированный код для Astra.IDE (targets/astra: приложение КНС-1 и библиотека plc-process-lib).
+      # st_lint проверяет его в шаге выше (пути — tools/check/st_lint.toml). Здесь: маркеры проверки у
+      # каждой непроверенной конструкции (port_checks), метрики переноса актуальны и все правки помечены
+      # (port_metrics — по снимкам оригинала в upstream/), PLCopen XML для импорта инженером (артефакт
+      # build-reports) и iec_checker v0.4 с обоснованиями оригиналов (targets/astra/**/iec_checker_allow.toml).
       - name: Код для Astra.IDE (targets/astra)
         id: astra
         if: ${{ !cancelled() }}
         run: |
-          if [ ! -d targets/astra/src ]; then
-            echo "state=absent" >> "$GITHUB_OUTPUT"
-            echo "::notice::targets/astra/src ещё нет (этап 1): проверка адаптированного кода пропущена"
-            exit 0
-          fi
-          dirs="targets/astra/src"
-          if [ -d targets/astra/tests ]; then dirs="$dirs targets/astra/tests"; fi
-          python tools/check/st_lint.py --strict $dirs
-          python tools/st_to_plcopen.py --src targets/astra/src --out build/plcopen/astra.xml
+          python tools/port_checks.py --strict -q
+          python tools/port_metrics.py --check --strict
+          python tools/st_to_plcopen.py --root targets/astra --name kns-pump-station --out build/plcopen/astra-app.xml
+          python tools/st_to_plcopen.py --root targets/astra/lib --name plc-process-lib --out build/plcopen/astra-lib.xml
+          python tools/check/run_iec_checker.py --root targets/astra --allow targets/astra/iec_checker_allow.toml \
+            --out build/iec-checker-astra-app --json build/iec_checker_astra_app.json --md build/iec_checker_astra_app.md
+          python tools/check/run_iec_checker.py --root targets/astra/lib --allow targets/astra/lib/iec_checker_allow.toml \
+            --out build/iec-checker-astra-lib --json build/iec_checker_astra_lib.json --md build/iec_checker_astra_lib.md
 
       # run_iec_checker.py сам собирает вариант iec-checker в build/assembled/iec-checker/ и берёт
       # бинарник из переменной IEC_CHECKER; обоснованные находки — tools/check/iec_checker_allow.toml
@@ -148,7 +148,6 @@ jobs:
           R_ST_LINT: ${{ steps.st_lint.outcome }}
           R_IEC_CHECKER: ${{ steps.iec_checker.outcome }}
           R_ASTRA: ${{ steps.astra.outcome }}
-          R_ASTRA_STATE: ${{ steps.astra.outputs.state }}
         run: |
           status() {
             case "$1" in
@@ -170,16 +169,16 @@ jobs:
             echo "| assemble | $(status "$R_ASSEMBLE") |"
             echo "| st_lint --strict | $(status "$R_ST_LINT") |"
             echo "| iec_checker $IEC_CHECKER_VERSION | $(status "$R_IEC_CHECKER") |"
-            if [ "$R_ASTRA_STATE" = "absent" ]; then
-              echo "| targets/astra: st_lint, PLCopen XML | нет кода (этап 1) |"
-            else
-              echo "| targets/astra: st_lint, PLCopen XML | $(status "$R_ASTRA") |"
-            fi
+            echo "| targets/astra: port_checks, port_metrics, PLCopen XML, iec_checker | $(status "$R_ASTRA") |"
             echo ""
             echo "Отчёты — в артефакте \`build-reports\`. Находки iec_checker разбираются в \`docs/STATIC_ANALYSIS.md\`."
+            # Без раздела обоснованных находок: он может превысить предел сводки GitHub (1024k), и тогда
+            # GitHub отбрасывает сводку шага целиком; полный отчёт — в артефакте
             if [ -f build/iec_checker.md ]; then
               echo ""
-              cat build/iec_checker.md
+              awk '/^## /{skip = /^## Обоснованные находки/} !skip' build/iec_checker.md
+              echo ""
+              echo "Список обоснованных находок — в \`iec_checker.md\` артефакта \`build-reports\`."
             fi
           } >> "$GITHUB_STEP_SUMMARY"
 
@@ -223,8 +222,12 @@ jobs:
             echo ""
             echo "Образ: \`$IEC_CHECKER_IMAGE\`. Итог: ${R_NIGHTLY:-нет данных}."
             echo ""
+            # Без раздела обоснованных находок: он может превысить предел сводки GitHub (1024k), и тогда
+            # GitHub отбрасывает сводку шага целиком; полный отчёт — в артефакте
             if [ -f build/iec_checker.md ]; then
-              cat build/iec_checker.md
+              awk '/^## /{skip = /^## Обоснованные находки/} !skip' build/iec_checker.md
+              echo ""
+              echo "Список обоснованных находок — в \`iec_checker.md\` артефакта \`iec-checker-nightly-reports\`."
             fi
           } >> "$GITHUB_STEP_SUMMARY"
 

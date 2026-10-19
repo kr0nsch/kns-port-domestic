@@ -6,7 +6,8 @@
 # Шаблоны путей (exclude) — fnmatch по пути от корня репозитория; '*' захватывает и '/'.
 
 [lint]
-paths = ["src", "tests"]        # каталоги раскладки (docs/LAYOUT.md)
+paths = ["src", "tests", "targets/astra/src", "targets/astra/lib/src"]  # каталоги раскладки (docs/LAYOUT.md);
+# targets/astra — адаптированный код для Astra.IDE: приложение КНС-1 и библиотека plc-process-lib
 exclude = []                    # файлы, которые не проверяются вовсе
 max_line_length = 120           # STL003
 
@@ -93,10 +94,15 @@ DATE_AND_TIME = "dt"
 
 [rules.STL008]
 allowed_values = [0, 1, 2]      # сравниваются по значению: 0.0, 1.0, 2.0 тоже допустимы
-exempt_objects = ["GVL_Const"]
+exempt_objects = ["GVL_Const", "GVL_ConstRegul"]  # GVL_ConstRegul — константы сборки REGUL (targets/astra)
 # в тестах ожидаемые значения — это данные, а не логика; то же — у тестов адаптированного кода
 # (targets/<среда>/tests, kns-port-domestic)
 exclude = ["tests/*", "targets/*/tests/*"]
+
+[rules.STL003]
+# GVL_Persist флагмана генерирует iolistgen: инициализатор LIC101 блока станции длиннее 120 символов —
+# то же исключение, что у флагмана (kns-pump-station, tools/check/st_lint.toml)
+exclude = ["targets/astra/src/GVLs/Generated/GVL_Persist.pvl.st"]
 
 [rules.STL011]
 name_pattern = "(?i)(cycle|cyc|scan|tick)"                  # счётчик с таким именем

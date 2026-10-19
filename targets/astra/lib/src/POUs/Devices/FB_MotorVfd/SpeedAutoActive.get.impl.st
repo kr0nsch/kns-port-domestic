@@ -1,0 +1,1 @@
+SpeedAutoActive := xSpeedAutoActive;

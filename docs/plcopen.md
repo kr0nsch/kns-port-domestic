@@ -11,8 +11,9 @@
 ```bash
 # XML из src/ репозитория -> build/plcopen/<имя каталога>.xml
 python tools/st_to_plcopen.py
-# адаптированный код для Astra.IDE (раскладка в targets/astra/src)
-python tools/st_to_plcopen.py --src targets/astra/src --out build/plcopen/astra.xml
+# адаптированный код для Astra.IDE: библиотека и приложение (их же собирает CI в артефакт build-reports)
+python tools/st_to_plcopen.py --root targets/astra/lib --name plc-process-lib --out build/plcopen/astra-lib.xml
+python tools/st_to_plcopen.py --root targets/astra --name kns-pump-station --out build/plcopen/astra-app.xml
 # любая раскладка, например исходники библиотеки, с проверкой по официальной схеме TC6 2.01
 python tools/st_to_plcopen.py --root ../plc-process-lib --xsd auto
 # как пишет экспорт CODESYS и Astra.IDE (пространство имён tc6_0200)
@@ -21,8 +22,11 @@ python tools/st_to_plcopen.py --namespace tc6_0200
 python tools/st_to_plcopen.py --reverse export.xml --to build/from-xml
 # эталонная проверка в CODESYS 3.5.17.30 (Windows): фикстура всех конструкций и исходники библиотеки
 python tools/plcopen/verify_codesys.py
-python tools/plcopen/verify_codesys.py --case astra=targets/astra --structural
+python tools/plcopen/verify_codesys.py --case astra-lib=targets/astra/lib --structural
 ```
+
+Для `targets/astra` эталонная проверка в CODESYS ещё не выполнялась; приложению КНС-1 для сборки нужна
+установленная библиотека plc-process-lib 1.0.0.0.
 
 Ключи `st_to_plcopen.py`: `--tests` (добавить `tests/` в папку `Tests`), `--exclude ИМЯ`, `--name`,
 `--timestamp` (по умолчанию — `SOURCE_DATE_EPOCH` или текущее время UTC), `--no-folders` (без папок
@@ -165,7 +169,10 @@ Downloads, «PLCopen XML version 2.01 xsd file» (zip с `tc6_xml_v201.xsd` от
 
 1. Проект REGUL создан мастером, в Library Manager приложения есть Standard (и библиотеки, которые
    нужны коду). Задачи и устройства — по [migration_checklist.md](migration_checklist.md).
-2. `python tools/st_to_plcopen.py --src targets/astra/src --out build/plcopen/astra.xml --xsd auto`.
+2. Файлы импорта: библиотека — `python tools/st_to_plcopen.py --root targets/astra/lib --name plc-process-lib
+   --out build/plcopen/astra-lib.xml --xsd auto` (импорт в проект-библиотеку с пространством имён `PL`),
+   приложение — `python tools/st_to_plcopen.py --root targets/astra --name kns-pump-station --out
+   build/plcopen/astra-app.xml --xsd auto`.
 3. В дереве выделить Application → «Проект → Импорт PLCopenXML…» → файл → отметить все объекты.
    Папки проекта создаются из файла.
 4. «Сборка → Генерировать код», сообщения импорта и компиляции — в [BUILD_ERRORS.md](BUILD_ERRORS.md).
@@ -180,6 +187,8 @@ Downloads, «PLCopen XML version 2.01 xsd file» (zip с `tc6_xml_v201.xsd` от
 - содержимое по конструкциям: типы, значения, секции, расширения ООП, папки, экранирование;
 - цикл раскладка → XML → раскладка в обоих пространствах имён, запись файлов побайтно;
 - настоящий экспорт CODESYS 3.5.17.30 (`fixtures/codesys_export/constructs-app.xml`) → раскладка;
+  в заголовках фикстуры `constructs` автор — плейсхолдер имени, как в записанном экспорте: при замене
+  плейсхолдеров портфолио эти файлы оставляют как есть, иначе экспорт перестанет совпадать с раскладкой;
 - схема TC6 2.01 (маркер `network`: без сети и без lxml — пропуск);
 - `verify_codesys.py` без CODESYS: ожидаемое дерево, сравнение, отчёт, задание; совместимость
   `cds_import_check.py` с IronPython 2.7.

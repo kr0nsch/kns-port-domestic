@@ -9,6 +9,36 @@
 
 ### Added
 
+- Перенос на Astra.IDE, этап 2 — адаптированный код (`targets/astra/`, README там же): приложение КНС-1
+  (`targets/astra/src`, флагман `main` = `505ce14`) и библиотека plc-process-lib (`targets/astra/lib/src`,
+  тег `v1.0.0` = `bd9df2a`) без правок кода оригиналов: 283 маркера проверки
+  `// PORT: [категория] проверить в Astra.IDE — что (пункт)` у конструкций, которые документация РегЛаб не
+  подтверждает (наследование ФБ и интерфейсов, спецификаторы доступа, свойства, `strict`, перечисления с
+  базовым типом, `LTIME`, `VAR_IN_OUT CONSTANT`, CAA File, `SysTimeRtcHighResGet`, Persistent Variables,
+  смешанный GVL, OPC UA, запись PERSISTENT). Новые объекты сборки для ПЛК REGUL — слой Modbus RTU
+  `PRG_ModbusMap_Regul`, `F_MbStatusOk_Regul`, `GVL_ConstRegul` (3 маркера правки `[comm]`, 68 строк):
+  каналы `Modbus Serial Outer Slave` с массивами WORD ↔ регистры `GVL_IO`, признаки обмена по статусу
+  канала (до проверки E2 — «потеря связи»).
+- `upstream/`: снимки `src` оригиналов на коммитах переноса и `upstream/SOURCES.json` (коммиты, ревизии,
+  даты, замена плейсхолдеров).
+- `tools/port_checks.py`: маркеры проверки по правилам (17 правил, пункты B3, C1–C15, D1), отчёт по пунктам
+  чек-листа, `--fix`, `--resolve` / `--fail` с решениями в `targets/astra/port_checks.json`. Тесты —
+  `tools/port_tests/test_port_checks.py`.
+- `tools/upstream_delta.py`: дельта новой версии флагмана или библиотеки для перенесённых файлов — замена,
+  трёхстороннее слияние `git merge-file` с сохранением правок переноса, копирование, удаление; `--apply`
+  записывает результат (конфликты — с маркерами git) и переводит снимок на новый коммит; `--verify`
+  сверяет снимки с коммитами. Тесты — `tools/port_tests/test_upstream_delta.py` (временный репозиторий git).
+- `docs/port_metrics.md` и `.json` — первый отчёт: 10 874 значимые строки оригинала без изменений,
+  3 новых объекта (68 строк), маркеры по категориям и пунктам чек-листа.
+- iec_checker 0.4 по адаптированному коду: `targets/astra/iec_checker_allow.toml` и
+  `targets/astra/lib/iec_checker_allow.toml` — копии обоснований оригиналов и три записи для объектов
+  сборки REGUL; необоснованных находок 0.
+- `docs/USAGE.md`: как оценить и выполнить перенос своего проекта CODESYS в Astra.IDE с инструментами и
+  чек-листом этого репозитория.
+- Пункты чек-листа C15 (`SysTimeRtcHighResGet`) и C16 (компилируются ли POU вне задач); строка PMI-39 в
+  бланке протокола (ПМИ флагмана версии 0.4).
+- Ключ `checker` в обоснованиях iec_checker (`run_iec_checker.py --checker v0.4|nightly`) — из
+  plc-repo-template.
 - Перенос КНС-1 и `plc-process-lib` на Astra.IDE, этап 1 — инструменты и анализ (README, «Статус»):
   целевая среда — Astra.IDE (решение инженера), MasterSCADA 4D — позже (`docs/ASSUMPTIONS.md`, P1–P8).
 - `docs/differences.md`: различия CODESYS 3.5.17 и Astra.IDE по 12 разделам («аспект | CODESYS | Astra.IDE |
@@ -108,6 +138,20 @@
 
 ### Changed
 
+- `tools/port_metrics.py`: маркеры проверки (`проверить в Astra.IDE`) правку не помечают и лишними не
+  считаются; пары деревьев по меткам (`--orig МЕТКА=…`, `--adapted МЕТКА=…`); раздел «Правки по категориям»
+  (маркеры, объекты, файлы, строки) и «Маркеры проверки по пунктам чек-листа»; `--check` — отчёт устарел;
+  по умолчанию — снимки `upstream/` и `targets/astra/` с исключением `plc-process-lib:PRG_Main`.
+- CI, шаг «Код для Astra.IDE»: `port_checks --strict`, `port_metrics --check --strict`, PLCopen XML
+  приложения и библиотеки, iec_checker по обоим деревьям; `st_lint` проверяет и `targets/astra/` (пути в
+  `tools/check/st_lint.toml`, исключения STL003 для `GVL_Persist`, STL008 для `GVL_ConstRegul`).
+- `tools/inventory.toml`: ревизии закреплены на коммитах переноса; `docs/inventory.md` пересобран
+  (объекты `src` и `tests`: флагман — 121, библиотека — 116).
+- `docs/differences.md`, `migration_checklist.md`, `BUILD_ERRORS.md` (заготовка итерации 1),
+  `ARCHITECTURE.md`, `ASSUMPTIONS.md` (P9–P16), `STATIC_ANALYSIS.md`, README по стандарту портфолио.
+- mypy проверяет инструменты как для win32 (`platform = "win32"`), файлы `.st` в языковой панели GitHub —
+  Pascal (`linguist-language`), сводка iec_checker в CI без раздела обоснованных находок (предел сводки
+  GitHub) — из plc-repo-template.
 - README, `docs/ARCHITECTURE.md`, `docs/TEST_REPORT.md`, `docs/STATIC_ANALYSIS.md` описывают этот
   репозиторий, а не пример шаблона; `docs/ASSUMPTIONS.md` — решения переноса (P1–P8), решения о примере
   шаблона убраны вместе с ним.

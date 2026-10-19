@@ -1,0 +1,2 @@
+xOut := xValue;
+xRestart := TRUE;
