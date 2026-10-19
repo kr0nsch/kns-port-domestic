@@ -1,4 +1,9 @@
-# CI шаблона ПЛК-репозитория: проверки, которым не нужен CODESYS.
+# CI kns-port-domestic (задания шаблона ПЛК-репозитория плюс проверки инструментов переноса):
+# проверки, которым не нужны CODESYS и Astra.IDE. pytest берёт каталоги тестов из pyproject.toml
+# (testpaths): тесты шаблона и инструментов переноса — tools/inventory_tests, tools/port_metrics_tests,
+# tools/plcopen/tests (в том числе проверка XML по схеме TC6 2.01 с plcopen.org; без сети — пропуск).
+# Сборку в Astra.IDE выполняет инженер (docs/BUILD_ERRORS.md), импорт XML в CODESYS —
+# tools/plcopen/verify_codesys.py на Windows с CODESYS.
 # Сборка и тесты в CODESYS выполняются на Windows вручную (docs/MANUAL_STEPS.md, раздел 5):
 # cds.py build (объекты, достижимые из задач), cds.py check --tests (полная проверка компиляции:
 # все объекты src/ и tests/), cds.py test, cds.py roundtrip. Для раннера Windows с CODESYS — те же
@@ -106,6 +111,24 @@ jobs:
         if: ${{ !cancelled() }}
         run: python tools/check/st_lint.py --strict
 
+      # Адаптированный код для Astra.IDE (этап 2): тот же линтер и PLCopen XML для импорта инженером —
+      # build/plcopen/astra.xml попадает в артефакт build-reports. Пока каталога нет, шаг сообщает об
+      # этом и завершается успешно. Метрики переноса (tools/port_metrics.py) считаются локально: им
+      # нужны соседние рабочие копии флагмана и библиотеки.
+      - name: Код для Astra.IDE (targets/astra)
+        id: astra
+        if: ${{ !cancelled() }}
+        run: |
+          if [ ! -d targets/astra/src ]; then
+            echo "state=absent" >> "$GITHUB_OUTPUT"
+            echo "::notice::targets/astra/src ещё нет (этап 1): проверка адаптированного кода пропущена"
+            exit 0
+          fi
+          dirs="targets/astra/src"
+          if [ -d targets/astra/tests ]; then dirs="$dirs targets/astra/tests"; fi
+          python tools/check/st_lint.py --strict $dirs
+          python tools/st_to_plcopen.py --src targets/astra/src --out build/plcopen/astra.xml
+
       # run_iec_checker.py сам собирает вариант iec-checker в build/assembled/iec-checker/ и берёт
       # бинарник из переменной IEC_CHECKER; обоснованные находки — tools/check/iec_checker_allow.toml
       # и docs/STATIC_ANALYSIS.md
@@ -124,6 +147,8 @@ jobs:
           R_ASSEMBLE: ${{ steps.assemble.outcome }}
           R_ST_LINT: ${{ steps.st_lint.outcome }}
           R_IEC_CHECKER: ${{ steps.iec_checker.outcome }}
+          R_ASTRA: ${{ steps.astra.outcome }}
+          R_ASTRA_STATE: ${{ steps.astra.outputs.state }}
         run: |
           status() {
             case "$1" in
@@ -145,6 +170,11 @@ jobs:
             echo "| assemble | $(status "$R_ASSEMBLE") |"
             echo "| st_lint --strict | $(status "$R_ST_LINT") |"
             echo "| iec_checker $IEC_CHECKER_VERSION | $(status "$R_IEC_CHECKER") |"
+            if [ "$R_ASTRA_STATE" = "absent" ]; then
+              echo "| targets/astra: st_lint, PLCopen XML | нет кода (этап 1) |"
+            else
+              echo "| targets/astra: st_lint, PLCopen XML | $(status "$R_ASTRA") |"
+            fi
             echo ""
             echo "Отчёты — в артефакте \`build-reports\`. Находки iec_checker разбираются в \`docs/STATIC_ANALYSIS.md\`."
             if [ -f build/iec_checker.md ]; then

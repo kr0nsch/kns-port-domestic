@@ -9,10 +9,35 @@
 
 ### Added
 
+- Перенос КНС-1 и `plc-process-lib` на Astra.IDE, этап 1 — инструменты и анализ (README, «Статус»):
+  целевая среда — Astra.IDE (решение инженера), MasterSCADA 4D — позже (`docs/ASSUMPTIONS.md`, P1–P8).
+- `docs/differences.md`: различия CODESYS 3.5.17 и Astra.IDE по 12 разделам («аспект | CODESYS | Astra.IDE |
+  решение | источник») и приложение — 93 факта со ссылками на документы РегЛаб и справку CODESYS;
+  выборочная перепроверка по первоисточникам 19.10.2026.
+- `tools/inventory.py` (каталог возможностей `tools/inventory_catalog.py`, источники `tools/inventory.toml`):
+  инвентаризация возможностей CODESYS в библиотеке и флагмане — ООП, прагмы, библиотеки, типы, конструкции,
+  RETAIN/PERSISTENT, `AT`, задачи, ключевые слова других сред — с риском для Astra.IDE и ссылками на факты;
+  читает коммиты (`git archive`), пропускает пример шаблона; `--check` — отчёт актуален.
+  Отчёт `docs/inventory.md` и `docs/inventory.json` (библиотека — `integrate` `4b0541c`; числа сверены
+  ручным подсчётом по исходникам). Тесты — `tools/inventory_tests/`.
+- `tools/st_to_plcopen.py`: раскладка -> PLCopen XML (TC6 2.01, вариант CODESYS для CODESYS 3.5 и Astra.IDE)
+  и обратно; подмножество — POU, DUT, GVL и Persistent Variables, тела на ST, методы, свойства, интерфейсы,
+  папки; проверка по официальной схеме TC6 2.01 (`--xsd auto`). `tools/plcopen/verify_codesys.py` — эталонная
+  проверка в CODESYS 3.5.17.30: импорт в приложение и пул POU, сравнение текстов, сборка, обратный экспорт.
+  Проверено: фикстура всех конструкций и исходники `plc-process-lib` — 0 ошибок (`docs/plcopen.md`).
+- `tools/port_metrics.py`: метрики переноса по файлам, объектам, источникам и итого — строки без изменений,
+  изменённые, переписанные, удалённые и добавленные; маркеры `// PORT: [категория] причина` в 14 категориях;
+  `--strict` — код 1 при правке без маркера. Отчёт `docs/port_metrics.md` (пока — методика и команда: кода в
+  `targets/astra/src/` нет). Тесты — `tools/port_metrics_tests/`.
+- `docs/migration_checklist.md` (подготовка, типы и библиотеки, ввод-вывод, связь, HMI, испытания по той же
+  ПМИ, риски, пункты «проверить вручную» A1…K4), `docs/test_protocol_astra.md` (бланк протокола ПМИ флагмана
+  в Astra.IDE), `docs/BUILD_ERRORS.md` — цикл исправлений: итерации, разбор сообщений `N.k`, сводка.
+- CI: шаг «Код для Astra.IDE (targets/astra)» — `st_lint --strict` адаптированного кода и PLCopen XML в
+  артефакте `build-reports` (пока каталога нет — пропуск); pytest запускает и тесты инструментов переноса.
 - Раскладка исходников ST в `src/` и `tests/` и её формальный контракт `docs/LAYOUT.md`.
-- Пример: `E_DeviceMode`, `ST_ExampleCmd`, `ST_ExampleSts`, `GVL_Const`, интерфейс `I_Resettable`,
+- Пример шаблона (в этом репозитории удалён, см. Removed): `E_DeviceMode`, `ST_ExampleCmd`, `ST_ExampleSts`, `GVL_Const`, интерфейс `I_Resettable`,
   функция `F_Clamp`, `FB_Example` (метод `Acknowledge`, реализация `Reset`, свойство `Count`), `PRG_Main`.
-- Тесты CfUnit (coUnit 1.2.0.0): наборы `FB_F_Clamp_Test` (7 тестов), `FB_Example_Test` (11 тестов:
+- Тесты CfUnit (coUnit 1.2.0.0) примера шаблона (удалены вместе с ним): наборы `FB_F_Clamp_Test` (7 тестов), `FB_Example_Test` (11 тестов:
   пороги и гистерезис, отказ и квитирование, режимы, ограничение параметров, счётчик, сброс через
   `I_Resettable`) и `PRG_Tests`.
 - Инструменты: `tools/assemble.py`, `tools/check/` (линтер `st_lint.py`, запуск iec_checker и RuSTy),
@@ -83,6 +108,13 @@
 
 ### Changed
 
+- README, `docs/ARCHITECTURE.md`, `docs/TEST_REPORT.md`, `docs/STATIC_ANALYSIS.md` описывают этот
+  репозиторий, а не пример шаблона; `docs/ASSUMPTIONS.md` — решения переноса (P1–P8), решения о примере
+  шаблона убраны вместе с ним.
+- `tools/check/st_lint.toml`: у тестов адаптированного кода (`targets/*/tests/*`), как у `tests/`,
+  «магические числа» (STL008) не проверяются. `tools/check/iec_checker_allow.toml` пуст: обоснования
+  относились к удалённому примеру.
+- `docs/differences.md`, F47: формулировка о формате `*.export` уточнена по справке CODESYS.
 - Тесты `tools/tests/test_cds.py` и `test_cds_library.py` берут настройки из эталона
   `tools/tests/fixtures/config_template.json`, а не из `config.json` репозитория: проект может менять
   свои библиотеки, задачи и библиотеку репозитория без исключения тестов шаблона (`--deselect`).
@@ -101,6 +133,13 @@
 - `cds.py import`, `library`, `check`: два описания `libraries`, которые нашли одну библиотеку, дают
   одну ссылку (одинаковые сливаются с предупреждением, разные — отказ до открытия проекта, код 1);
   ссылки Library Manager после импорта — в поле `references` отчёта `build/import.json`.
+
+### Removed
+
+- Пример шаблона в `src/` и `tests/` (`E_DeviceMode`, `ST_ExampleCmd`, `ST_ExampleSts`, `GVL_Const`,
+  `I_Resettable`, `F_Clamp`, `FB_Example`, `PRG_Main`, наборы `FB_F_Clamp_Test`, `FB_Example_Test`,
+  `PRG_Tests`): код этого репозитория — `targets/astra/src/` (этап 2). `assemble`, `st_lint`, iec_checker и
+  RuSTy с пустыми `src/` и `tests/` проходят.
 
 ### Fixed
 

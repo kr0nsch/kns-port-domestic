@@ -94,7 +94,9 @@ DATE_AND_TIME = "dt"
 [rules.STL008]
 allowed_values = [0, 1, 2]      # сравниваются по значению: 0.0, 1.0, 2.0 тоже допустимы
 exempt_objects = ["GVL_Const"]
-exclude = ["tests/*"]           # в тестах ожидаемые значения — это данные, а не логика
+# в тестах ожидаемые значения — это данные, а не логика; то же — у тестов адаптированного кода
+# (targets/<среда>/tests, kns-port-domestic)
+exclude = ["tests/*", "targets/*/tests/*"]
 
 [rules.STL011]
 name_pattern = "(?i)(cycle|cyc|scan|tick)"                  # счётчик с таким именем

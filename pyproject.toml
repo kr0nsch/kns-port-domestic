@@ -26,12 +26,14 @@ ignore = [
 [tool.ruff.format]
 # Скрипты CODESYS форматируются вручную: форматтер ruff рассчитан на Python 3 и может
 # добавить запятую после *args/**kwargs, а это SyntaxError в IronPython 2.7.
-exclude = ["tools/codesys/*.py"]
+exclude = ["tools/codesys/*.py", "tools/plcopen/cds_*.py"]
 
 [tool.ruff.lint.per-file-ignores]
 # Общее подмножество Python 2.7 и 3.x: __future__, "%"-форматирование, class X(object),
 # без f-строк, распаковки [*a], raise ... from, contextlib.suppress
 "tools/codesys/*.py" = ["UP", "SIM", "C4", "B904", "RUF005", "RUF012"]
+# Скрипт CODESYS конвертера PLCopen XML (IronPython 2.7) — те же ограничения
+"tools/plcopen/cds_*.py" = ["UP", "SIM", "C4", "B904", "RUF005", "RUF012"]
 
 [tool.mypy]
 python_version = "3.11"
@@ -44,12 +46,14 @@ warn_unreachable = true
 exclude = [
     '^tools/codesys/(?!stlayout\.py$)[^/]*\.py$',
     '^tools/tests/fixtures/',
+    '^tools/plcopen/cds_[^/]*\.py$',
 ]
 
 [tool.pytest.ini_options]
-testpaths = ["tools/tests"]
+testpaths = ["tools/tests", "tools/port_metrics_tests", "tools/inventory_tests", "tools/plcopen/tests"]
 pythonpath = ["tools", "tools/codesys", "tools/check"]
 addopts = "-ra --strict-markers"
 markers = [
     "integration: проверки с настоящими plc (RuSTy) и iec_checker; пропускаются, если инструмента нет",
+    "network: загрузка официальной схемы PLCopen TC6 2.01 с plcopen.org в build/xsd/; без сети — пропуск",
 ]

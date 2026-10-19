@@ -1,97 +1,94 @@
-# Архитектура шаблона
+# Архитектура переноса
 
-Источник истины — текстовые файлы ST в `src/` и `tests/` (раскладка — [LAYOUT.md](LAYOUT.md)).
-Проект CODESYS (`.project`) бинарный, поэтому в git его нет: он собирается из текстов скриптом
-и после правок в IDE экспортируется обратно в тексты.
+Репозиторий не хранит копию кода, который переносится: библиотека `plc-process-lib` и флагман
+`kns-pump-station` читаются из соседних рабочих копий (git), а здесь лежат инструменты, анализ и — с
+этапа 2 — адаптированный код `targets/astra/src/` в той же раскладке ([LAYOUT.md](LAYOUT.md)). Компилирует
+и испытывает в Astra.IDE инженер; эталон для файлов импорта — CODESYS 3.5.17.30 на стенде разработки.
 
-## Два контура проверок
+## Поток работ
 
 ```mermaid
-flowchart LR
-    src["src/ и tests/<br/>текстовые ST-файлы<br/>(источник истины)"]
-
-    subgraph ci["Без CODESYS: CI на Linux и локально"]
-        lint["tools/check/st_lint.py<br/>правила CONTRIBUTING.md"]
-        asm["tools/assemble.py"]
-        built["build/assembled/<br/>стандартный ST"]
-        iec["iec_checker<br/>статанализ"]
-        rusty["RuSTy plc --check<br/>проверка компиляции"]
+flowchart TB
+    subgraph src["Исходники (соседние репозитории)"]
+        lib["plc-process-lib<br/>ветка integrate, src/ и tests/"]
+        kns["kns-pump-station<br/>src/ и tests/"]
     end
 
-    subgraph cds["С CODESYS: Windows, CODESYS 3.5.17.30"]
-        imp["cds.py import<br/>tools/codesys/import_sources.py"]
-        proj["Проект CODESYS<br/>.project — не в git"]
-        bld["cds.py build<br/>tools/codesys/build.py"]
-        run["cds.py test<br/>tools/codesys/run_tests.py"]
-        ctrl["CODESYS Control Win V3"]
-        cf["CfUnit: PRG_Tests"]
-        exp["cds.py export<br/>tools/codesys/export_sources.py"]
+    subgraph analysis["Этап 1: анализ"]
+        inv["tools/inventory.py<br/>+ inventory_catalog.py"]
+        invmd["docs/inventory.md, inventory.json"]
+        res["исследование Astra.IDE<br/>факты F01…F93"]
+        diff["docs/differences.md<br/>migration_checklist.md"]
     end
 
-    rep["docs/TEST_REPORT.md"]
-    sa["docs/STATIC_ANALYSIS.md"]
+    subgraph port["Этап 2: адаптация"]
+        astra["targets/astra/src/<br/>правки // PORT: [категория]"]
+        pm["tools/port_metrics.py"]
+        pmmd["docs/port_metrics.md, .json"]
+    end
 
-    src --> lint
-    src --> asm --> built
-    built --> iec --> sa
-    built --> rusty
-    src --> imp --> proj --> bld --> run --> ctrl --> cf --> rep
-    proj -- "правки в IDE" --> exp -- "перед коммитом" --> src
+    subgraph xml["Файл импорта"]
+        conv["tools/st_to_plcopen.py"]
+        file["PLCopen XML TC6 2.01<br/>вариант CODESYS"]
+        ver["tools/plcopen/verify_codesys.py<br/>CODESYS 3.5.17.30"]
+    end
+
+    subgraph ide["Astra.IDE (инженер)"]
+        imp["импорт и сборка<br/>проект REGUL R500"]
+        be["docs/BUILD_ERRORS.md"]
+        pmi["ПМИ флагмана<br/>test_protocol_astra.md"]
+    end
+
+    lib --> inv
+    kns --> inv
+    inv --> invmd --> diff
+    res --> diff
+    lib --> astra
+    kns --> astra
+    diff --> astra
+    astra --> pm --> pmmd
+    lib --> pm
+    kns --> pm
+    astra --> conv --> file
+    file --> ver
+    file --> imp --> be -- "разбор N.k, правки" --> astra
+    imp --> pmi
 ```
 
-| Контур | Где работает | Что ловит | Чего не ловит |
-|---|---|---|---|
-| Без CODESYS | CI (GitHub Actions, Ubuntu) и любой ПК с Python 3.12 | нарушения раскладки и правил именования, «магические числа», синтаксис и типы (RuSTy), находки статанализа (iec_checker) | особенности компилятора CODESYS, поведение в рантайме |
-| С CODESYS | Windows с установленным CODESYS (переменные `CODESYS_EXE`, `CODESYS_PROFILE`) | ошибки компиляции CODESYS, результаты юнит-тестов CfUnit в Control Win | — |
+## Инструменты
 
-Собранный текст в `build/assembled/` нужен только анализаторам: в CODESYS он не импортируется.
-Варианты сборки (`iec`, `rusty`, `iec-checker`) описаны в [LAYOUT.md](LAYOUT.md#собранный-текст-buildassembled).
+| Инструмент | Вход | Выход | Где работает |
+|---|---|---|---|
+| `tools/inventory.py` (каталог возможностей — `tools/inventory_catalog.py`, источники — `tools/inventory.toml`) | коммиты библиотеки и флагмана (`git archive`), пример шаблона как базовая линия | `docs/inventory.md`, `docs/inventory.json` | любой ПК с Python и git |
+| `tools/st_to_plcopen.py` | раскладка (`src/`, `targets/astra/src/` или любая другая) | PLCopen XML; обратно — раскладка из XML | любой ПК; проверка по схеме — с `lxml` и сетью (или локальной копией схемы) |
+| `tools/plcopen/verify_codesys.py` + `cds_import_check.py` (IronPython 2.7) | раскладки | импорт в приложение и в пул POU, сверка дерева и текстов, сборка, обратный экспорт — `build/plcopen/verify.md` | Windows с CODESYS 3.5.17.30 |
+| `tools/port_metrics.py` | раскладки оригинала и `targets/astra/src/` | `docs/port_metrics.md`, `docs/port_metrics.json`; `--strict` — код 1 при правке без маркера | любой ПК с соседними рабочими копиями |
+| инструменты шаблона (`tools/assemble.py`, `tools/check/`, `tools/codesys/`) | `src/`, `tests/` | линтер, статанализ, сборка и тесты в CODESYS | см. [tools/README.md](../tools/README.md) |
+
+Инструменты переноса не зависят от CODESYS и Astra.IDE, кроме эталонной проверки. Разбор раскладки —
+общий парсер шаблона `tools/codesys/stlayout.py` (Python 2.7 и 3), поэтому все инструменты одинаково
+понимают объекты, методы, свойства и папки.
+
+## Решения, которые определяют архитектуру
+
+- **Вариант PLCopen XML — как у CODESYS:** структура TC6 плюс текст объявления каждого объекта
+  (`interfaceasplaintext`). По исследованию Astra.IDE пишет те же расширения 3S (F46), а импорт CODESYS
+  восстанавливает объявления из текста без потерь ([plcopen.md](plcopen.md)).
+- **Отчёты повторяемы:** инвентаризация читает коммиты и пишет их номера; XML с одинаковыми исходниками
+  совпадает побайтно (ObjectId — UUID5 от имени и папки), поэтому дифф XML между коммитами показывает
+  только изменения кода.
+- **Цена переноса считается по маркерам:** каждая правка в `targets/astra/src/` несёт
+  `// PORT: [категория] причина`; метрики сравнивают файлы с оригиналом построчно и сводят правки по
+  категориям ([port_metrics.md](port_metrics.md#методика)).
+- Остальные решения и допущения — [ASSUMPTIONS.md](ASSUMPTIONS.md).
 
 ## Каталоги
 
 | Каталог | Содержимое |
 |---|---|
-| `src/` | исходники приложения: DUT, GVL, интерфейсы, POU с методами и свойствами |
-| `tests/` | наборы тестов CfUnit (coUnit 1.2.0.0, пространство имён `coUnit`) и `PRG_Tests` в той же раскладке; при импорте попадают в папку проекта `Tests` |
-| `tools/` | `assemble.py`, `check/` (линтер, запуск iec_checker и RuSTy), `codesys/` (`cds.py` — командная строка CODESYS на Python 3; скрипты CODESYS Scripting, IronPython 2.7; `config.json`) |
-| `docs/` | документация, отчёты проверок, шаблоны ТЗ и ПМИ |
-| `build/` | артефакты сборки и проверок, в git не хранится |
-
-## Пример в src/
-
-Минимальный, но законченный пример показывает все виды объектов раскладки. Объект вымышленный:
-насос подкачки, который поддерживает уровень в баке.
-
-| Объект | Вид | Роль |
-|---|---|---|
-| `E_DeviceMode` | перечисление | режимы устройства: `Auto`, `Manual`, `Local`, `OutOfService` |
-| `ST_ExampleCmd`, `ST_ExampleSts` | структуры | обмен с HMI/SCADA: команды и состояние |
-| `GVL_Const` | GVL, константы | диапазоны уставки и гистерезиса, предел счётчика |
-| `I_Resettable` | интерфейс | метод `Reset` — сброс любого объекта одним кодом |
-| `F_Clamp` | функция | ограничение значения отрезком; семантика — в [ASSUMPTIONS.md](ASSUMPTIONS.md#семантика-f_clamp) |
-| `FB_Example` | ФБ, `IMPLEMENTS I_Resettable` | двухпозиционный регулятор с гистерезисом; методы `Reset`, `Acknowledge`, свойство `Count` (только чтение) |
-| `PRG_Main` | программа | однократные команды HMI, вызов `FB_Example`, состояние для HMI |
-| `FB_F_Clamp_Test`, `FB_Example_Test`, `PRG_Tests` | тесты (`tests/`) | наборы тестов CfUnit для `F_Clamp` (границы, порядок границ) и `FB_Example` (пороги, гистерезис, отказ и квитирование, режимы, счётчик, сброс) и программа запуска |
-
-### Поведение FB_Example
-
-| Режим | Выход `xOut` |
-|---|---|
-| `Auto` | включается при `rValue_pct <= уставка - гистерезис`, отключается при `rValue_pct >= уставка`, в зоне между ними сохраняет состояние. При недостоверном измерении (`xValueValid = FALSE`) фиксируется отказ `xFault` и выход отключается до квитирования |
-| `Manual` | повторяет команду оператора `xManualOn` |
-| `Local` | `FALSE`: устройством управляют с местного поста, команда ПЛК снимается |
-| `OutOfService` и любое другое значение | `FALSE` — безопасное состояние |
-
-- Уставка и гистерезис ограничиваются диапазонами из `GVL_Const` через `F_Clamp`.
-- `Acknowledge()` снимает отказ, только если измерение снова достоверно.
-- `Reset()` отключает выход, сбрасывает отказ и счётчик включений.
-- `Count` — число включений выхода (передний фронт) с последнего `Reset()`; на пределе UDINT
-  счётчик не переполняется.
-- Пример не использует время. В реальных устройствах выдержки делаются таймерами (`TON`) или по
-  источнику времени, а не счётом циклов (правило из `CONTRIBUTING.md`).
-
-### Чего в примере нет (сознательно)
-
-Диагностики по NAMUR NE 107, проверки 4–20 мА по NAMUR NE 43, минимального времени работы и паузы
-насоса. Это задачи библиотеки устройств следующих проектов портфолио; шаблон показывает только
-каркас и инструменты.
+| `targets/astra/src/`, `targets/astra/tests/` | адаптированный код для Astra.IDE (этап 2; пока нет) |
+| `src/`, `tests/` | пусты: пример шаблона удалён; раскладка нужна инструментам шаблона |
+| `tools/` | инструменты переноса (`inventory.py`, `st_to_plcopen.py`, `port_metrics.py`, `plcopen/`) и шаблона (`assemble.py`, `check/`, `codesys/`) |
+| `tools/inventory_tests/`, `tools/port_metrics_tests/`, `tools/plcopen/tests/` | тесты инструментов переноса с фикстурами (`plcopen/tests/fixtures/constructs` — фикстура всех конструкций, она же XML для итерации 1 в Astra.IDE) |
+| `docs/` | анализ, чек-лист, журнал сборки, протокол ПМИ, метрики, отчёты |
+| `build/` | артефакты (XML, отчёты проверок, проекты CODESYS), в git не хранится |
