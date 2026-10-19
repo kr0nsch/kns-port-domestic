@@ -1,0 +1,4 @@
+METHOD Lock
+VAR_INPUT
+    xLock : BOOL;
+END_VAR

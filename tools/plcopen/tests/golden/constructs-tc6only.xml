@@ -1,0 +1,1858 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://www.plcopen.org/xml/tc6_0201">
+  <fileHeader companyName="" productName="kns-port-domestic st_to_plcopen" productVersion="0.1.0" creationDateTime="2026-01-01T00:00:00" />
+  <contentHeader name="constructs" modificationDateTime="2026-01-01T00:00:00">
+    <coordinateInfo>
+      <fbd>
+        <scaling x="1" y="1" />
+      </fbd>
+      <ld>
+        <scaling x="1" y="1" />
+      </ld>
+      <sfc>
+        <scaling x="1" y="1" />
+      </sfc>
+    </coordinateInfo>
+  </contentHeader>
+  <types>
+    <dataTypes>
+      <dataType name="E_Color">
+        <baseType>
+          <enum>
+            <values>
+              <value name="Red" />
+              <value name="Green" />
+              <value name="Blue" />
+            </values>
+          </enum>
+        </baseType>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>990dac03-2b7a-54f0-a266-609725acdb93</ObjectId>
+          </data>
+        </addData>
+        <documentation>
+          <xhtml xmlns="http://www.w3.org/1999/xhtml"> Перечисление без значений и без базового типа</xhtml>
+        </documentation>
+      </dataType>
+      <dataType name="E_Mode">
+        <baseType>
+          <enum>
+            <values>
+              <value name="OutOfService" value="0" />
+              <value name="Auto" value="1" />
+              <value name="Manual" value="2" />
+              <value name="Local" value="3" />
+            </values>
+            <baseType>
+              <INT />
+            </baseType>
+          </enum>
+        </baseType>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+            <Attributes>
+              <Attribute Name="qualified_only" Value="" />
+              <Attribute Name="strict" Value="" />
+            </Attributes>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>be5107b8-c7a6-5fd6-a649-d9e9571df5bb</ObjectId>
+          </data>
+        </addData>
+        <documentation>
+          <xhtml xmlns="http://www.w3.org/1999/xhtml"> Режим устройства: перечисление с явными значениями и базовым типом</xhtml>
+        </documentation>
+      </dataType>
+      <dataType name="ST_Base">
+        <baseType>
+          <struct>
+            <variable name="xEnable">
+              <type>
+                <BOOL />
+              </type>
+              <initialValue>
+                <simpleValue value="TRUE" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> разрешение</xhtml>
+              </documentation>
+            </variable>
+            <variable name="iCount">
+              <type>
+                <INT />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> счётчик</xhtml>
+              </documentation>
+            </variable>
+            <variable name="rValue_bar">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="1.5" />
+              </initialValue>
+            </variable>
+            <variable name="sName">
+              <type>
+                <string length="32" />
+              </type>
+              <initialValue>
+                <simpleValue value="'base'" />
+              </initialValue>
+            </variable>
+            <variable name="wsLabel">
+              <type>
+                <wstring length="16" />
+              </type>
+              <initialValue>
+                <simpleValue value="&quot;Насос&quot;" />
+              </initialValue>
+            </variable>
+            <variable name="aiData">
+              <type>
+                <array>
+                  <dimension lower="0" upper="3" />
+                  <baseType>
+                    <INT />
+                  </baseType>
+                </array>
+              </type>
+              <initialValue>
+                <arrayValue>
+                  <value>
+                    <simpleValue value="1" />
+                  </value>
+                  <value>
+                    <simpleValue value="2" />
+                  </value>
+                  <value>
+                    <simpleValue value="3" />
+                  </value>
+                  <value>
+                    <simpleValue value="4" />
+                  </value>
+                </arrayValue>
+              </initialValue>
+            </variable>
+            <variable name="eMode">
+              <type>
+                <derived name="E_Mode" />
+              </type>
+              <initialValue>
+                <simpleValue value="E_Mode.Auto" />
+              </initialValue>
+            </variable>
+          </struct>
+        </baseType>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>5f28da79-433c-5fcb-9684-4b5e40529db6</ObjectId>
+          </data>
+        </addData>
+        <documentation>
+          <xhtml xmlns="http://www.w3.org/1999/xhtml"> Базовая структура: начальные значения, массив, строка, комментарии</xhtml>
+        </documentation>
+      </dataType>
+      <dataType name="ST_Derived">
+        <baseType>
+          <struct>
+            <variable name="tDelay">
+              <type>
+                <TIME />
+              </type>
+              <initialValue>
+                <simpleValue value="T#5S" />
+              </initialValue>
+            </variable>
+            <variable name="ltStamp">
+              <type>
+                <derived name="LTIME" />
+              </type>
+            </variable>
+            <variable name="pData">
+              <type>
+                <pointer>
+                  <baseType>
+                    <INT />
+                  </baseType>
+                </pointer>
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/datatypeinheritance" handleUnknown="implementation">
+            <Inheritance>
+              <Extends>ST_Base</Extends>
+            </Inheritance>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>760d8e9a-9871-5c3a-959a-098f93261828</ObjectId>
+          </data>
+        </addData>
+        <documentation>
+          <xhtml xmlns="http://www.w3.org/1999/xhtml"> Структура-наследник базовой</xhtml>
+        </documentation>
+      </dataType>
+      <dataType name="T_Name">
+        <baseType>
+          <string length="20" />
+        </baseType>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>87d4f11c-ccff-52a1-89c6-1884da687bb0</ObjectId>
+          </data>
+        </addData>
+        <documentation>
+          <xhtml xmlns="http://www.w3.org/1999/xhtml"> Псевдоним строкового типа</xhtml>
+        </documentation>
+      </dataType>
+      <dataType name="T_Percent">
+        <baseType>
+          <subrangeSigned>
+            <range lower="0" upper="100" />
+            <baseType>
+              <INT />
+            </baseType>
+          </subrangeSigned>
+        </baseType>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>e49c7098-06e0-567d-9350-fe63e0d848c8</ObjectId>
+          </data>
+        </addData>
+        <documentation>
+          <xhtml xmlns="http://www.w3.org/1999/xhtml"> Псевдоним с поддиапазоном</xhtml>
+        </documentation>
+      </dataType>
+      <dataType name="ST_MotorCmd">
+        <baseType>
+          <struct>
+            <variable name="xStart">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="xStop">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="eMode">
+              <type>
+                <derived name="E_Mode" />
+              </type>
+              <initialValue>
+                <simpleValue value="E_Mode.OutOfService" />
+              </initialValue>
+            </variable>
+          </struct>
+        </baseType>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>6795e99f-8d4b-5116-859f-d226d81f2b6e</ObjectId>
+          </data>
+        </addData>
+        <documentation>
+          <xhtml xmlns="http://www.w3.org/1999/xhtml"> Команды двигателя от HMI (DUT в папке проекта)</xhtml>
+        </documentation>
+      </dataType>
+      <dataType name="ST_MotorSts">
+        <baseType>
+          <struct>
+            <variable name="xRun">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="uiStarts">
+              <type>
+                <UINT />
+              </type>
+            </variable>
+            <variable name="eMode">
+              <type>
+                <derived name="E_Mode" />
+              </type>
+              <initialValue>
+                <simpleValue value="E_Mode.OutOfService" />
+              </initialValue>
+            </variable>
+          </struct>
+        </baseType>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>357d981b-6cb2-535d-8705-90c8b2ddb9b1</ObjectId>
+          </data>
+        </addData>
+        <documentation>
+          <xhtml xmlns="http://www.w3.org/1999/xhtml"> Состояние двигателя для HMI (DUT во вложенной папке Motor/Status)</xhtml>
+        </documentation>
+      </dataType>
+    </dataTypes>
+    <pous>
+      <pou name="F_Clamp" pouType="function">
+        <interface>
+          <returnType>
+            <REAL />
+          </returnType>
+          <inputVars>
+            <variable name="rValue">
+              <type>
+                <REAL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> значение</xhtml>
+              </documentation>
+            </variable>
+            <variable name="rMin">
+              <type>
+                <REAL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> нижняя граница</xhtml>
+              </documentation>
+            </variable>
+            <variable name="rMax">
+              <type>
+                <REAL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> верхняя граница</xhtml>
+              </documentation>
+            </variable>
+          </inputVars>
+          <localVars>
+            <variable name="rLow">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+            <variable name="rHigh">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+          </localVars>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml"> Назначение: ограничение значения диапазоном [rMin, rMax]; при rMin &gt; rMax границы меняются местами
+ Автор:      &lt;ИМЯ ФАМИЛИЯ&gt;
+ Версия:     0.1.0
+ Документ:   docs/plcopen.md</xhtml>
+          </documentation>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">// границы в правильном порядке
+IF rMin &lt;= rMax THEN
+    rLow := rMin;
+    rHigh := rMax;
+ELSE
+    rLow := rMax;
+    rHigh := rMin;
+END_IF
+F_Clamp := LIMIT(rLow, rValue, rHigh);
+</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>47122cfd-0b05-5fbc-b7a5-9139bbf02818</ObjectId>
+          </data>
+        </addData>
+      </pou>
+      <pou name="F_Noop" pouType="function">
+        <interface>
+          <inputVars>
+            <variable name="xIn">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+          </inputVars>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml"> Назначение: функция без типа результата
+ Автор:      &lt;ИМЯ ФАМИЛИЯ&gt;
+ Версия:     0.1.0
+ Документ:   docs/plcopen.md</xhtml>
+          </documentation>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">// тела нет
+;
+</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>75a8ae40-8f35-5abb-9586-c88b71c8baeb</ObjectId>
+          </data>
+        </addData>
+      </pou>
+      <pou name="F_Sum" pouType="function">
+        <interface>
+          <returnType>
+            <LREAL />
+          </returnType>
+          <inOutVars constant="true">
+            <variable name="arValues">
+              <type>
+                <derived name="ARRAY[*] OF REAL" />
+              </type>
+            </variable>
+          </inOutVars>
+          <localVars>
+            <variable name="diIdx">
+              <type>
+                <DINT />
+              </type>
+            </variable>
+          </localVars>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml"> Назначение: сумма элементов массива любой длины (VAR_IN_OUT CONSTANT, ARRAY[*])
+ Автор:      &lt;ИМЯ ФАМИЛИЯ&gt;
+ Версия:     0.1.0
+ Документ:   docs/plcopen.md</xhtml>
+          </documentation>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">F_Sum := 0;
+FOR diIdx := LOWER_BOUND(arValues, 1) TO UPPER_BOUND(arValues, 1) DO
+    F_Sum := F_Sum + arValues[diIdx];
+END_FOR
+</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>9e9b976b-153f-5509-9646-c1e20b75dc0c</ObjectId>
+          </data>
+        </addData>
+      </pou>
+      <pou name="FB_Counter" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="xIn">
+              <type>
+                <BOOL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> вход</xhtml>
+              </documentation>
+            </variable>
+            <variable name="tConfirm">
+              <type>
+                <TIME />
+              </type>
+              <initialValue>
+                <simpleValue value="T#100MS" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> задержка подтверждения</xhtml>
+              </documentation>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="udiCount">
+              <type>
+                <UDINT />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> число фронтов</xhtml>
+              </documentation>
+            </variable>
+            <variable name="xConfirmed">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+          </outputVars>
+          <inOutVars>
+            <variable name="stCmd">
+              <type>
+                <derived name="ST_MotorCmd" />
+              </type>
+            </variable>
+          </inOutVars>
+          <localVars>
+            <variable name="fbEdge">
+              <type>
+                <derived name="R_TRIG" />
+              </type>
+            </variable>
+            <variable name="fbDelay">
+              <type>
+                <derived name="TON" />
+              </type>
+            </variable>
+          </localVars>
+          <localVars retain="true">
+            <variable name="udiTotal">
+              <type>
+                <UDINT />
+              </type>
+            </variable>
+          </localVars>
+          <tempVars>
+            <variable name="xEdge">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+          </tempVars>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml"> Назначение: счётчик фронтов с задержкой подтверждения (без ООП, Standard: R_TRIG, TON)
+ Автор:      &lt;ИМЯ ФАМИЛИЯ&gt;
+ Версия:     0.1.0
+ Документ:   docs/plcopen.md</xhtml>
+          </documentation>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">fbEdge(CLK := xIn);
+xEdge := fbEdge.Q;
+IF xEdge THEN
+    udiCount := udiCount + 1;
+    udiTotal := udiTotal + 1;
+END_IF
+fbDelay(IN := xIn, PT := tConfirm, Q =&gt; xConfirmed);
+stCmd.xStart S= xConfirmed;
+stCmd.xStop R= xConfirmed;
+</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>469ca937-7125-5613-aaa6-2a6a3f29b625</ObjectId>
+          </data>
+        </addData>
+      </pou>
+      <pou name="PRG_Aux" pouType="program">
+        <interface>
+          <localVars>
+            <variable name="fbValve">
+              <type>
+                <derived name="FB_Valve" />
+              </type>
+            </variable>
+            <variable name="itfPos">
+              <type>
+                <derived name="I_Positioner" />
+              </type>
+            </variable>
+            <variable name="itfLock">
+              <type>
+                <derived name="I_Lockable" />
+              </type>
+            </variable>
+            <variable name="iCalls">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="wsMsg">
+              <type>
+                <wstring length="32" />
+              </type>
+              <initialValue>
+                <simpleValue value="&quot;Задвижка &lt;закрыта&gt; &amp; 'ok'&quot;" />
+              </initialValue>
+            </variable>
+            <variable name="sMsg">
+              <type>
+                <string length="32" />
+              </type>
+              <initialValue>
+                <simpleValue value="'a$'b&quot;c &lt;&amp;&gt;'" />
+              </initialValue>
+            </variable>
+          </localVars>
+          <externalVars>
+            <variable name="xDoRun">
+              <type>
+                <BOOL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> выход из GVL_Io (необязательное объявление CODESYS)</xhtml>
+              </documentation>
+            </variable>
+          </externalVars>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml"> Назначение: программа с методом; комментарии всех видов
+ Автор:      &lt;ИМЯ ФАМИЛИЯ&gt;
+ Версия:     0.1.0
+ Документ:   docs/plcopen.md</xhtml>
+          </documentation>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">(* внешний (* вложенный *) комментарий *)
+itfPos := fbValve;
+itfLock := fbValve;
+itfPos.Setpoint := 50.0;
+itfPos.MoveTo(rPos_pct := 40.0);
+itfLock.Lock(xLock := NOT xDoRun);
+fbValve();
+Step(iInc := 1);
+F_Noop(xIn := TRUE);
+IF iCalls &gt; 5 AND_THEN fbValve.rPos_pct &lt; 1.0E3 THEN
+    iCalls := 0;
+END_IF
+</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+            <Method name="Step" ObjectId="5d8e25a9-f13c-5c15-92dd-30d16d58c10a">
+              <interface>
+                <returnType>
+                  <INT />
+                </returnType>
+                <inputVars>
+                  <variable name="iInc">
+                    <type>
+                      <INT />
+                    </type>
+                    <initialValue>
+                      <simpleValue value="1" />
+                    </initialValue>
+                  </variable>
+                </inputVars>
+                <documentation>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml"> Шаг программы</xhtml>
+                </documentation>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">iCalls := iCalls + iInc;
+Step := iCalls;
+</xhtml>
+                </ST>
+              </body>
+              <addData />
+            </Method>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>5d7ec194-1765-5a56-9472-616e4c423a2b</ObjectId>
+          </data>
+        </addData>
+      </pou>
+      <pou name="PRG_Main" pouType="program">
+        <interface>
+          <localVars>
+            <variable name="fbMotor">
+              <type>
+                <derived name="FB_Motor" />
+              </type>
+            </variable>
+            <variable name="itfDevice">
+              <type>
+                <derived name="I_Device" />
+              </type>
+            </variable>
+            <variable name="itfReset">
+              <type>
+                <derived name="I_Resettable" />
+              </type>
+            </variable>
+            <variable name="fbCounter">
+              <type>
+                <derived name="FB_Counter" />
+              </type>
+            </variable>
+            <variable name="stCmd">
+              <type>
+                <derived name="ST_MotorCmd" />
+              </type>
+            </variable>
+            <variable name="stSts">
+              <type>
+                <derived name="ST_MotorSts" />
+              </type>
+            </variable>
+            <variable name="stDerived">
+              <type>
+                <derived name="ST_Derived" />
+              </type>
+            </variable>
+            <variable name="uRaw">
+              <type>
+                <derived name="U_Raw" />
+              </type>
+            </variable>
+            <variable name="ePercent">
+              <type>
+                <derived name="T_Percent" />
+              </type>
+              <initialValue>
+                <simpleValue value="50" />
+              </initialValue>
+            </variable>
+            <variable name="sName">
+              <type>
+                <derived name="T_Name" />
+              </type>
+              <initialValue>
+                <simpleValue value="'pump'" />
+              </initialValue>
+            </variable>
+            <variable name="eColor">
+              <type>
+                <derived name="E_Color" />
+              </type>
+              <initialValue>
+                <simpleValue value="E_Color.Green" />
+              </initialValue>
+            </variable>
+            <variable name="arBuf">
+              <type>
+                <array>
+                  <dimension lower="0" upper="2" />
+                  <baseType>
+                    <REAL />
+                  </baseType>
+                </array>
+              </type>
+              <initialValue>
+                <arrayValue>
+                  <value repetitionValue="3">
+                    <simpleValue value="1.0" />
+                  </value>
+                </arrayValue>
+              </initialValue>
+            </variable>
+            <variable name="rOut">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+            <variable name="lrSum">
+              <type>
+                <LREAL />
+              </type>
+            </variable>
+            <variable name="pValue">
+              <type>
+                <pointer>
+                  <baseType>
+                    <REAL />
+                  </baseType>
+                </pointer>
+              </type>
+            </variable>
+            <variable name="refValue">
+              <type>
+                <derived name="REFERENCE TO REAL" />
+              </type>
+            </variable>
+            <variable name="iStep">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <variable name="xOk">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+          </localVars>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml"> Назначение: точка входа — вызывает все объекты примера
+ Автор:      &lt;ИМЯ ФАМИЛИЯ&gt;
+ Версия:     0.1.0
+ Документ:   docs/plcopen.md</xhtml>
+          </documentation>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">(* вызовы всех объектов примера *)
+itfDevice := fbMotor;
+itfReset := fbMotor;
+fbMotor(stCmd := stCmd);
+IF itfDevice &lt;&gt; 0 THEN
+    itfDevice.Mode := E_Mode.Auto;
+    xOk := itfDevice.Fault;
+END_IF
+itfReset.Reset(xForce := TRUE);
+fbCounter(xIn := GVL_Io.xDiStart, stCmd := GVL_Io.astCmd[GVL_Io.IO_CHANNELS - 1]);
+GVL_Io.xDoRun := fbMotor.xRun;
+stSts.xRun := fbMotor.xRun;
+stSts.uiStarts := fbMotor.Starts;
+rOut := F_Clamp(rValue := INT_TO_REAL(GVL_Io.iAiLevel), rMin := 0.0, rMax := 100.0);
+lrSum := F_Sum(arValues := arBuf);
+pValue := ADR(rOut);
+refValue REF= rOut;
+IF __ISVALIDREF(refValue) THEN
+    refValue := refValue + GVL_Const.RATE_LIMIT;
+END_IF
+uRaw.wWord := 16#1234;
+stDerived.tDelay := T#1S;
+CASE iStep OF
+    0:
+        iStep := 1;
+    1, 2:
+        iStep := iStep + 1;
+ELSE
+    iStep := 0;
+END_CASE
+WHILE iStep &gt; 10 DO
+    iStep := iStep - 1;
+END_WHILE
+REPEAT
+    iStep := iStep + 0;
+UNTIL TRUE
+END_REPEAT
+GVL_Io.udiRunHours := GVL_Io.udiRunHours + fbCounter.udiCount;
+PersistentVars.udiStartsTotal := PersistentVars.udiStartsTotal + fbMotor.Starts;
+sName := GVL_Const.TEXT_OK;
+eColor := E_Color.Blue;
+ePercent := 75;
+PRG_Aux();
+</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>a0f0e83d-456d-57e3-8372-b37b3169622d</ObjectId>
+          </data>
+        </addData>
+      </pou>
+      <pou name="FB_DeviceBase" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="xReset">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="xFault">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="eModeInt">
+              <type>
+                <derived name="E_Mode" />
+              </type>
+              <initialValue>
+                <simpleValue value="E_Mode.OutOfService" />
+              </initialValue>
+            </variable>
+            <variable name="xFaultInt">
+              <type>
+                <BOOL />
+              </type>
+              <addData>
+                <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                  <Attributes>
+                    <Attribute Name="hide" Value="" />
+                  </Attributes>
+                </data>
+              </addData>
+            </variable>
+          </localVars>
+          <globalVars>
+            <variable name="uiInstances">
+              <type>
+                <UINT />
+              </type>
+            </variable>
+          </globalVars>
+          <addData>
+            <data name="http://www.3s-software.com/plcopenxml/pouinheritance" handleUnknown="implementation">
+              <Inheritance>
+                <Implements>I_Device</Implements>
+              </Inheritance>
+            </data>
+            <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+              <Attributes>
+                <Attribute Name="reflection" Value="" />
+              </Attributes>
+            </data>
+          </addData>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml"> Назначение: абстрактная база устройств — режим, отказ, квитирование
+ Автор:      &lt;ИМЯ ФАМИЛИЯ&gt;
+ Версия:     0.1.0
+ Документ:   docs/plcopen.md</xhtml>
+          </documentation>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">// общая логика базы: сброс по входу
+IF xReset THEN
+    Reset(xForce := FALSE);
+END_IF
+xFault := xFaultInt;
+</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+            <Method name="Reset" ObjectId="1011c1f9-0f37-5540-b2a1-99db58f65cbf">
+              <interface>
+                <returnType>
+                  <BOOL />
+                </returnType>
+                <inputVars>
+                  <variable name="xForce">
+                    <type>
+                      <BOOL />
+                    </type>
+                  </variable>
+                </inputVars>
+                <documentation>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml"> Сброс отказа</xhtml>
+                </documentation>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">xFaultInt := FALSE;
+Reset := TRUE;
+</xhtml>
+                </ST>
+              </body>
+              <addData />
+            </Method>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+            <Method name="SetFault" ObjectId="55f134be-377c-5936-990c-9d8691e7cd98">
+              <interface>
+                <inputVars>
+                  <variable name="xValue">
+                    <type>
+                      <BOOL />
+                    </type>
+                  </variable>
+                </inputVars>
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/accessmodifiers" handleUnknown="implementation">
+                    <AccessModifiers Protected="true" />
+                  </data>
+                </addData>
+                <documentation>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml"> Установить отказ (только для наследников)</xhtml>
+                </documentation>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">xFaultInt := xValue;
+</xhtml>
+                </ST>
+              </body>
+              <addData />
+            </Method>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+            <Method name="Start" ObjectId="4ab57d70-22d8-5212-8a0d-85f7f7f63ce8">
+              <interface>
+                <returnType>
+                  <BOOL />
+                </returnType>
+                <documentation>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml"> Пуск — реализует наследник</xhtml>
+                </documentation>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+                </ST>
+              </body>
+              <addData />
+            </Method>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/property" handleUnknown="implementation">
+            <Property name="Fault" ObjectId="0004632f-86cf-5e51-a0cd-3d88f37b4333">
+              <interface>
+                <returnType>
+                  <BOOL />
+                </returnType>
+              </interface>
+              <GetAccessor>
+                <interface>
+                  <localVars />
+                </interface>
+                <body>
+                  <ST>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">Fault := xFaultInt;
+</xhtml>
+                  </ST>
+                </body>
+                <addData />
+              </GetAccessor>
+              <addData />
+            </Property>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/property" handleUnknown="implementation">
+            <Property name="Mode" ObjectId="850fd592-4570-56e7-a015-44ed82651679">
+              <interface>
+                <returnType>
+                  <derived name="E_Mode" />
+                </returnType>
+                <documentation>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml"> Текущий режим</xhtml>
+                </documentation>
+              </interface>
+              <SetAccessor>
+                <interface>
+                  <localVars />
+                </interface>
+                <body>
+                  <ST>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">eModeInt := Mode;
+</xhtml>
+                  </ST>
+                </body>
+                <addData />
+              </SetAccessor>
+              <GetAccessor>
+                <interface>
+                  <localVars />
+                </interface>
+                <body>
+                  <ST>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">Mode := eModeInt;
+</xhtml>
+                  </ST>
+                </body>
+                <addData />
+              </GetAccessor>
+              <addData />
+            </Property>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>9c50433b-5a56-5d98-b06e-787943e68665</ObjectId>
+          </data>
+        </addData>
+      </pou>
+      <pou name="FB_Motor" pouType="functionBlock">
+        <interface>
+          <inputVars>
+            <variable name="stCmd">
+              <type>
+                <derived name="ST_MotorCmd" />
+              </type>
+            </variable>
+          </inputVars>
+          <outputVars>
+            <variable name="xRun">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="uiStarts">
+              <type>
+                <UINT />
+              </type>
+            </variable>
+            <variable name="fbCounter">
+              <type>
+                <derived name="FB_Counter" />
+              </type>
+            </variable>
+          </localVars>
+          <addData>
+            <data name="http://www.3s-software.com/plcopenxml/pouinheritance" handleUnknown="implementation">
+              <Inheritance>
+                <Extends>FB_DeviceBase</Extends>
+              </Inheritance>
+            </data>
+          </addData>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml"> Назначение: двигатель — наследник базы: пуск, сброс через SUPER^, счёт пусков
+ Автор:      &lt;ИМЯ ФАМИЛИЯ&gt;
+ Версия:     0.1.0
+ Документ:   docs/plcopen.md</xhtml>
+          </documentation>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">SUPER^();
+IF stCmd.xStart AND NOT xFault THEN
+    Start();
+ELSIF stCmd.xStop THEN
+    xRun := FALSE;
+END_IF
+</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+            <Method name="Describe" ObjectId="dc286e1f-77d4-5081-9fee-6f66ef553bcc">
+              <interface>
+                <returnType>
+                  <wstring length="40" />
+                </returnType>
+                <localVars>
+                  <variable name="wsText">
+                    <type>
+                      <wstring length="40" />
+                    </type>
+                    <initialValue>
+                      <simpleValue value="&quot;Двигатель&quot;" />
+                    </initialValue>
+                  </variable>
+                </localVars>
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/accessmodifiers" handleUnknown="implementation">
+                    <AccessModifiers Final="true" Private="true" />
+                  </data>
+                </addData>
+                <documentation>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml"> Описание для журнала</xhtml>
+                </documentation>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">Describe := wsText;
+</xhtml>
+                </ST>
+              </body>
+              <addData />
+            </Method>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+            <Method name="FB_init" ObjectId="18983543-0cd8-5d57-996d-7d4f9012cb7f">
+              <interface>
+                <returnType>
+                  <BOOL />
+                </returnType>
+                <inputVars>
+                  <variable name="bInitRetains">
+                    <type>
+                      <BOOL />
+                    </type>
+                    <documentation>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml"> TRUE — инициализировать RETAIN</xhtml>
+                    </documentation>
+                  </variable>
+                  <variable name="bInCopyCode">
+                    <type>
+                      <BOOL />
+                    </type>
+                    <documentation>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml"> TRUE — экземпляр копируется при онлайн-изменении</xhtml>
+                    </documentation>
+                  </variable>
+                </inputVars>
+                <documentation>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml"> Инициализация экземпляра</xhtml>
+                </documentation>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">uiStarts := 0;
+</xhtml>
+                </ST>
+              </body>
+              <addData />
+            </Method>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+            <Method name="Reset" ObjectId="1139f593-45a1-5922-940e-e64a3bbca553">
+              <interface>
+                <returnType>
+                  <BOOL />
+                </returnType>
+                <inputVars>
+                  <variable name="xForce">
+                    <type>
+                      <BOOL />
+                    </type>
+                  </variable>
+                </inputVars>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">Reset := SUPER^.Reset(xForce := xForce);
+xRun := FALSE;
+</xhtml>
+                </ST>
+              </body>
+              <addData />
+            </Method>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+            <Method name="Start" ObjectId="99c75518-a587-56e1-9aef-ddca3e858213">
+              <interface>
+                <returnType>
+                  <BOOL />
+                </returnType>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">uiCalls := uiCalls + 1;
+IF THIS^.Mode = E_Mode.Auto OR Mode = E_Mode.Manual THEN
+    xRun := TRUE;
+    uiStarts := uiStarts + 1;
+END_IF
+Start := xRun;
+</xhtml>
+                </ST>
+              </body>
+              <addData />
+            </Method>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/property" handleUnknown="implementation">
+            <Property name="Starts" ObjectId="99124968-273f-5e58-8998-f001e41ff764">
+              <interface>
+                <returnType>
+                  <UINT />
+                </returnType>
+                <documentation>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml"> Число пусков</xhtml>
+                </documentation>
+              </interface>
+              <SetAccessor>
+                <interface>
+                  <localVars />
+                </interface>
+                <body>
+                  <ST>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">uiStarts := Starts;
+</xhtml>
+                  </ST>
+                </body>
+                <addData />
+              </SetAccessor>
+              <GetAccessor>
+                <interface>
+                  <localVars>
+                    <variable name="uiCopy">
+                      <type>
+                        <UINT />
+                      </type>
+                    </variable>
+                  </localVars>
+                </interface>
+                <body>
+                  <ST>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">uiCopy := uiStarts;
+Starts := uiCopy;
+</xhtml>
+                  </ST>
+                </body>
+                <addData />
+              </GetAccessor>
+              <addData />
+            </Property>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>cdf7df00-3f2e-5a97-b9a8-0ca404f8e73b</ObjectId>
+          </data>
+        </addData>
+      </pou>
+      <pou name="FB_Valve" pouType="functionBlock">
+        <interface>
+          <outputVars>
+            <variable name="rPos_pct">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+            <variable name="xLocked">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+          </outputVars>
+          <localVars>
+            <variable name="rSetpoint_pct">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+          </localVars>
+          <localVars constant="true">
+            <variable name="POS_MAX">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="100.0" />
+              </initialValue>
+            </variable>
+          </localVars>
+          <addData>
+            <data name="http://www.3s-software.com/plcopenxml/pouinheritance" handleUnknown="implementation">
+              <Inheritance>
+                <Extends>FB_DeviceBase</Extends>
+                <Implements>I_Positioner</Implements>
+                <Implements>I_Lockable</Implements>
+              </Inheritance>
+            </data>
+            <data name="http://www.3s-software.com/plcopenxml/accessmodifiers" handleUnknown="implementation">
+              <AccessModifiers Final="true" />
+            </data>
+          </addData>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml"> Назначение: задвижка — FINAL-наследник базы с двумя интерфейсами
+ Автор:      &lt;ИМЯ ФАМИЛИЯ&gt;
+ Версия:     0.1.0
+ Документ:   docs/plcopen.md</xhtml>
+          </documentation>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">SUPER^();
+IF NOT xLocked THEN
+    rPos_pct := F_Clamp(rValue := rSetpoint_pct, rMin := 0.0, rMax := POS_MAX);
+END_IF
+</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+            <Method name="Lock" ObjectId="e94bb22e-9e4e-556c-b335-6a37d057e422">
+              <interface>
+                <inputVars>
+                  <variable name="xLock">
+                    <type>
+                      <BOOL />
+                    </type>
+                  </variable>
+                </inputVars>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">xLocked := xLock;
+</xhtml>
+                </ST>
+              </body>
+              <addData />
+            </Method>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+            <Method name="MoveTo" ObjectId="e271f101-85d6-56cf-99b6-1ec823b04e5a">
+              <interface>
+                <returnType>
+                  <BOOL />
+                </returnType>
+                <inputVars>
+                  <variable name="rPos_pct">
+                    <type>
+                      <REAL />
+                    </type>
+                  </variable>
+                </inputVars>
+                <outputVars>
+                  <variable name="xDone">
+                    <type>
+                      <BOOL />
+                    </type>
+                  </variable>
+                </outputVars>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">rSetpoint_pct := rPos_pct;
+xDone := THIS^.rPos_pct = rPos_pct;
+MoveTo := NOT xLocked;
+</xhtml>
+                </ST>
+              </body>
+              <addData />
+            </Method>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+            <Method name="Start" ObjectId="5e21312d-4f34-5de5-9cd4-91cc8ec668f0">
+              <interface>
+                <returnType>
+                  <BOOL />
+                </returnType>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">Start := NOT xLocked;
+</xhtml>
+                </ST>
+              </body>
+              <addData />
+            </Method>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+            <Method name="Trace" ObjectId="1803f06b-90b6-5d65-a1e6-875509f37bdf">
+              <interface>
+                <returnType>
+                  <derived name="ST_MotorCmd" />
+                </returnType>
+                <inOutVars>
+                  <variable name="stLast">
+                    <type>
+                      <derived name="ST_MotorCmd" />
+                    </type>
+                  </variable>
+                </inOutVars>
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/accessmodifiers" handleUnknown="implementation">
+                    <AccessModifiers Internal="true" />
+                  </data>
+                </addData>
+                <documentation>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml"> Внутренний метод библиотеки</xhtml>
+                </documentation>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">Trace := stLast;
+</xhtml>
+                </ST>
+              </body>
+              <addData />
+            </Method>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/property" handleUnknown="implementation">
+            <Property name="Setpoint" ObjectId="ee57120f-9d35-593a-81b3-5125958e59b8">
+              <interface>
+                <returnType>
+                  <REAL />
+                </returnType>
+              </interface>
+              <SetAccessor>
+                <interface>
+                  <localVars />
+                </interface>
+                <body>
+                  <ST>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">rSetpoint_pct := Setpoint;
+</xhtml>
+                  </ST>
+                </body>
+                <addData />
+              </SetAccessor>
+              <addData />
+            </Property>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>9b2158ca-14c5-53ff-8e65-03025b563cb1</ObjectId>
+          </data>
+        </addData>
+      </pou>
+    </pous>
+  </types>
+  <instances>
+    <configurations />
+  </instances>
+  <addData>
+    <data name="http://www.3s-software.com/plcopenxml/union" handleUnknown="implementation">
+      <union name="U_Raw">
+        <variable name="wWord">
+          <type>
+            <WORD />
+          </type>
+        </variable>
+        <variable name="aBytes">
+          <type>
+            <array>
+              <dimension lower="0" upper="1" />
+              <baseType>
+                <BYTE />
+              </baseType>
+            </array>
+          </type>
+        </variable>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>c4e5afaa-362d-5f8f-873d-24bc4f48b417</ObjectId>
+          </data>
+        </addData>
+        <documentation>
+          <xhtml xmlns="http://www.w3.org/1999/xhtml"> Объединение: одно слово как целое и как биты</xhtml>
+        </documentation>
+      </union>
+    </data>
+    <data name="http://www.3s-software.com/plcopenxml/globalvars" handleUnknown="implementation">
+      <globalVars name="GVL_Const" constant="true">
+        <variable name="MAX_ITEMS">
+          <type>
+            <INT />
+          </type>
+          <initialValue>
+            <simpleValue value="4" />
+          </initialValue>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml"> число элементов</xhtml>
+          </documentation>
+        </variable>
+        <variable name="RATE_LIMIT">
+          <type>
+            <REAL />
+          </type>
+          <initialValue>
+            <simpleValue value="0.25" />
+          </initialValue>
+        </variable>
+        <variable name="TEXT_OK">
+          <type>
+            <string />
+          </type>
+          <initialValue>
+            <simpleValue value="'OK'" />
+          </initialValue>
+        </variable>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+            <Attributes>
+              <Attribute Name="qualified_only" Value="" />
+            </Attributes>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>8cba8129-d4ec-5402-a232-aa298e7437e7</ObjectId>
+          </data>
+        </addData>
+        <documentation>
+          <xhtml xmlns="http://www.w3.org/1999/xhtml"> Константы</xhtml>
+        </documentation>
+      </globalVars>
+    </data>
+    <data name="http://www.3s-software.com/plcopenxml/globalvars" handleUnknown="implementation">
+      <globalVars name="GVL_Io">
+        <variable name="xDiStart" address="%IX0.0">
+          <type>
+            <BOOL />
+          </type>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml"> кнопка «Пуск»</xhtml>
+          </documentation>
+        </variable>
+        <variable name="xDoRun" address="%QX0.0">
+          <type>
+            <BOOL />
+          </type>
+        </variable>
+        <variable name="iAiLevel" address="%IW2">
+          <type>
+            <INT />
+          </type>
+        </variable>
+        <variable name="astCmd">
+          <type>
+            <array>
+              <dimension lower="1" upper="GVL_Const.MAX_ITEMS" />
+              <baseType>
+                <derived name="ST_MotorCmd" />
+              </baseType>
+            </array>
+          </type>
+        </variable>
+        <variable name="udiRunHours">
+          <type>
+            <UDINT />
+          </type>
+        </variable>
+        <variable name="IO_CHANNELS">
+          <type>
+            <INT />
+          </type>
+          <initialValue>
+            <simpleValue value="2" />
+          </initialValue>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml"> число каналов (константа в одном списке с переменными)</xhtml>
+          </documentation>
+        </variable>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>300de004-cfcf-52c9-b995-291292973413</ObjectId>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/mixedattrsvarlist" handleUnknown="implementation">
+            <MixedAttrsVarList>
+              <globalVars name="GVL_Io">
+                <variable name="xDiStart" address="%IX0.0">
+                  <type>
+                    <BOOL />
+                  </type>
+                  <documentation>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml"> кнопка «Пуск»</xhtml>
+                  </documentation>
+                </variable>
+                <variable name="xDoRun" address="%QX0.0">
+                  <type>
+                    <BOOL />
+                  </type>
+                </variable>
+                <variable name="iAiLevel" address="%IW2">
+                  <type>
+                    <INT />
+                  </type>
+                </variable>
+                <variable name="astCmd">
+                  <type>
+                    <array>
+                      <dimension lower="1" upper="GVL_Const.MAX_ITEMS" />
+                      <baseType>
+                        <derived name="ST_MotorCmd" />
+                      </baseType>
+                    </array>
+                  </type>
+                </variable>
+              </globalVars>
+              <globalVars name="GVL_Io" retain="true">
+                <variable name="udiRunHours">
+                  <type>
+                    <UDINT />
+                  </type>
+                </variable>
+              </globalVars>
+              <globalVars name="GVL_Io" constant="true">
+                <variable name="IO_CHANNELS">
+                  <type>
+                    <INT />
+                  </type>
+                  <initialValue>
+                    <simpleValue value="2" />
+                  </initialValue>
+                  <documentation>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml"> число каналов (константа в одном списке с переменными)</xhtml>
+                  </documentation>
+                </variable>
+              </globalVars>
+            </MixedAttrsVarList>
+          </data>
+        </addData>
+        <documentation>
+          <xhtml xmlns="http://www.w3.org/1999/xhtml"> Входы-выходы и сохраняемые значения</xhtml>
+        </documentation>
+      </globalVars>
+    </data>
+    <data name="http://www.3s-software.com/plcopenxml/globalvars" handleUnknown="implementation">
+      <globalVars name="PersistentVars" persistent="true" retain="true">
+        <variable name="udiStartsTotal">
+          <type>
+            <UDINT />
+          </type>
+          <documentation>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml"> пуски за весь срок службы</xhtml>
+          </documentation>
+        </variable>
+        <variable name="rRunHours_h">
+          <type>
+            <REAL />
+          </type>
+        </variable>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>d115c809-e957-530f-80a6-e2cd58d9748d</ObjectId>
+          </data>
+        </addData>
+        <documentation>
+          <xhtml xmlns="http://www.w3.org/1999/xhtml"> Сохраняемые переменные (объект Persistent Variables)</xhtml>
+        </documentation>
+      </globalVars>
+    </data>
+    <data name="http://www.3s-software.com/plcopenxml/interface" handleUnknown="implementation">
+      <Interface name="I_Device" ObjectId="35a4c287-cfd5-5015-b0d2-4b691ea8c1ca">
+        <Methods>
+          <Method name="Start" ObjectId="581c55dd-efac-53f1-be11-d4fd1a9e4992">
+            <interface>
+              <returnType>
+                <BOOL />
+              </returnType>
+            </interface>
+            <addData />
+          </Method>
+        </Methods>
+        <Properties>
+          <Property name="Fault" ObjectId="391e066a-1994-5a5e-a3d2-bc6a89083f7a">
+            <interface>
+              <returnType>
+                <BOOL />
+              </returnType>
+            </interface>
+            <GetAccessor />
+            <addData />
+          </Property>
+          <Property name="Mode" ObjectId="53823c42-91ee-572a-921d-2603dd9ac4ab">
+            <interface>
+              <returnType>
+                <derived name="E_Mode" />
+              </returnType>
+            </interface>
+            <SetAccessor />
+            <GetAccessor />
+            <addData />
+          </Property>
+        </Properties>
+        <Inheritance>
+          <Extends>I_Resettable</Extends>
+        </Inheritance>
+        <documentation>
+          <xhtml xmlns="http://www.w3.org/1999/xhtml"> Устройство: режим, отказ, пуск</xhtml>
+        </documentation>
+        <addData />
+      </Interface>
+    </data>
+    <data name="http://www.3s-software.com/plcopenxml/interface" handleUnknown="implementation">
+      <Interface name="I_Lockable" ObjectId="b3065ffb-a796-522e-91e6-c161bc610489">
+        <Methods>
+          <Method name="Lock" ObjectId="51e37525-2ec2-55b3-b574-d03ac6b6d7c2">
+            <interface>
+              <inputVars>
+                <variable name="xLock">
+                  <type>
+                    <BOOL />
+                  </type>
+                </variable>
+              </inputVars>
+            </interface>
+            <addData />
+          </Method>
+        </Methods>
+        <documentation>
+          <xhtml xmlns="http://www.w3.org/1999/xhtml"> Блокировка по месту</xhtml>
+        </documentation>
+        <addData />
+      </Interface>
+    </data>
+    <data name="http://www.3s-software.com/plcopenxml/interface" handleUnknown="implementation">
+      <Interface name="I_Positioner" ObjectId="62cac123-7281-58ab-b332-c55f0d256a4a">
+        <Methods>
+          <Method name="MoveTo" ObjectId="888e3a9a-bf1b-58a3-b0b1-a0bf11b669a8">
+            <interface>
+              <returnType>
+                <BOOL />
+              </returnType>
+              <inputVars>
+                <variable name="rPos_pct">
+                  <type>
+                    <REAL />
+                  </type>
+                </variable>
+              </inputVars>
+              <outputVars>
+                <variable name="xDone">
+                  <type>
+                    <BOOL />
+                  </type>
+                </variable>
+              </outputVars>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Переместить в позицию, %</xhtml>
+              </documentation>
+            </interface>
+            <addData />
+          </Method>
+        </Methods>
+        <Properties>
+          <Property name="Setpoint" ObjectId="54587b79-d030-5fab-b2d9-106585628dd0">
+            <interface>
+              <returnType>
+                <REAL />
+              </returnType>
+            </interface>
+            <SetAccessor />
+            <addData />
+          </Property>
+        </Properties>
+        <documentation>
+          <xhtml xmlns="http://www.w3.org/1999/xhtml"> Позиционер: уставка (только запись) и перемещение</xhtml>
+        </documentation>
+        <addData />
+      </Interface>
+    </data>
+    <data name="http://www.3s-software.com/plcopenxml/interface" handleUnknown="implementation">
+      <Interface name="I_Resettable" ObjectId="aafd87aa-a341-55d9-a61f-ba159564e5f1">
+        <Methods>
+          <Method name="Reset" ObjectId="e79174fe-3cf5-55f7-9a80-e69be28967cf">
+            <interface>
+              <returnType>
+                <BOOL />
+              </returnType>
+              <inputVars>
+                <variable name="xForce">
+                  <type>
+                    <BOOL />
+                  </type>
+                </variable>
+              </inputVars>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Сбросить; TRUE — сброс выполнен</xhtml>
+              </documentation>
+            </interface>
+            <addData />
+          </Method>
+        </Methods>
+        <documentation>
+          <xhtml xmlns="http://www.w3.org/1999/xhtml"> Сброс состояния</xhtml>
+        </documentation>
+        <addData />
+      </Interface>
+    </data>
+    <data name="http://www.3s-software.com/plcopenxml/projectstructure" handleUnknown="discard">
+      <ProjectStructure>
+        <Object Name="E_Color" ObjectId="990dac03-2b7a-54f0-a266-609725acdb93" />
+        <Object Name="E_Mode" ObjectId="be5107b8-c7a6-5fd6-a649-d9e9571df5bb" />
+        <Object Name="ST_Base" ObjectId="5f28da79-433c-5fcb-9684-4b5e40529db6" />
+        <Object Name="ST_Derived" ObjectId="760d8e9a-9871-5c3a-959a-098f93261828" />
+        <Object Name="T_Name" ObjectId="87d4f11c-ccff-52a1-89c6-1884da687bb0" />
+        <Object Name="T_Percent" ObjectId="e49c7098-06e0-567d-9350-fe63e0d848c8" />
+        <Object Name="U_Raw" ObjectId="c4e5afaa-362d-5f8f-873d-24bc4f48b417" />
+        <Folder Name="Motor">
+          <Object Name="ST_MotorCmd" ObjectId="6795e99f-8d4b-5116-859f-d226d81f2b6e" />
+          <Folder Name="Status">
+            <Object Name="ST_MotorSts" ObjectId="357d981b-6cb2-535d-8705-90c8b2ddb9b1" />
+          </Folder>
+        </Folder>
+        <Object Name="GVL_Const" ObjectId="8cba8129-d4ec-5402-a232-aa298e7437e7" />
+        <Object Name="GVL_Io" ObjectId="300de004-cfcf-52c9-b995-291292973413" />
+        <Object Name="PersistentVars" ObjectId="d115c809-e957-530f-80a6-e2cd58d9748d" />
+        <Object Name="I_Device" ObjectId="35a4c287-cfd5-5015-b0d2-4b691ea8c1ca">
+          <Object Name="Start" ObjectId="581c55dd-efac-53f1-be11-d4fd1a9e4992" />
+          <Object Name="Fault" ObjectId="391e066a-1994-5a5e-a3d2-bc6a89083f7a" />
+          <Object Name="Mode" ObjectId="53823c42-91ee-572a-921d-2603dd9ac4ab" />
+        </Object>
+        <Object Name="I_Lockable" ObjectId="b3065ffb-a796-522e-91e6-c161bc610489">
+          <Object Name="Lock" ObjectId="51e37525-2ec2-55b3-b574-d03ac6b6d7c2" />
+        </Object>
+        <Object Name="I_Positioner" ObjectId="62cac123-7281-58ab-b332-c55f0d256a4a">
+          <Object Name="MoveTo" ObjectId="888e3a9a-bf1b-58a3-b0b1-a0bf11b669a8" />
+          <Object Name="Setpoint" ObjectId="54587b79-d030-5fab-b2d9-106585628dd0" />
+        </Object>
+        <Object Name="I_Resettable" ObjectId="aafd87aa-a341-55d9-a61f-ba159564e5f1">
+          <Object Name="Reset" ObjectId="e79174fe-3cf5-55f7-9a80-e69be28967cf" />
+        </Object>
+        <Object Name="F_Clamp" ObjectId="47122cfd-0b05-5fbc-b7a5-9139bbf02818" />
+        <Object Name="F_Noop" ObjectId="75a8ae40-8f35-5abb-9586-c88b71c8baeb" />
+        <Object Name="F_Sum" ObjectId="9e9b976b-153f-5509-9646-c1e20b75dc0c" />
+        <Object Name="FB_Counter" ObjectId="469ca937-7125-5613-aaa6-2a6a3f29b625" />
+        <Object Name="PRG_Aux" ObjectId="5d7ec194-1765-5a56-9472-616e4c423a2b">
+          <Object Name="Step" ObjectId="5d8e25a9-f13c-5c15-92dd-30d16d58c10a" />
+        </Object>
+        <Object Name="PRG_Main" ObjectId="a0f0e83d-456d-57e3-8372-b37b3169622d" />
+        <Folder Name="Devices">
+          <Object Name="FB_DeviceBase" ObjectId="9c50433b-5a56-5d98-b06e-787943e68665">
+            <Object Name="Reset" ObjectId="1011c1f9-0f37-5540-b2a1-99db58f65cbf" />
+            <Object Name="SetFault" ObjectId="55f134be-377c-5936-990c-9d8691e7cd98" />
+            <Object Name="Start" ObjectId="4ab57d70-22d8-5212-8a0d-85f7f7f63ce8" />
+            <Object Name="Fault" ObjectId="0004632f-86cf-5e51-a0cd-3d88f37b4333" />
+            <Object Name="Mode" ObjectId="850fd592-4570-56e7-a015-44ed82651679" />
+          </Object>
+          <Object Name="FB_Motor" ObjectId="cdf7df00-3f2e-5a97-b9a8-0ca404f8e73b">
+            <Object Name="Describe" ObjectId="dc286e1f-77d4-5081-9fee-6f66ef553bcc" />
+            <Object Name="FB_init" ObjectId="18983543-0cd8-5d57-996d-7d4f9012cb7f" />
+            <Object Name="Reset" ObjectId="1139f593-45a1-5922-940e-e64a3bbca553" />
+            <Object Name="Start" ObjectId="99c75518-a587-56e1-9aef-ddca3e858213" />
+            <Object Name="Starts" ObjectId="99124968-273f-5e58-8998-f001e41ff764" />
+          </Object>
+          <Object Name="FB_Valve" ObjectId="9b2158ca-14c5-53ff-8e65-03025b563cb1">
+            <Object Name="Lock" ObjectId="e94bb22e-9e4e-556c-b335-6a37d057e422" />
+            <Object Name="MoveTo" ObjectId="e271f101-85d6-56cf-99b6-1ec823b04e5a" />
+            <Object Name="Start" ObjectId="5e21312d-4f34-5de5-9cd4-91cc8ec668f0" />
+            <Object Name="Trace" ObjectId="1803f06b-90b6-5d65-a1e6-875509f37bdf" />
+            <Object Name="Setpoint" ObjectId="ee57120f-9d35-593a-81b3-5125958e59b8" />
+          </Object>
+        </Folder>
+      </ProjectStructure>
+    </data>
+  </addData>
+</project>

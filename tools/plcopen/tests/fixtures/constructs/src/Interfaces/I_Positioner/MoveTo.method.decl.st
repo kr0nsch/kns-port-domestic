@@ -1,0 +1,8 @@
+// Переместить в позицию, %
+METHOD MoveTo : BOOL
+VAR_INPUT
+    rPos_pct : REAL;
+END_VAR
+VAR_OUTPUT
+    xDone : BOOL;
+END_VAR
