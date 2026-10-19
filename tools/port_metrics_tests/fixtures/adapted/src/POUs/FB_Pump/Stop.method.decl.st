@@ -1,0 +1,1 @@
+METHOD Stop : BOOL

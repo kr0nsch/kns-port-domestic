@@ -1,0 +1,5 @@
+FUNCTION F_Scale : REAL
+VAR_INPUT
+    rIn : REAL;
+    rK : REAL;
+END_VAR

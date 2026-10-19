@@ -1,0 +1,2 @@
+xFault := FALSE;
+Reset := TRUE;
