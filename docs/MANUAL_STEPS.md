@@ -359,7 +359,9 @@ python tools\codesys\cds.py roundtrip
 
 Делает инженер на своей установке Astra.IDE; подробный порядок — [чек-лист миграции](migration_checklist.md)
 (разделы 1, 2 и 8), формат записи — [BUILD_ERRORS.md](BUILD_ERRORS.md). Названия пунктов меню — как в
-CODESYS 3.5; в Astra.IDE их сверить (пункт B2 чек-листа).
+CODESYS 3.5; в Astra.IDE их сверить (пункт B2 чек-листа). Компиляцию можно выполнить и без интерфейса —
+`tools/codesys/cds.py` с переменными окружения Astra.IDE, как 19.10.2026
+([BUILD_ERRORS.md](BUILD_ERRORS.md#сборка-без-интерфейса)); шаги ниже — для сборки вручную и импорта PLCopen XML.
 
 1. Записать версии: Astra.IDE («Справка → О программе»), пакет Regul («Инструменты → Менеджер пакетов»),
    СПО ВПЛК или ПЛК (`plcinfo` в «Оболочке ПЛК»), коммит этого репозитория (`git rev-parse --short HEAD`).

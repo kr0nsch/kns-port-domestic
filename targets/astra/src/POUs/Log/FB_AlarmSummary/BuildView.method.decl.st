@@ -1,6 +1,5 @@
 // Пересчитать список тревог не в Normal: сортировка вставкой по ключу (группа, приоритет, время перехода),
 // в списке — первые ALM_VIEW_ROWS; uiActiveTotal — все тревоги не в Normal
-// PORT: [oop] проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)
 METHOD PRIVATE BuildView
 VAR_IN_OUT
     stView : ST_AlarmView;

@@ -4,7 +4,6 @@
 // Версия:     0.1.0
 // Документ:   docs/DESIGN.md, раздел 3.3; docs/06_PMI.md, раздел 5.4
 {attribute 'qualified_only'}
-// PORT: [pragma] проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)
 {attribute 'strict'}
 TYPE E_SimAiFault :
 (
@@ -16,6 +15,5 @@ TYPE E_SimAiFault :
     OverRange := 5,     // выше диапазона: SIM_MA_OVER_RANGE (20,8 мА)
     Freeze := 6,        // замерзание: последнее значение тока
     Forced := 7         // принудительный ток arAiForced_mA
-// PORT: [types] проверить в Astra.IDE — перечисление с базовым типом INT (C7)
 ) INT;
 END_TYPE

@@ -9,6 +9,16 @@
 
 ### Added
 
+- Сборка в Astra.IDE 1.7.2.2 (19.10.2026), скриптом без интерфейса через `tools/codesys/cds.py`:
+  библиотека `PL` 1.0.0.0 собрана из `targets/astra/lib/src` и установлена в репозиторий библиотек
+  Astra.IDE; приложение проверено целиком (`cds.py check`) и собрано с «Генерировать код» на REGUL R500 61
+  и R500 71-W, сборки для ПЛК и ВПЛК — 0 ошибок, 0 предупреждений. Журнал — `docs/BUILD_ERRORS.md`
+  (итерации 1–2, зонд Z1 для `strict`, `qualified_only`, `PRIVATE`, библиотеки среды с версиями, порядок
+  сборки без интерфейса). На ПЛК и ВПЛК код не загружался.
+- Пункты чек-листа, подтверждённые сборкой и скриптами: C1–C5, C7, C13, C16, D1, A4, A5
+  (`targets/astra/port_checks.json`); 225 маркеров проверки сняты, осталось 58. Чек-лист, `differences.md`,
+  README переноса и README репозитория — по результатам сборки.
+
 - Перенос на Astra.IDE, этап 2 — адаптированный код (`targets/astra/`, README там же): приложение КНС-1
   (`targets/astra/src`, флагман `main` = `505ce14`) и библиотека plc-process-lib (`targets/astra/lib/src`,
   тег `v1.0.0` = `bd9df2a`) без правок кода оригиналов: 283 маркера проверки
@@ -186,6 +196,10 @@
   RuSTy с пустыми `src/` и `tests/` проходят.
 
 ### Fixed
+
+- `PRG_ModbusMap_Regul`: тип статуса канала — `PsIoDrvModbusSerialMaster.ChannelStatus` (пространство имён
+  библиотеки драйвера в Astra.IDE 1.7.2.2), а не `PsModbusSerialMaster.ChannelStatus` по DPA-302.1 —
+  BUILD_ERRORS 1.1, маркер `[comm]`.
 
 - `st_lint` STL007: `VAR_IN_OUT CONSTANT` (и `VAR_INPUT CONSTANT`) больше не считается секцией
   констант — для параметров только для чтения действуют префиксы по типу, а не UPPER_SNAKE_CASE.

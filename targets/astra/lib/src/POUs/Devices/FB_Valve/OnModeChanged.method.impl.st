@@ -1,4 +1,3 @@
-// PORT: [oop] проверить в Astra.IDE — вызов базовой реализации SUPER^ (C1)
 SUPER^.OnModeChanged(eOld := eOld, eNew := eNew);
 IF eNew = E_DeviceMode.Manual THEN
     eManTarget := CurrentTarget();

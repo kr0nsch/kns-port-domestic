@@ -1,7 +1,6 @@
 // Насос uiA предпочтительнее uiB по режиму чередования (04 §8.1); uiB = 0 — любой лучше.
 // RunHours: меньше RunSeconds, затем меньше Starts, затем меньший номер; Cyclic: ближе по кругу
 // к uiNext; Fixed и значение вне перечисления: меньший номер
-// PORT: [oop] проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)
 METHOD PRIVATE Better : BOOL
 VAR_INPUT
     uiA    : UINT;                  // кандидат

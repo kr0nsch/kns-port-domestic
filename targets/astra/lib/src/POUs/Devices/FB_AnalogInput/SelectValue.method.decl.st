@@ -5,7 +5,6 @@
 // как при подтверждённом отказе, xValid = FALSE (AI-2). Выход за диапазон NE 43 подтверждён (xOor) —
 // значение насыщения (граница, процесс за ней неизвестен), xValid = FALSE (AI-13). Значение подмены приходит
 // параметром: метод не читает VAR_IN_OUT (R2)
-// PORT: [oop] проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)
 METHOD PROTECTED SelectValue
 VAR_INPUT
     rSubst_eu : REAL;   // значение подмены stCmd.rSubstValue_eu, инж. ед.

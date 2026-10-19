@@ -2,7 +2,6 @@
 // FALSE; OutOfService — удержание; Manual — подмена без задержек; отказ канала — значение отказа xGood
 // (тело выставляет его по eFailValue: HoldLast — значение до отказа), xValid = FALSE. Значение подмены
 // приходит параметром: метод не читает VAR_IN_OUT (R2)
-// PORT: [oop] проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)
 METHOD PROTECTED SelectValue
 VAR_INPUT
     xSubst : BOOL;   // значение подмены stCmd.xSubstValue

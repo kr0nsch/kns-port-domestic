@@ -16,7 +16,6 @@ VAR_INPUT
     xAckAll      : BOOL;
     itfTime      : PL.I_TimeSource;
 END_VAR
-// PORT: [types] проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)
 VAR_IN_OUT CONSTANT
     stCfg : ST_StationCfg;          // astAlarm[1..13]
 END_VAR

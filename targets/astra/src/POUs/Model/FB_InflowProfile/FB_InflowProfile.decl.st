@@ -10,7 +10,6 @@ VAR_INPUT
     rTimeOfDay_h : REAL;            // время суток модели, ч
     rAverage_m3h : REAL;            // средний приток (stSimCfg.rInflowAvg_m3h)
 END_VAR
-// PORT: [types] проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)
 VAR_IN_OUT CONSTANT
     arProfile : ARRAY[0..GVL_Const.SIM_PROFILE_POINTS - 1] OF REAL;   // множители по часам (stSimCfg.arDailyProfile)
 END_VAR

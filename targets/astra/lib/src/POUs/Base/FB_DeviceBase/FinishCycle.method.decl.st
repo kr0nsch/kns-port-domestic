@@ -1,7 +1,6 @@
 // Шаг 8 цикла: сводный NE 107 = MAX(статус устройства, статус режима, статус Cfg), Fault, Available,
 // общий заголовок stCommon (все 14 полей, старший байт wStatus — общие биты DEV_STS_*), затем
 // ltPrevCall := ltNow, конец первого вызова и снятие запросов методов
-// PORT: [oop] проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)
 METHOD PROTECTED FinishCycle
 VAR_INPUT
     eDevStatus    : E_Ne107Status;   // статус от логики устройства (Failure, OutOfSpecification, MaintenanceRequired)

@@ -9,7 +9,6 @@
 // Автор:      kr0nsch
 // Версия:     0.1.0
 // Документ:   docs/fb/FB_PID.md
-// PORT: [oop] проверить в Astra.IDE — наследование ФБ (EXTENDS) (C1)
 FUNCTION_BLOCK FB_PID EXTENDS FB_DeviceBase
 VAR_INPUT
     rPv_eu      : REAL;              // регулируемая величина, инж. ед.
@@ -24,7 +23,6 @@ VAR_IN_OUT
     stCmd    : ST_PidCmd;            // команды HMI/SCADA; ФБ пишет слежение rSp_eu, rManualOut_pct
     stRetain : ST_DeviceRetain;      // используются eRemoteMode и xOutOfService
 END_VAR
-// PORT: [types] проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)
 VAR_IN_OUT CONSTANT
     stCfg : ST_PidCfg;               // параметры (Persistent Variables приложения)
 END_VAR

@@ -18,7 +18,6 @@ VAR_INPUT
     xV1Run  : BOOL;                                             // GVL_IO.xV1_RUN
     rTimeScaleAct : REAL := 1.0;                                // действующее ускорение часов (для stSts)
 END_VAR
-// PORT: [types] проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)
 VAR_IN_OUT CONSTANT
     stCfg : ST_SimCfg;                  // параметры модели (GVL_Sim.stSimCfg)
 END_VAR

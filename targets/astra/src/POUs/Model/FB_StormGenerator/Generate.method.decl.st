@@ -1,6 +1,5 @@
 // Ливни суток udiForDay в astWork; результат — их число. Порядок выборок: число ливней, затем для
 // каждого — начало, длительность, пик (так же в эталоне tools_project/plant_reference.py)
-// PORT: [oop] проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)
 METHOD PRIVATE Generate : UINT
 VAR_INPUT
     udiForDay : UDINT;      // номер суток

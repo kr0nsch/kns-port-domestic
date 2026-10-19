@@ -12,7 +12,6 @@ VAR_INPUT
     xFire     : BOOL;               // fbYS405.xValue
     itfTime   : PL.I_TimeSource;
 END_VAR
-// PORT: [types] проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)
 VAR_IN_OUT CONSTANT
     stCfg : ST_StationCfg;          // tV1Overrun
 END_VAR

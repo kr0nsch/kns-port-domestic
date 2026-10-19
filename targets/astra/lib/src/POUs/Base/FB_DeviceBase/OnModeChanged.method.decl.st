@@ -3,7 +3,6 @@
 // от начального Manual (наследник отличает этот случай по xFirstCall). Наследник переопределяет с
 // той же сигнатурой и PROTECTED и в начале вызывает SUPER^.OnModeChanged(eOld := eOld, eNew := eNew).
 // Хук НЕ ДОЛЖЕН трогать VAR_IN_OUT устройства (R2)
-// PORT: [oop] проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)
 METHOD PROTECTED OnModeChanged
 VAR_INPUT
     eOld : E_DeviceMode;   // режим до смены

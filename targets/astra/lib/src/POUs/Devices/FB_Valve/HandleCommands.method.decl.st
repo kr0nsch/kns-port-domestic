@@ -2,7 +2,6 @@
 // принятая команда переводит в Manual (оператор вмешался — автомат отпущен). Структуры — параметрами
 // VAR_IN_OUT: метод не обращается к VAR_IN_OUT экземпляра (R2).
 // Шаг тела FB_Valve; внутренний: PROTECTED (правило L5 контракта), имя зарезервировано для наследников
-// PORT: [oop] проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)
 METHOD PROTECTED HandleCommands
 VAR_IN_OUT
     stValveCmd : ST_ValveCmd;       // stCmd устройства: импульсы сбрасываются

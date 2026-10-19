@@ -3,7 +3,6 @@
 // Версия:     0.1.0
 // Документ:   docs/DESIGN.md, раздел 3.1
 {attribute 'qualified_only'}
-// PORT: [pragma] проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)
 {attribute 'strict'}
 TYPE E_PumpRole :
 (
@@ -11,6 +10,5 @@ TYPE E_PumpRole :
     Lead    := 1,   // ведущий: запускается первым, в ПИД его частоту регулирует LIC101
     Assist  := 2,   // подпорный: подключается при нехватке производительности
     Standby := 3    // резервный: доступен, не запрошен
-// PORT: [types] проверить в Astra.IDE — перечисление с базовым типом INT (C7)
 ) INT;
 END_TYPE

@@ -3,12 +3,10 @@
 // Версия:     0.1.0
 // Документ:   docs/fb/FB_AnalogInput.md
 {attribute 'qualified_only'}
-// PORT: [pragma] проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)
 {attribute 'strict'}
 TYPE E_AiFailValue :
 (
     HoldLast   := 0,   // удерживать последнее хорошее значение
     Substitute := 1    // подставить stCfg.rFailValue_eu
-// PORT: [types] проверить в Astra.IDE — перечисление с базовым типом INT (C7)
 ) INT;
 END_TYPE

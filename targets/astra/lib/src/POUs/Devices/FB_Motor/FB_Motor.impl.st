@@ -17,7 +17,6 @@ IF xFirstCall THEN
 END_IF
 
 // 2. Конфигурация (LKG). THIS^: переопределение FB_MotorVfd добавляет биты ПЧ
-// PORT: [oop] проверить в Astra.IDE — THIS^ (C2)
 IF AcceptCfg(wErr := THIS^.CheckConfig(stCfgIn := stCfg)) THEN
     stCfgLkg := stCfg;
 END_IF

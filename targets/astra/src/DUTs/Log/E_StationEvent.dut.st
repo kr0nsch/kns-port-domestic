@@ -29,6 +29,5 @@ TYPE E_StationEvent :
     SimFaultChanged   := 21,   // изменена инъекция отказа (номер поля)
     AckAll            := 22,   // квитировать все
     Silence           := 23    // звук отключён (1 — кнопка, 2 — HMI)
-// PORT: [types] проверить в Astra.IDE — перечисление с базовым типом UINT (C7)
 ) UINT;
 END_TYPE

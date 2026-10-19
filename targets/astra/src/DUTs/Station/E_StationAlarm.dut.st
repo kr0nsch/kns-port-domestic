@@ -20,6 +20,5 @@ TYPE E_StationAlarm :
     UL2    := 11,   // недогрузка Н2
     UL3    := 12,   // недогрузка Н3
     SIM    := 13    // режим имитации (Low)
-// PORT: [types] проверить в Astra.IDE — перечисление с базовым типом UINT (C7)
 ) UINT;
 END_TYPE

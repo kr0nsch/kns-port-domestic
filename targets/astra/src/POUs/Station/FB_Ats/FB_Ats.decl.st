@@ -20,7 +20,6 @@ VAR_INPUT
     itfTime     : PL.I_TimeSource;
     itfEvents   : I_StationEventSink;
 END_VAR
-// PORT: [types] проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)
 VAR_IN_OUT CONSTANT
     stCfg : ST_StationCfg;          // uiDutyMax
 END_VAR

@@ -10,6 +10,5 @@ TYPE E_CvAlarm :
     FbFailure       := 1,   // ОС положения недостоверна
     PositionerFault := 2,   // авария позиционера или канала AO
     InterlockAct    := 3    // действует блокировка (по умолчанию выключена)
-// PORT: [types] проверить в Astra.IDE — перечисление с базовым типом UINT (C7)
 ) UINT;
 END_TYPE

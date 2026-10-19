@@ -1,6 +1,5 @@
 // Лучший незапрошенный доступный насос группы по режиму чередования; 0 — нет такого.
 // xRequireReady — только ReadyToStart, xRequireCommOk — только со связью с ПЧ
-// PORT: [oop] проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)
 METHOD PRIVATE PickIn : UINT
 VAR_INPUT
     eRot           : E_RotationMode;    // режим чередования

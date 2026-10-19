@@ -49,6 +49,5 @@ END_IF
 IF eModeNew <> eMode THEN
     eModeOld := eMode;
     eMode := eModeNew;
-    // PORT: [oop] проверить в Astra.IDE — THIS^ (C2)
     THIS^.OnModeChanged(eOld := eModeOld, eNew := eModeNew);
 END_IF

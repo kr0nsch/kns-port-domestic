@@ -2,7 +2,6 @@
 // stCmd и RequestMode() по старшинству OutOfService > Manual > Auto (одновременные запросы —
 // одна команда); сброс импульсов режима; новый режим по старшинству OutOfService > Local >
 // дистанционный; при смене — виртуальный хук THIS^.OnModeChanged. Результат None — запросов не было
-// PORT: [oop] проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)
 METHOD PROTECTED ProcessMode : E_CmdResult
 VAR_INPUT
     xLocalSel       : BOOL;   // переключатель в положении «Местное»

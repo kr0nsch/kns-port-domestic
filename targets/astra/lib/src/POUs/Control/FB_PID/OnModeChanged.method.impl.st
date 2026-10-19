@@ -1,4 +1,3 @@
-// PORT: [oop] проверить в Astra.IDE — вызов базовой реализации SUPER^ (C1)
 SUPER^.OnModeChanged(eOld := eOld, eNew := eNew);
 IF eOld = E_DeviceMode.OutOfService THEN
     xCalcInit := TRUE;

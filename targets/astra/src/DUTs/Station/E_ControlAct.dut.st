@@ -5,7 +5,6 @@
 // Версия:     0.1.0
 // Документ:   docs/DESIGN.md, раздел 3.1
 {attribute 'qualified_only'}
-// PORT: [pragma] проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)
 {attribute 'strict'}
 TYPE E_ControlAct :
 (
@@ -17,6 +16,5 @@ TYPE E_ControlAct :
     DryRunStop := 5,   // защита «сухой ход»: запросы сняты
     PowerLost  := 6,   // нет напряжения на вводе
     Restart    := 7    // задержка после старта или восстановления питания, последовательный пуск
-// PORT: [types] проверить в Astra.IDE — перечисление с базовым типом INT (C7)
 ) INT;
 END_TYPE

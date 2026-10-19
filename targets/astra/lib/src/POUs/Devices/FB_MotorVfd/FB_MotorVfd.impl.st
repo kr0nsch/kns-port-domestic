@@ -9,7 +9,6 @@ ResolveTime();
 //    вызове шёл бы по умолчаниям и подхват работающего двигателя ошибся бы
 stVfdCfgUse := stCfgLkg.stVfd;
 IF xFirstCall THEN
-    // PORT: [oop] проверить в Astra.IDE — THIS^ (C2)
     IF THIS^.CheckConfig(stCfgIn := stCfg) = 0 THEN
         stVfdCfgUse := stCfg.stVfd;
     END_IF
@@ -64,7 +63,6 @@ axAlmCond[E_MotorAlarm.SpeedDeviation] := fbVfdSpeedDev.xOut;
 arAlmValue[E_MotorAlarm.SpeedDeviation] := rVfdSpeedAct_pct;
 
 // 2. Тело FB_Motor над теми же структурами: все VAR_IN_OUT явно (SUPER^(); — ошибка C0039)
-// PORT: [oop] проверить в Astra.IDE — вызов базовой реализации SUPER^ (C1)
 SUPER^(stCmd := stCmd, stRetain := stRetain, stCfg := stCfg);
 
 // 3. Задание скорости (14.3). После SUPER^ режим, eState, xRunCmd, xEnteredStarting и ltDt — этого вызова. Состояние

@@ -5,7 +5,6 @@
 // существующих переменных не меняются. Начальные значения — уставки перечня; после загрузки действуют сохранённые
 // значения, уставки проекта применяет PRG_ApplyProjectCfg. После устройств — данные приложения (persist_extra), новые —
 // в конец. Объект создаётся в CODESYS вручную (docs/MANUAL_STEPS.md); «Reorder List and Clear Gaps» не выполнять.
-// PORT: [retain] проверить в Astra.IDE — объект Persistent Variables: импорт, объём хранилища [F40] (D1)
 VAR_GLOBAL PERSISTENT RETAIN
     uiLayoutVersion : UINT := 1;  // версия раскладки списка
     // --- dev_no 11: P101 — Насос Н1 (MotorVfd) ---

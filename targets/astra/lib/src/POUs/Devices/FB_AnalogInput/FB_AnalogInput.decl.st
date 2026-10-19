@@ -9,7 +9,6 @@
 // Автор:      kr0nsch
 // Версия:     0.1.0
 // Документ:   docs/fb/FB_AnalogInput.md
-// PORT: [oop] проверить в Astra.IDE — наследование ФБ (EXTENDS) (C1)
 FUNCTION_BLOCK FB_AnalogInput EXTENDS FB_DeviceBase
 VAR_INPUT
     rIn                  : REAL;     // значение канала; смысл — по stCfg.eInput
@@ -19,7 +18,6 @@ END_VAR
 VAR_IN_OUT
     stCmd : ST_AnalogInputCmd;       // команды HMI/SCADA (GVL_Hmi.st<TAG>Cmd)
 END_VAR
-// PORT: [types] проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)
 VAR_IN_OUT CONSTANT
     stCfg : ST_AnalogInputCfg;       // параметры (GVL_Persist.st<TAG>Cfg), только чтение
 END_VAR

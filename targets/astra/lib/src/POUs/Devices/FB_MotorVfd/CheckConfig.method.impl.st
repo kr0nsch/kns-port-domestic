@@ -1,4 +1,3 @@
-// PORT: [oop] проверить в Astra.IDE — вызов базовой реализации SUPER^ (C1)
 wErr := SUPER^.CheckConfig(stCfgIn := stCfgIn);
 stVfdChk := stCfgIn.stVfd;
 IF NOT F_IsFinite(rIn := stVfdChk.rSpeedMin_pct) OR NOT F_IsFinite(rIn := stVfdChk.rSpeedMax_pct) THEN

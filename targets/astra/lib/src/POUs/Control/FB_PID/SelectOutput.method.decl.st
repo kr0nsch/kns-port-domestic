@@ -3,7 +3,6 @@
 // возврате в Auto v = u, рывка нет). Auto: пределы, ограничение скорости, обратный расчёт
 // I += Kp·dt/Ti·e' + MIN(dt/Tt, 1)·(u_aw - v), u_aw — выход ФБ или rOutAct_pct (xUseOutAct).
 // Пишет rOut_pct, xSatHigh, xSatLow. Значение оператора — параметром (VAR_IN_OUT не трогает, R2)
-// PORT: [oop] проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)
 METHOD PROTECTED SelectOutput
 VAR_INPUT
     xCalcNow       : BOOL;    // в этом вызове был расчёт (CalcStep)

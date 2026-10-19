@@ -7,7 +7,6 @@
 // Версия:     0.1.1
 // Документ:   docs/DESIGN.md, разделы 3.3, 11.1
 FUNCTION F_FaultInjEqual : BOOL
-// PORT: [types] проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)
 VAR_IN_OUT CONSTANT
     stA : ST_FaultInjection;
     stB : ST_FaultInjection;

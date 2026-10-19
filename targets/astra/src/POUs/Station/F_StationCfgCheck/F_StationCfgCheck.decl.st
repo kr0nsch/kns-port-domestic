@@ -8,7 +8,6 @@
 // Версия:     0.1.0
 // Документ:   docs/DESIGN.md, раздел 6.13; docs/04_algorithms.md, раздел 18
 FUNCTION F_StationCfgCheck : WORD   // биты STN_CFG_*; 0 — уставки корректны
-// PORT: [types] проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)
 VAR_IN_OUT CONSTANT
     stCfg    : ST_StationCfg;
     stPidCfg : PL.ST_PidCfg;        // rSpMin_eu, rSpMax_eu — пределы задания

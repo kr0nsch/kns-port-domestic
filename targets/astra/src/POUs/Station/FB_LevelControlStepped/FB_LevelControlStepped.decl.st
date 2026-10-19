@@ -15,7 +15,6 @@ VAR_INPUT
     uiInitPumps : UINT;             // работающие насосы станции
     itfTime     : PL.I_TimeSource;
 END_VAR
-// PORT: [types] проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)
 VAR_IN_OUT CONSTANT
     stCfg : ST_StationCfg;          // rLvl*_m, tLvlConfirm, rStepSpeed_pct, uiDutyMax
 END_VAR

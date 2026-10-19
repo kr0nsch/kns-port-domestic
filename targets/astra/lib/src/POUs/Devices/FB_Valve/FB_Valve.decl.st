@@ -12,7 +12,6 @@
 // Автор:      kr0nsch
 // Версия:     0.1.0
 // Документ:   docs/fb/FB_Valve.md
-// PORT: [oop] проверить в Astra.IDE — наследование ФБ (EXTENDS) (C1)
 FUNCTION_BLOCK FB_Valve EXTENDS FB_DeviceBase
 VAR_INPUT
     xAutoOpen    : BOOL;             // запрос автоматики: TRUE — открыть, FALSE — закрыть
@@ -31,7 +30,6 @@ VAR_IN_OUT
     stCmd    : ST_ValveCmd;          // команды HMI/SCADA (GVL_Hmi.st<TAG>Cmd)
     stRetain : ST_DeviceRetain;      // режим, OOS, циклы, время работы привода (GVL_Persist.st<TAG>Retain)
 END_VAR
-// PORT: [types] проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)
 VAR_IN_OUT CONSTANT
     stCfg : ST_ValveCfg;             // параметры (GVL_Persist.st<TAG>Cfg)
 END_VAR

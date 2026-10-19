@@ -1,7 +1,6 @@
 // Положение по концевикам (с учётом «подключён»): только ZSO — Open, только ZSC — Closed, оба —
 // Unknown; ни одного — Intermediate, а без концевиков — Unknown. Старт ПЛК и снятие отказа.
 // Внутренний шаг устройства: PROTECTED (правило L5 контракта), имя зарезервировано для наследников
-// PORT: [oop] проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)
 METHOD PROTECTED LimitPosition : E_ValveState
 VAR
     xOpenLs  : BOOL;   // ZSO подключён и сработал

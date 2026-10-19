@@ -10,7 +10,6 @@
 // Автор:      kr0nsch
 // Версия:     0.1.0
 // Документ:   docs/fb/FB_Motor.md
-// PORT: [oop] проверить в Astra.IDE — наследование ФБ (EXTENDS) (C1)
 FUNCTION_BLOCK FB_Motor EXTENDS FB_DeviceBase IMPLEMENTS I_Motor
 VAR_INPUT
     xAutoRun   : BOOL;                 // запрос автоматики «работать» (уровень, не импульс)
@@ -25,7 +24,6 @@ VAR_IN_OUT
     stCmd    : ST_MotorCmd;            // команды HMI/SCADA (GVL_Hmi.st<TAG>Cmd)
     stRetain : ST_DeviceRetain;        // режим, OOS, моточасы, пуски (GVL_Persist.st<TAG>Retain)
 END_VAR
-// PORT: [types] проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)
 VAR_IN_OUT CONSTANT
     stCfg : ST_MotorCfg;               // параметры (GVL_Persist.st<TAG>Cfg)
 END_VAR

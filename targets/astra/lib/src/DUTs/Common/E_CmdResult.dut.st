@@ -4,7 +4,6 @@
 // Версия:     0.1.0
 // Документ:   docs/ARCHITECTURE.md, раздел «Общие типы»
 {attribute 'qualified_only'}
-// PORT: [pragma] проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)
 {attribute 'strict'}
 TYPE E_CmdResult :
 (
@@ -19,6 +18,5 @@ TYPE E_CmdResult :
     RejectedNotSupported := 8,   // не поддерживается типом (стоп соленоида, Local у AI)
     RejectedCfg          := 9,   // нет корректной конфигурации
     SubstExpired         := 10   // AI/DI: подмена снята по tSubstMax (событие, а не ответ на команду)
-// PORT: [types] проверить в Astra.IDE — перечисление с базовым типом INT (C7)
 ) INT;
 END_TYPE

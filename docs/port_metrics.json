@@ -90,27 +90,15 @@
     }
   },
   "markers": {
-    "total": 287,
+    "total": 62,
     "changes": 4,
-    "checks": 283,
+    "checks": 58,
     "by_category": {
-      "oop": {
-        "markers": 131,
-        "implicit": 0,
-        "changes": 0,
-        "checks": 131
-      },
       "retain": {
-        "markers": 2,
+        "markers": 1,
         "implicit": 0,
         "changes": 0,
-        "checks": 2
-      },
-      "pragma": {
-        "markers": 27,
-        "implicit": 0,
-        "changes": 0,
-        "checks": 27
+        "checks": 1
       },
       "opcua": {
         "markers": 2,
@@ -137,10 +125,10 @@
         "checks": 5
       },
       "types": {
-        "markers": 108,
+        "markers": 42,
         "implicit": 0,
         "changes": 0,
-        "checks": 108
+        "checks": 42
       },
       "other": {
         "markers": 1,
@@ -151,282 +139,14 @@
     },
     "check_items": {
       "B3": 1,
-      "C1": 13,
-      "C2": 5,
-      "C3": 110,
-      "C4": 3,
-      "C5": 27,
-      "C7": 35,
       "C10": 5,
       "C11": 46,
-      "C13": 31,
       "C15": 1,
-      "D1": 1,
       "D4": 1,
       "E2": 2,
       "G4": 2
     },
     "items": [
-      {
-        "path": "targets/astra/src/DUTs/Station/E_ControlAct.dut.st",
-        "line": 8,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/src/DUTs/Station/E_ControlAct.dut.st",
-        "line": 20,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/src/DUTs/Station/E_ControlMethod.dut.st",
-        "line": 7,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/src/DUTs/Station/E_ControlMethod.dut.st",
-        "line": 13,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/src/DUTs/Log/E_EventKind.dut.st",
-        "line": 6,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/src/DUTs/Log/E_EventKind.dut.st",
-        "line": 12,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/src/DUTs/Log/E_LogExportState.dut.st",
-        "line": 6,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/src/DUTs/Log/E_LogExportState.dut.st",
-        "line": 15,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/src/DUTs/Station/E_PumpRole.dut.st",
-        "line": 6,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/src/DUTs/Station/E_PumpRole.dut.st",
-        "line": 14,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/src/DUTs/Station/E_RotationMode.dut.st",
-        "line": 6,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/src/DUTs/Station/E_RotationMode.dut.st",
-        "line": 13,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/src/DUTs/Sim/E_SimAiFault.dut.st",
-        "line": 7,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/src/DUTs/Sim/E_SimAiFault.dut.st",
-        "line": 19,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/src/DUTs/Sim/E_SimFloatStuck.dut.st",
-        "line": 6,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/src/DUTs/Sim/E_SimFloatStuck.dut.st",
-        "line": 13,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/src/DUTs/Station/E_StationAlarm.dut.st",
-        "line": 23,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом UINT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/src/DUTs/Log/E_StationEvent.dut.st",
-        "line": 32,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом UINT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/src/DUTs/Station/E_StationMode.dut.st",
-        "line": 7,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/src/DUTs/Station/E_StationMode.dut.st",
-        "line": 13,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
       {
         "path": "targets/astra/src/GVLs/GVL_Const.gvl.st",
         "line": 19,
@@ -493,19 +213,6 @@
         ]
       },
       {
-        "path": "targets/astra/src/GVLs/Generated/GVL_Persist.pvl.st",
-        "line": 8,
-        "category": "retain",
-        "explicit": true,
-        "raw_tag": "retain",
-        "reason": "проверить в Astra.IDE — объект Persistent Variables: импорт, объём хранилища [F40] (D1)",
-        "used": false,
-        "check": true,
-        "items": [
-          "D1"
-        ]
-      },
-      {
         "path": "targets/astra/src/GVLs/Station/GVL_Station.gvl.st",
         "line": 10,
         "category": "opcua",
@@ -516,32 +223,6 @@
         "check": true,
         "items": [
           "G4"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Model/F_FaultInjEqual/F_FaultInjEqual.decl.st",
-        "line": 10,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Station/F_StationCfgCheck/F_StationCfgCheck.decl.st",
-        "line": 11,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
         ]
       },
       {
@@ -571,32 +252,6 @@
         ]
       },
       {
-        "path": "targets/astra/src/POUs/Log/FB_AlarmSummary/BuildView.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Log/FB_AlarmSummary/FindAlarm.method.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
         "path": "targets/astra/src/POUs/Station/FB_Annunciator/FB_Annunciator.impl.st",
         "line": 43,
         "category": "types",
@@ -620,58 +275,6 @@
         "check": true,
         "items": [
           "C11"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Station/FB_Ats/FB_Ats.decl.st",
-        "line": 23,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Log/FB_EventLog/OnAlarmEvent.method.decl.st",
-        "line": 3,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Log/FB_EventLog/Store.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Log/FB_EventLog/SnapshotCount.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
         ]
       },
       {
@@ -727,97 +330,6 @@
         ]
       },
       {
-        "path": "targets/astra/src/POUs/Log/FB_EventLogCsv/AppendText.method.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Model/FB_HydraulicSolver/FlowsAt.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Model/FB_HydraulicSolver/Solve.method.decl.st",
-        "line": 4,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Model/FB_InflowProfile/FB_InflowProfile.decl.st",
-        "line": 13,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Station/FB_LevelControlPid/FB_LevelControlPid.decl.st",
-        "line": 22,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Station/FB_LevelControlStepped/FB_LevelControlStepped.decl.st",
-        "line": 18,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Model/FB_PlantModel/FB_PlantModel.decl.st",
-        "line": 21,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
         "path": "targets/astra/src/POUs/Model/FB_PlantModel/FB_PlantModel.impl.st",
         "line": 18,
         "category": "types",
@@ -857,84 +369,6 @@
         ]
       },
       {
-        "path": "targets/astra/src/POUs/Model/FB_PlantModel/DayOf.method.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Model/FB_PlantModel/TodOf.method.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Station/FB_PowerRestore/FB_PowerRestore.decl.st",
-        "line": 19,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Station/FB_Protections/FB_Protections.decl.st",
-        "line": 26,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Station/FB_PumpProtection/FB_PumpProtection.decl.st",
-        "line": 18,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Station/FB_PumpRotation/FB_PumpRotation.decl.st",
-        "line": 28,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
         "path": "targets/astra/src/POUs/Station/FB_PumpRotation/FB_PumpRotation.impl.st",
         "line": 222,
         "category": "types",
@@ -961,84 +395,6 @@
         ]
       },
       {
-        "path": "targets/astra/src/POUs/Station/FB_PumpRotation/Better.method.decl.st",
-        "line": 4,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Station/FB_PumpRotation/PickCandidate.method.decl.st",
-        "line": 6,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Station/FB_PumpRotation/PickIn.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Station/FB_PumpRotation/PickLead.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Station/FB_PumpRotation/PickLeadIn.method.decl.st",
-        "line": 4,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Station/FB_PumpRotation/PickToRemove.method.decl.st",
-        "line": 5,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
         "path": "targets/astra/src/POUs/Time/FB_ScaledClock/FB_ScaledClock.decl.st",
         "line": 15,
         "category": "types",
@@ -1062,19 +418,6 @@
         "check": true,
         "items": [
           "C11"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Time/FB_ScaledClock/ScaledAt.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
         ]
       },
       {
@@ -1117,669 +460,6 @@
         ]
       },
       {
-        "path": "targets/astra/src/POUs/Time/FB_ScaledClock/Scale.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Station/FB_StationAlarms/FB_StationAlarms.decl.st",
-        "line": 19,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Station/FB_StationAlarms/AlarmCount.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Station/FB_StationCore/ChangedParam.method.decl.st",
-        "line": 6,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Model/FB_StormGenerator/AddStorm.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Model/FB_StormGenerator/Draw.method.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Model/FB_StormGenerator/FloorU.method.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Model/FB_StormGenerator/Generate.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PRIVATE (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/src/POUs/Station/FB_Ventilation/FB_Ventilation.decl.st",
-        "line": 15,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/AnalogInput/E_AiAlarm.dut.st",
-        "line": 15,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом UINT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/AnalogInput/E_AiFailValue.dut.st",
-        "line": 6,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/AnalogInput/E_AiFailValue.dut.st",
-        "line": 12,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/AnalogInput/E_AiInputType.dut.st",
-        "line": 6,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/AnalogInput/E_AiInputType.dut.st",
-        "line": 15,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/AnalogInput/E_AiSignalState.dut.st",
-        "line": 7,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/AnalogInput/E_AiSignalState.dut.st",
-        "line": 18,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Alarm/E_AlarmEventReason.dut.st",
-        "line": 6,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Alarm/E_AlarmEventReason.dut.st",
-        "line": 22,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Alarm/E_AlarmPriority.dut.st",
-        "line": 7,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Alarm/E_AlarmPriority.dut.st",
-        "line": 16,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Alarm/E_AlarmState.dut.st",
-        "line": 8,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Alarm/E_AlarmState.dut.st",
-        "line": 19,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Common/E_CmdResult.dut.st",
-        "line": 7,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Common/E_CmdResult.dut.st",
-        "line": 22,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/ControlValve/E_CvAlarm.dut.st",
-        "line": 13,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом UINT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/ControlValve/E_CvFaultAction.dut.st",
-        "line": 6,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/ControlValve/E_CvFaultAction.dut.st",
-        "line": 12,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Common/E_DeviceMode.dut.st",
-        "line": 8,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Common/E_DeviceMode.dut.st",
-        "line": 16,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Common/E_DeviceType.dut.st",
-        "line": 7,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Common/E_DeviceType.dut.st",
-        "line": 19,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/DigitalInput/E_DiAlarm.dut.st",
-        "line": 11,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом UINT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/DigitalInput/E_DiFailValue.dut.st",
-        "line": 6,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/DigitalInput/E_DiFailValue.dut.st",
-        "line": 13,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Motor/E_MotorAlarm.dut.st",
-        "line": 17,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом UINT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Motor/E_MotorState.dut.st",
-        "line": 6,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Motor/E_MotorState.dut.st",
-        "line": 15,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Common/E_Ne107Status.dut.st",
-        "line": 8,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Common/E_Ne107Status.dut.st",
-        "line": 17,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Pid/E_PidAction.dut.st",
-        "line": 6,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Pid/E_PidAction.dut.st",
-        "line": 12,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Pid/E_PidAlarm.dut.st",
-        "line": 10,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом UINT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Pid/E_PidPvFailAction.dut.st",
-        "line": 6,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Pid/E_PidPvFailAction.dut.st",
-        "line": 13,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Valve/E_ValveAlarm.dut.st",
-        "line": 16,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом UINT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Valve/E_ValveSafePos.dut.st",
-        "line": 6,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Valve/E_ValveSafePos.dut.st",
-        "line": 13,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Valve/E_ValveState.dut.st",
-        "line": 6,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Valve/E_ValveState.dut.st",
-        "line": 18,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Valve/E_ValveType.dut.st",
-        "line": 6,
-        "category": "pragma",
-        "explicit": true,
-        "raw_tag": "pragma",
-        "reason": "проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C5"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/DUTs/Valve/E_ValveType.dut.st",
-        "line": 13,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — перечисление с базовым типом INT (C7)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C7"
-        ]
-      },
-      {
         "path": "targets/astra/lib/src/GVLs/GVL_Const.gvl.st",
         "line": 33,
         "category": "types",
@@ -1803,305 +483,6 @@
         "check": true,
         "items": [
           "C11"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_Alarm/Active.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство интерфейса (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_Alarm/AlarmPriority.prop.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство интерфейса (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_Alarm/Id.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство интерфейса (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_Alarm/Seq.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство интерфейса (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_Alarm/State.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство интерфейса (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_Alarm/Unacked.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство интерфейса (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_AlarmSink/OnAlarmEvent.method.decl.st",
-        "line": 3,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_AlarmSource/AlarmCount.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство интерфейса (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_Device/I_Device.itf.st",
-        "line": 7,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — наследование интерфейсов (EXTENDS) (C4)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C4"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_Device/Available.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство интерфейса (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_Device/Fault.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство интерфейса (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_Device/Mode.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство интерфейса (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_Device/Status.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство интерфейса (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_Motor/I_Motor.itf.st",
-        "line": 6,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — наследование интерфейсов (EXTENDS) (C4)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C4"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_Motor/CurrentRunSeconds.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство интерфейса (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_Motor/ReadyToStart.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство интерфейса (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_Motor/Running.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство интерфейса (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_Motor/RunSeconds.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство интерфейса (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_Motor/Starts.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство интерфейса (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_MotorVfd/I_MotorVfd.itf.st",
-        "line": 6,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — наследование интерфейсов (EXTENDS) (C4)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C4"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_MotorVfd/SpeedAct.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство интерфейса (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_MotorVfd/SpeedAutoActive.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство интерфейса (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/Interfaces/I_MotorVfd/SpeedRef.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство интерфейса (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
         ]
       },
       {
@@ -2131,45 +512,6 @@
         ]
       },
       {
-        "path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/ReleaseState.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/Transit.method.decl.st",
-        "line": 5,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/UpdateShelve.method.decl.st",
-        "line": 4,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
         "path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/UpdateShelve.method.impl.st",
         "line": 6,
         "category": "types",
@@ -2206,331 +548,6 @@
         "check": true,
         "items": [
           "C11"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/UpdateState.method.decl.st",
-        "line": 4,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/Active.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/AlarmPriority.prop.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/Id.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/Seq.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/State.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/Unacked.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_AnalogInput/FB_AnalogInput.decl.st",
-        "line": 12,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — наследование ФБ (EXTENDS) (C1)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C1"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_AnalogInput/FB_AnalogInput.decl.st",
-        "line": 22,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_AnalogInput/CallLimit.method.decl.st",
-        "line": 4,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_AnalogInput/CheckConfig.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_AnalogInput/CheckConfig.method.decl.st",
-        "line": 5,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_AnalogInput/ClassifySignal.method.decl.st",
-        "line": 5,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_AnalogInput/ComputeValue.method.decl.st",
-        "line": 9,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_AnalogInput/FaultBits.method.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_AnalogInput/SelectValue.method.decl.st",
-        "line": 8,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_AnalogInput/SubstRemainSec.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_AnalogInput/WarningBits.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_ControlValve/FB_ControlValve.decl.st",
-        "line": 11,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — наследование ФБ (EXTENDS) (C1)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C1"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_ControlValve/FB_ControlValve.decl.st",
-        "line": 25,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_ControlValve/CheckConfig.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_ControlValve/CheckConfig.method.decl.st",
-        "line": 5,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_ControlValve/OnModeChanged.method.decl.st",
-        "line": 4,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_ControlValve/OnModeChanged.method.impl.st",
-        "line": 1,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — вызов базовой реализации SUPER^ (C1)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C1"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_ControlValve/SelectOutput.method.decl.st",
-        "line": 7,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
         ]
       },
       {
@@ -2560,45 +577,6 @@
         ]
       },
       {
-        "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/FB_DeviceBase.decl.st",
-        "line": 11,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — ABSTRACT (C2)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C2"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/AcceptCfg.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/BeginCycle.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
         "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/BeginCycle.method.impl.st",
         "line": 6,
         "category": "types",
@@ -2609,305 +587,6 @@
         "check": true,
         "items": [
           "C11"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/CheckAlarmCfg.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/CheckAlarmCfg.method.decl.st",
-        "line": 5,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/FinishCycle.method.decl.st",
-        "line": 4,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/OnModeChanged.method.decl.st",
-        "line": 6,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/ProcessMode.method.decl.st",
-        "line": 5,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/ProcessMode.method.impl.st",
-        "line": 52,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — THIS^ (C2)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C2"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/ResolveTime.method.decl.st",
-        "line": 4,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/RunAlarms.method.decl.st",
-        "line": 5,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/RunAlarms.method.decl.st",
-        "line": 13,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/SetCmdResult.method.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/SwitchRemoteMode.method.decl.st",
-        "line": 4,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/SwitchRemoteMode.method.impl.st",
-        "line": 6,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — THIS^ (C2)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C2"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/AlarmCount.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/Available.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/Fault.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/Mode.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/Status.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_DigitalInput/FB_DigitalInput.decl.st",
-        "line": 9,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — наследование ФБ (EXTENDS) (C1)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C1"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_DigitalInput/FB_DigitalInput.decl.st",
-        "line": 18,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_DigitalInput/CheckConfig.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_DigitalInput/CheckConfig.method.decl.st",
-        "line": 5,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_DigitalInput/SelectValue.method.decl.st",
-        "line": 5,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_DigitalInput/SubstRemainSec.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
         ]
       },
       {
@@ -2937,47 +616,8 @@
         ]
       },
       {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/FB_Motor.decl.st",
-        "line": 13,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — наследование ФБ (EXTENDS) (C1)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C1"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/FB_Motor.decl.st",
-        "line": 28,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
         "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/FB_Motor.impl.st",
-        "line": 20,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — THIS^ (C2)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C2"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/FB_Motor.impl.st",
-        "line": 78,
+        "line": 77,
         "category": "types",
         "explicit": true,
         "raw_tag": "types",
@@ -2990,7 +630,7 @@
       },
       {
         "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/FB_Motor.impl.st",
-        "line": 80,
+        "line": 79,
         "category": "types",
         "explicit": true,
         "raw_tag": "types",
@@ -3003,7 +643,7 @@
       },
       {
         "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/FB_Motor.impl.st",
-        "line": 131,
+        "line": 130,
         "category": "types",
         "explicit": true,
         "raw_tag": "types",
@@ -3016,7 +656,7 @@
       },
       {
         "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/FB_Motor.impl.st",
-        "line": 136,
+        "line": 135,
         "category": "types",
         "explicit": true,
         "raw_tag": "types",
@@ -3029,7 +669,7 @@
       },
       {
         "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/FB_Motor.impl.st",
-        "line": 141,
+        "line": 140,
         "category": "types",
         "explicit": true,
         "raw_tag": "types",
@@ -3042,7 +682,7 @@
       },
       {
         "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/FB_Motor.impl.st",
-        "line": 241,
+        "line": 240,
         "category": "types",
         "explicit": true,
         "raw_tag": "types",
@@ -3055,7 +695,7 @@
       },
       {
         "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/FB_Motor.impl.st",
-        "line": 366,
+        "line": 365,
         "category": "types",
         "explicit": true,
         "raw_tag": "types",
@@ -3068,7 +708,7 @@
       },
       {
         "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/FB_Motor.impl.st",
-        "line": 375,
+        "line": 374,
         "category": "types",
         "explicit": true,
         "raw_tag": "types",
@@ -3081,7 +721,7 @@
       },
       {
         "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/FB_Motor.impl.st",
-        "line": 378,
+        "line": 377,
         "category": "types",
         "explicit": true,
         "raw_tag": "types",
@@ -3094,7 +734,7 @@
       },
       {
         "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/FB_Motor.impl.st",
-        "line": 380,
+        "line": 379,
         "category": "retain",
         "explicit": true,
         "raw_tag": "retain",
@@ -3107,7 +747,7 @@
       },
       {
         "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/FB_Motor.impl.st",
-        "line": 432,
+        "line": 431,
         "category": "types",
         "explicit": true,
         "raw_tag": "types",
@@ -3120,7 +760,7 @@
       },
       {
         "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/FB_Motor.impl.st",
-        "line": 438,
+        "line": 437,
         "category": "types",
         "explicit": true,
         "raw_tag": "types",
@@ -3133,7 +773,7 @@
       },
       {
         "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/FB_Motor.impl.st",
-        "line": 442,
+        "line": 441,
         "category": "types",
         "explicit": true,
         "raw_tag": "types",
@@ -3146,7 +786,7 @@
       },
       {
         "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/FB_Motor.impl.st",
-        "line": 445,
+        "line": 444,
         "category": "types",
         "explicit": true,
         "raw_tag": "types",
@@ -3155,266 +795,6 @@
         "check": true,
         "items": [
           "C11"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/CheckConfig.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/CheckConfig.method.decl.st",
-        "line": 5,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/OnModeChanged.method.decl.st",
-        "line": 5,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/OnModeChanged.method.impl.st",
-        "line": 1,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — вызов базовой реализации SUPER^ (C1)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C1"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/CurrentRunSeconds.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/ReadyToStart.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/Running.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/RunSeconds.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Motor/Starts.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_MotorVfd/FB_MotorVfd.decl.st",
-        "line": 10,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — наследование ФБ (EXTENDS) (C1)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C1"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_MotorVfd/FB_MotorVfd.impl.st",
-        "line": 12,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — THIS^ (C2)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C2"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_MotorVfd/FB_MotorVfd.impl.st",
-        "line": 67,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — вызов базовой реализации SUPER^ (C1)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C1"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_MotorVfd/CheckConfig.method.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_MotorVfd/CheckConfig.method.decl.st",
-        "line": 4,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_MotorVfd/CheckConfig.method.impl.st",
-        "line": 1,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — вызов базовой реализации SUPER^ (C1)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C1"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_MotorVfd/SpeedAct.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_MotorVfd/SpeedAutoActive.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_MotorVfd/SpeedRef.prop.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — свойство пользовательского ФБ (PROPERTY) (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Control/FB_PID/FB_PID.decl.st",
-        "line": 12,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — наследование ФБ (EXTENDS) (C1)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C1"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Control/FB_PID/FB_PID.decl.st",
-        "line": 27,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
         ]
       },
       {
@@ -3444,97 +824,6 @@
         ]
       },
       {
-        "path": "targets/astra/lib/src/POUs/Control/FB_PID/CalcStep.method.decl.st",
-        "line": 6,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Control/FB_PID/CheckConfig.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Control/FB_PID/CheckConfig.method.decl.st",
-        "line": 5,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Control/FB_PID/OnModeChanged.method.decl.st",
-        "line": 5,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Control/FB_PID/OnModeChanged.method.impl.st",
-        "line": 1,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — вызов базовой реализации SUPER^ (C1)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C1"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Control/FB_PID/RateStep.method.decl.st",
-        "line": 5,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Control/FB_PID/SelectOutput.method.decl.st",
-        "line": 6,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
         "path": "targets/astra/lib/src/POUs/Util/FB_StartsWindow/TimeToFree.method.impl.st",
         "line": 3,
         "category": "types",
@@ -3561,71 +850,6 @@
         ]
       },
       {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Valve/FB_Valve.decl.st",
-        "line": 15,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — наследование ФБ (EXTENDS) (C1)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C1"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Valve/FB_Valve.decl.st",
-        "line": 34,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Valve/CheckConfig.method.decl.st",
-        "line": 2,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Valve/CheckConfig.method.decl.st",
-        "line": 4,
-        "category": "types",
-        "explicit": true,
-        "raw_tag": "types",
-        "reason": "проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C13"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Valve/CountOperations.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
         "path": "targets/astra/lib/src/POUs/Devices/FB_Valve/CountOperations.method.impl.st",
         "line": 13,
         "category": "types",
@@ -3649,175 +873,6 @@
         "check": true,
         "items": [
           "C11"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Valve/CurrentTarget.method.decl.st",
-        "line": 5,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Valve/DriveToTarget.method.decl.st",
-        "line": 5,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Valve/HandleCommands.method.decl.st",
-        "line": 5,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Valve/LimitPosition.method.decl.st",
-        "line": 4,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Valve/OnModeChanged.method.decl.st",
-        "line": 4,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Valve/OnModeChanged.method.impl.st",
-        "line": 1,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — вызов базовой реализации SUPER^ (C1)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C1"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Valve/ResetFaults.method.decl.st",
-        "line": 5,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Valve/RunTravelTimers.method.decl.st",
-        "line": 4,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Valve/SafeMoveOnFault.method.decl.st",
-        "line": 9,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Valve/SelectTarget.method.decl.st",
-        "line": 4,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Valve/SetOutputs.method.decl.st",
-        "line": 4,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Valve/SuperviseLimits.method.decl.st",
-        "line": 3,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
-        ]
-      },
-      {
-        "path": "targets/astra/lib/src/POUs/Devices/FB_Valve/TrackPosition.method.decl.st",
-        "line": 4,
-        "category": "oop",
-        "explicit": true,
-        "raw_tag": "oop",
-        "reason": "проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)",
-        "used": false,
-        "check": true,
-        "items": [
-          "C3"
         ]
       },
       {
@@ -3894,27 +949,9 @@
   },
   "categories": [
     {
-      "category": "oop",
-      "change_markers": 0,
-      "check_markers": 131,
-      "objects": 0,
-      "files": 0,
-      "orig_lines_touched": 0,
-      "lines_added": 0
-    },
-    {
       "category": "retain",
       "change_markers": 0,
-      "check_markers": 2,
-      "objects": 0,
-      "files": 0,
-      "orig_lines_touched": 0,
-      "lines_added": 0
-    },
-    {
-      "category": "pragma",
-      "change_markers": 0,
-      "check_markers": 27,
+      "check_markers": 1,
       "objects": 0,
       "files": 0,
       "orig_lines_touched": 0,
@@ -3959,7 +996,7 @@
     {
       "category": "types",
       "change_markers": 0,
-      "check_markers": 108,
+      "check_markers": 42,
       "objects": 0,
       "files": 0,
       "orig_lines_touched": 0,
@@ -3984,7 +1021,7 @@
       "source": "kns-pump-station",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 14,
       "adapted_lines": 14,
       "unchanged": 14,
@@ -4000,7 +1037,7 @@
       "source": "kns-pump-station",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 8,
       "adapted_lines": 8,
       "unchanged": 8,
@@ -4016,7 +1053,7 @@
       "source": "kns-pump-station",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 8,
       "adapted_lines": 8,
       "unchanged": 8,
@@ -4032,7 +1069,7 @@
       "source": "kns-pump-station",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 11,
       "adapted_lines": 11,
       "unchanged": 11,
@@ -4048,7 +1085,7 @@
       "source": "kns-pump-station",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 10,
       "adapted_lines": 10,
       "unchanged": 10,
@@ -4064,7 +1101,7 @@
       "source": "kns-pump-station",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 9,
       "adapted_lines": 9,
       "unchanged": 9,
@@ -4080,7 +1117,7 @@
       "source": "kns-pump-station",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 14,
       "adapted_lines": 14,
       "unchanged": 14,
@@ -4096,7 +1133,7 @@
       "source": "kns-pump-station",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 9,
       "adapted_lines": 9,
       "unchanged": 9,
@@ -4112,7 +1149,7 @@
       "source": "kns-pump-station",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 18,
       "adapted_lines": 18,
       "unchanged": 18,
@@ -4128,7 +1165,7 @@
       "source": "kns-pump-station",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 28,
       "adapted_lines": 28,
       "unchanged": 28,
@@ -4144,7 +1181,7 @@
       "source": "kns-pump-station",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 8,
       "adapted_lines": 8,
       "unchanged": 8,
@@ -4544,7 +1581,7 @@
       "source": "kns-pump-station",
       "kind": "pvl",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 463,
       "adapted_lines": 463,
       "unchanged": 463,
@@ -4672,7 +1709,7 @@
       "source": "kns-pump-station",
       "kind": "function",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 44,
       "adapted_lines": 44,
       "unchanged": 44,
@@ -4720,7 +1757,7 @@
       "source": "kns-pump-station",
       "kind": "function",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 87,
       "adapted_lines": 87,
       "unchanged": 87,
@@ -4800,7 +1837,7 @@
       "source": "kns-pump-station",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 3,
+      "markers": 1,
       "orig_lines": 223,
       "adapted_lines": 223,
       "unchanged": 223,
@@ -4848,7 +1885,7 @@
       "source": "kns-pump-station",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 84,
       "adapted_lines": 84,
       "unchanged": 84,
@@ -4896,7 +1933,7 @@
       "source": "kns-pump-station",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 3,
+      "markers": 0,
       "orig_lines": 158,
       "adapted_lines": 158,
       "unchanged": 158,
@@ -4912,7 +1949,7 @@
       "source": "kns-pump-station",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 5,
+      "markers": 4,
       "orig_lines": 116,
       "adapted_lines": 116,
       "unchanged": 116,
@@ -4928,7 +1965,7 @@
       "source": "kns-pump-station",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 114,
       "adapted_lines": 114,
       "unchanged": 114,
@@ -4944,7 +1981,7 @@
       "source": "kns-pump-station",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 41,
       "adapted_lines": 41,
       "unchanged": 41,
@@ -4960,7 +1997,7 @@
       "source": "kns-pump-station",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 111,
       "adapted_lines": 111,
       "unchanged": 111,
@@ -4976,7 +2013,7 @@
       "source": "kns-pump-station",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 57,
       "adapted_lines": 57,
       "unchanged": 57,
@@ -4992,7 +2029,7 @@
       "source": "kns-pump-station",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 6,
+      "markers": 3,
       "orig_lines": 307,
       "adapted_lines": 307,
       "unchanged": 307,
@@ -5008,7 +2045,7 @@
       "source": "kns-pump-station",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 109,
       "adapted_lines": 109,
       "unchanged": 109,
@@ -5024,7 +2061,7 @@
       "source": "kns-pump-station",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 161,
       "adapted_lines": 161,
       "unchanged": 161,
@@ -5040,7 +2077,7 @@
       "source": "kns-pump-station",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 43,
       "adapted_lines": 43,
       "unchanged": 43,
@@ -5056,7 +2093,7 @@
       "source": "kns-pump-station",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 9,
+      "markers": 2,
       "orig_lines": 461,
       "adapted_lines": 461,
       "unchanged": 461,
@@ -5072,7 +2109,7 @@
       "source": "kns-pump-station",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 7,
+      "markers": 5,
       "orig_lines": 88,
       "adapted_lines": 88,
       "unchanged": 88,
@@ -5088,7 +2125,7 @@
       "source": "kns-pump-station",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 83,
       "adapted_lines": 83,
       "unchanged": 83,
@@ -5104,7 +2141,7 @@
       "source": "kns-pump-station",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 695,
       "adapted_lines": 695,
       "unchanged": 695,
@@ -5136,7 +2173,7 @@
       "source": "kns-pump-station",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 4,
+      "markers": 0,
       "orig_lines": 184,
       "adapted_lines": 184,
       "unchanged": 184,
@@ -5168,7 +2205,7 @@
       "source": "kns-pump-station",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 24,
       "adapted_lines": 24,
       "unchanged": 24,
@@ -5344,7 +2381,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 11,
       "adapted_lines": 11,
       "unchanged": 11,
@@ -5360,7 +2397,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 8,
       "adapted_lines": 8,
       "unchanged": 8,
@@ -5376,7 +2413,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 11,
       "adapted_lines": 11,
       "unchanged": 11,
@@ -5392,7 +2429,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 13,
       "adapted_lines": 13,
       "unchanged": 13,
@@ -5408,7 +2445,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 18,
       "adapted_lines": 18,
       "unchanged": 18,
@@ -5424,7 +2461,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 11,
       "adapted_lines": 11,
       "unchanged": 11,
@@ -5440,7 +2477,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 13,
       "adapted_lines": 13,
       "unchanged": 13,
@@ -5456,7 +2493,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 17,
       "adapted_lines": 17,
       "unchanged": 17,
@@ -5472,7 +2509,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 9,
       "adapted_lines": 9,
       "unchanged": 9,
@@ -5488,7 +2525,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 8,
       "adapted_lines": 8,
       "unchanged": 8,
@@ -5504,7 +2541,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 10,
       "adapted_lines": 10,
       "unchanged": 10,
@@ -5520,7 +2557,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 14,
       "adapted_lines": 14,
       "unchanged": 14,
@@ -5536,7 +2573,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 7,
       "adapted_lines": 7,
       "unchanged": 7,
@@ -5552,7 +2589,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 9,
       "adapted_lines": 9,
       "unchanged": 9,
@@ -5568,7 +2605,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 13,
       "adapted_lines": 13,
       "unchanged": 13,
@@ -5584,7 +2621,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 11,
       "adapted_lines": 11,
       "unchanged": 11,
@@ -5600,7 +2637,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 11,
       "adapted_lines": 11,
       "unchanged": 11,
@@ -5616,7 +2653,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 8,
       "adapted_lines": 8,
       "unchanged": 8,
@@ -5632,7 +2669,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 6,
       "adapted_lines": 6,
       "unchanged": 6,
@@ -5648,7 +2685,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 9,
       "adapted_lines": 9,
       "unchanged": 9,
@@ -5664,7 +2701,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 12,
       "adapted_lines": 12,
       "unchanged": 12,
@@ -5680,7 +2717,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 9,
       "adapted_lines": 9,
       "unchanged": 9,
@@ -5696,7 +2733,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 14,
       "adapted_lines": 14,
       "unchanged": 14,
@@ -5712,7 +2749,7 @@
       "source": "plc-process-lib",
       "kind": "dut",
       "status": "unchanged",
-      "markers": 2,
+      "markers": 0,
       "orig_lines": 9,
       "adapted_lines": 9,
       "unchanged": 9,
@@ -6176,7 +3213,7 @@
       "source": "plc-process-lib",
       "kind": "itf",
       "status": "unchanged",
-      "markers": 6,
+      "markers": 0,
       "orig_lines": 13,
       "adapted_lines": 13,
       "unchanged": 13,
@@ -6192,7 +3229,7 @@
       "source": "plc-process-lib",
       "kind": "itf",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 5,
       "adapted_lines": 5,
       "unchanged": 5,
@@ -6208,7 +3245,7 @@
       "source": "plc-process-lib",
       "kind": "itf",
       "status": "unchanged",
-      "markers": 1,
+      "markers": 0,
       "orig_lines": 7,
       "adapted_lines": 7,
       "unchanged": 7,
@@ -6224,7 +3261,7 @@
       "source": "plc-process-lib",
       "kind": "itf",
       "status": "unchanged",
-      "markers": 5,
+      "markers": 0,
       "orig_lines": 10,
       "adapted_lines": 10,
       "unchanged": 10,
@@ -6240,7 +3277,7 @@
       "source": "plc-process-lib",
       "kind": "itf",
       "status": "unchanged",
-      "markers": 6,
+      "markers": 0,
       "orig_lines": 6,
       "adapted_lines": 6,
       "unchanged": 6,
@@ -6256,7 +3293,7 @@
       "source": "plc-process-lib",
       "kind": "itf",
       "status": "unchanged",
-      "markers": 4,
+      "markers": 0,
       "orig_lines": 4,
       "adapted_lines": 4,
       "unchanged": 4,
@@ -6384,7 +3421,7 @@
       "source": "plc-process-lib",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 14,
+      "markers": 4,
       "orig_lines": 211,
       "adapted_lines": 211,
       "unchanged": 211,
@@ -6400,7 +3437,7 @@
       "source": "plc-process-lib",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 11,
+      "markers": 0,
       "orig_lines": 394,
       "adapted_lines": 394,
       "unchanged": 394,
@@ -6416,7 +3453,7 @@
       "source": "plc-process-lib",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 7,
+      "markers": 0,
       "orig_lines": 296,
       "adapted_lines": 296,
       "unchanged": 296,
@@ -6448,7 +3485,7 @@
       "source": "plc-process-lib",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 21,
+      "markers": 1,
       "orig_lines": 357,
       "adapted_lines": 357,
       "unchanged": 357,
@@ -6464,7 +3501,7 @@
       "source": "plc-process-lib",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 6,
+      "markers": 0,
       "orig_lines": 148,
       "adapted_lines": 148,
       "unchanged": 148,
@@ -6512,7 +3549,7 @@
       "source": "plc-process-lib",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 26,
+      "markers": 14,
       "orig_lines": 590,
       "adapted_lines": 590,
       "unchanged": 590,
@@ -6528,7 +3565,7 @@
       "source": "plc-process-lib",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 9,
+      "markers": 0,
       "orig_lines": 175,
       "adapted_lines": 175,
       "unchanged": 175,
@@ -6544,7 +3581,7 @@
       "source": "plc-process-lib",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 11,
+      "markers": 2,
       "orig_lines": 419,
       "adapted_lines": 419,
       "unchanged": 419,
@@ -6592,7 +3629,7 @@
       "source": "plc-process-lib",
       "kind": "function_block",
       "status": "unchanged",
-      "markers": 20,
+      "markers": 2,
       "orig_lines": 673,
       "adapted_lines": 673,
       "unchanged": 673,
@@ -6659,7 +3696,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/DUTs/Station/E_ControlAct.dut.st",
       "adapted_path": "targets/astra/src/DUTs/Station/E_ControlAct.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 14,
       "adapted_lines": 14,
@@ -6677,7 +3714,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/DUTs/Station/E_ControlMethod.dut.st",
       "adapted_path": "targets/astra/src/DUTs/Station/E_ControlMethod.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 8,
       "adapted_lines": 8,
@@ -6695,7 +3732,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/DUTs/Log/E_EventKind.dut.st",
       "adapted_path": "targets/astra/src/DUTs/Log/E_EventKind.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 8,
       "adapted_lines": 8,
@@ -6713,7 +3750,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/DUTs/Log/E_LogExportState.dut.st",
       "adapted_path": "targets/astra/src/DUTs/Log/E_LogExportState.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 11,
       "adapted_lines": 11,
@@ -6731,7 +3768,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/DUTs/Station/E_PumpRole.dut.st",
       "adapted_path": "targets/astra/src/DUTs/Station/E_PumpRole.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 10,
       "adapted_lines": 10,
@@ -6749,7 +3786,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/DUTs/Station/E_RotationMode.dut.st",
       "adapted_path": "targets/astra/src/DUTs/Station/E_RotationMode.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 9,
       "adapted_lines": 9,
@@ -6767,7 +3804,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/DUTs/Sim/E_SimAiFault.dut.st",
       "adapted_path": "targets/astra/src/DUTs/Sim/E_SimAiFault.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 14,
       "adapted_lines": 14,
@@ -6785,7 +3822,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/DUTs/Sim/E_SimFloatStuck.dut.st",
       "adapted_path": "targets/astra/src/DUTs/Sim/E_SimFloatStuck.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 9,
       "adapted_lines": 9,
@@ -6803,7 +3840,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/DUTs/Station/E_StationAlarm.dut.st",
       "adapted_path": "targets/astra/src/DUTs/Station/E_StationAlarm.dut.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 18,
       "adapted_lines": 18,
@@ -6821,7 +3858,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/DUTs/Log/E_StationEvent.dut.st",
       "adapted_path": "targets/astra/src/DUTs/Log/E_StationEvent.dut.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 28,
       "adapted_lines": 28,
@@ -6839,7 +3876,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/DUTs/Station/E_StationMode.dut.st",
       "adapted_path": "targets/astra/src/DUTs/Station/E_StationMode.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 8,
       "adapted_lines": 8,
@@ -7289,7 +4326,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/GVLs/Generated/GVL_Persist.pvl.st",
       "adapted_path": "targets/astra/src/GVLs/Generated/GVL_Persist.pvl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 463,
       "adapted_lines": 463,
@@ -7487,7 +4524,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Model/F_FaultInjEqual/F_FaultInjEqual.decl.st",
       "adapted_path": "targets/astra/src/POUs/Model/F_FaultInjEqual/F_FaultInjEqual.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 10,
       "adapted_lines": 10,
@@ -7595,7 +4632,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Station/F_StationCfgCheck/F_StationCfgCheck.decl.st",
       "adapted_path": "targets/astra/src/POUs/Station/F_StationCfgCheck/F_StationCfgCheck.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 14,
       "adapted_lines": 14,
@@ -7847,7 +4884,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Log/FB_AlarmSummary/BuildView.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Log/FB_AlarmSummary/BuildView.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 23,
       "adapted_lines": 23,
@@ -7883,7 +4920,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Log/FB_AlarmSummary/FindAlarm.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Log/FB_AlarmSummary/FindAlarm.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 10,
       "adapted_lines": 10,
@@ -8027,7 +5064,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Station/FB_Ats/FB_Ats.decl.st",
       "adapted_path": "targets/astra/src/POUs/Station/FB_Ats/FB_Ats.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 35,
       "adapted_lines": 35,
@@ -8351,7 +5388,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Log/FB_EventLog/OnAlarmEvent.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Log/FB_EventLog/OnAlarmEvent.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 4,
       "adapted_lines": 4,
@@ -8387,7 +5424,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Log/FB_EventLog/Store.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Log/FB_EventLog/Store.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 14,
       "adapted_lines": 14,
@@ -8459,7 +5496,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Log/FB_EventLog/SnapshotCount.prop.decl.st",
       "adapted_path": "targets/astra/src/POUs/Log/FB_EventLog/SnapshotCount.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -8531,7 +5568,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Log/FB_EventLogCsv/AppendText.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Log/FB_EventLogCsv/AppendText.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 8,
       "adapted_lines": 8,
@@ -8603,7 +5640,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Model/FB_HydraulicSolver/FlowsAt.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Model/FB_HydraulicSolver/FlowsAt.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 7,
       "adapted_lines": 7,
@@ -8639,7 +5676,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Model/FB_HydraulicSolver/Solve.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Model/FB_HydraulicSolver/Solve.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 13,
       "adapted_lines": 13,
@@ -8675,7 +5712,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Model/FB_InflowProfile/FB_InflowProfile.decl.st",
       "adapted_path": "targets/astra/src/POUs/Model/FB_InflowProfile/FB_InflowProfile.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 19,
       "adapted_lines": 19,
@@ -8711,7 +5748,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Station/FB_LevelControlPid/FB_LevelControlPid.decl.st",
       "adapted_path": "targets/astra/src/POUs/Station/FB_LevelControlPid/FB_LevelControlPid.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 45,
       "adapted_lines": 45,
@@ -8747,7 +5784,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Station/FB_LevelControlStepped/FB_LevelControlStepped.decl.st",
       "adapted_path": "targets/astra/src/POUs/Station/FB_LevelControlStepped/FB_LevelControlStepped.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 27,
       "adapted_lines": 27,
@@ -8783,7 +5820,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Model/FB_PlantModel/FB_PlantModel.decl.st",
       "adapted_path": "targets/astra/src/POUs/Model/FB_PlantModel/FB_PlantModel.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 56,
       "adapted_lines": 56,
@@ -8819,7 +5856,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Model/FB_PlantModel/DayOf.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Model/FB_PlantModel/DayOf.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 8,
       "adapted_lines": 8,
@@ -8855,7 +5892,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Model/FB_PlantModel/TodOf.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Model/FB_PlantModel/TodOf.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 8,
       "adapted_lines": 8,
@@ -8891,7 +5928,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Station/FB_PowerRestore/FB_PowerRestore.decl.st",
       "adapted_path": "targets/astra/src/POUs/Station/FB_PowerRestore/FB_PowerRestore.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 34,
       "adapted_lines": 34,
@@ -8927,7 +5964,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Station/FB_Protections/FB_Protections.decl.st",
       "adapted_path": "targets/astra/src/POUs/Station/FB_Protections/FB_Protections.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 50,
       "adapted_lines": 50,
@@ -8963,7 +6000,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Station/FB_PumpProtection/FB_PumpProtection.decl.st",
       "adapted_path": "targets/astra/src/POUs/Station/FB_PumpProtection/FB_PumpProtection.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 24,
       "adapted_lines": 24,
@@ -8999,7 +6036,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Station/FB_PumpRotation/FB_PumpRotation.decl.st",
       "adapted_path": "targets/astra/src/POUs/Station/FB_PumpRotation/FB_PumpRotation.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 70,
       "adapted_lines": 70,
@@ -9035,7 +6072,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Station/FB_PumpRotation/Better.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Station/FB_PumpRotation/Better.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 11,
       "adapted_lines": 11,
@@ -9071,7 +6108,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Station/FB_PumpRotation/PickCandidate.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Station/FB_PumpRotation/PickCandidate.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 7,
       "adapted_lines": 7,
@@ -9107,7 +6144,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Station/FB_PumpRotation/PickIn.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Station/FB_PumpRotation/PickIn.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 10,
       "adapted_lines": 10,
@@ -9143,7 +6180,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Station/FB_PumpRotation/PickLead.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Station/FB_PumpRotation/PickLead.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 4,
       "adapted_lines": 4,
@@ -9179,7 +6216,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Station/FB_PumpRotation/PickLeadIn.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Station/FB_PumpRotation/PickLeadIn.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 7,
       "adapted_lines": 7,
@@ -9215,7 +6252,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Station/FB_PumpRotation/PickToRemove.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Station/FB_PumpRotation/PickToRemove.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 9,
       "adapted_lines": 9,
@@ -9359,7 +6396,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Time/FB_ScaledClock/ScaledAt.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Time/FB_ScaledClock/ScaledAt.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 7,
       "adapted_lines": 7,
@@ -9467,7 +6504,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Time/FB_ScaledClock/Scale.prop.decl.st",
       "adapted_path": "targets/astra/src/POUs/Time/FB_ScaledClock/Scale.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -9503,7 +6540,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Station/FB_StationAlarms/FB_StationAlarms.decl.st",
       "adapted_path": "targets/astra/src/POUs/Station/FB_StationAlarms/FB_StationAlarms.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 28,
       "adapted_lines": 28,
@@ -9611,7 +6648,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Station/FB_StationAlarms/AlarmCount.prop.decl.st",
       "adapted_path": "targets/astra/src/POUs/Station/FB_StationAlarms/AlarmCount.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -9683,7 +6720,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Station/FB_StationCore/ChangedParam.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Station/FB_StationCore/ChangedParam.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 9,
       "adapted_lines": 9,
@@ -9791,7 +6828,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Model/FB_StormGenerator/AddStorm.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Model/FB_StormGenerator/AddStorm.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 12,
       "adapted_lines": 12,
@@ -9863,7 +6900,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Model/FB_StormGenerator/Draw.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Model/FB_StormGenerator/Draw.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -9899,7 +6936,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Model/FB_StormGenerator/FloorU.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Model/FB_StormGenerator/FloorU.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 7,
       "adapted_lines": 7,
@@ -9935,7 +6972,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Model/FB_StormGenerator/Generate.method.decl.st",
       "adapted_path": "targets/astra/src/POUs/Model/FB_StormGenerator/Generate.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 13,
       "adapted_lines": 13,
@@ -10115,7 +7152,7 @@
       "status": "unchanged",
       "orig_path": "upstream/kns-pump-station/src/POUs/Station/FB_Ventilation/FB_Ventilation.decl.st",
       "adapted_path": "targets/astra/src/POUs/Station/FB_Ventilation/FB_Ventilation.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 18,
       "adapted_lines": 18,
@@ -10619,7 +7656,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/AnalogInput/E_AiAlarm.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/AnalogInput/E_AiAlarm.dut.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 11,
       "adapted_lines": 11,
@@ -10637,7 +7674,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/AnalogInput/E_AiFailValue.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/AnalogInput/E_AiFailValue.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 8,
       "adapted_lines": 8,
@@ -10655,7 +7692,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/AnalogInput/E_AiInputType.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/AnalogInput/E_AiInputType.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 11,
       "adapted_lines": 11,
@@ -10673,7 +7710,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/AnalogInput/E_AiSignalState.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/AnalogInput/E_AiSignalState.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 13,
       "adapted_lines": 13,
@@ -10691,7 +7728,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/Alarm/E_AlarmEventReason.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/Alarm/E_AlarmEventReason.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 18,
       "adapted_lines": 18,
@@ -10709,7 +7746,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/Alarm/E_AlarmPriority.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/Alarm/E_AlarmPriority.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 11,
       "adapted_lines": 11,
@@ -10727,7 +7764,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/Alarm/E_AlarmState.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/Alarm/E_AlarmState.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 13,
       "adapted_lines": 13,
@@ -10745,7 +7782,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/Common/E_CmdResult.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/Common/E_CmdResult.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 17,
       "adapted_lines": 17,
@@ -10763,7 +7800,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/ControlValve/E_CvAlarm.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/ControlValve/E_CvAlarm.dut.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 9,
       "adapted_lines": 9,
@@ -10781,7 +7818,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/ControlValve/E_CvFaultAction.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/ControlValve/E_CvFaultAction.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 8,
       "adapted_lines": 8,
@@ -10799,7 +7836,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/Common/E_DeviceMode.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/Common/E_DeviceMode.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 10,
       "adapted_lines": 10,
@@ -10817,7 +7854,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/Common/E_DeviceType.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/Common/E_DeviceType.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 14,
       "adapted_lines": 14,
@@ -10835,7 +7872,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/DigitalInput/E_DiAlarm.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/DigitalInput/E_DiAlarm.dut.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 7,
       "adapted_lines": 7,
@@ -10853,7 +7890,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/DigitalInput/E_DiFailValue.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/DigitalInput/E_DiFailValue.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 9,
       "adapted_lines": 9,
@@ -10871,7 +7908,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/Motor/E_MotorAlarm.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/Motor/E_MotorAlarm.dut.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 13,
       "adapted_lines": 13,
@@ -10889,7 +7926,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/Motor/E_MotorState.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/Motor/E_MotorState.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 11,
       "adapted_lines": 11,
@@ -10907,7 +7944,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/Common/E_Ne107Status.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/Common/E_Ne107Status.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 11,
       "adapted_lines": 11,
@@ -10925,7 +7962,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/Pid/E_PidAction.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/Pid/E_PidAction.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 8,
       "adapted_lines": 8,
@@ -10943,7 +7980,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/Pid/E_PidAlarm.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/Pid/E_PidAlarm.dut.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 6,
       "adapted_lines": 6,
@@ -10961,7 +7998,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/Pid/E_PidPvFailAction.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/Pid/E_PidPvFailAction.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 9,
       "adapted_lines": 9,
@@ -10979,7 +8016,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/Valve/E_ValveAlarm.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/Valve/E_ValveAlarm.dut.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 12,
       "adapted_lines": 12,
@@ -10997,7 +8034,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/Valve/E_ValveSafePos.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/Valve/E_ValveSafePos.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 9,
       "adapted_lines": 9,
@@ -11015,7 +8052,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/Valve/E_ValveState.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/Valve/E_ValveState.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 14,
       "adapted_lines": 14,
@@ -11033,7 +8070,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/DUTs/Valve/E_ValveType.dut.st",
       "adapted_path": "targets/astra/lib/src/DUTs/Valve/E_ValveType.dut.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 9,
       "adapted_lines": 9,
@@ -11627,7 +8664,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_Alarm/Active.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_Alarm/Active.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -11663,7 +8700,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_Alarm/AlarmPriority.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_Alarm/AlarmPriority.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -11699,7 +8736,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_Alarm/Id.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_Alarm/Id.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -11735,7 +8772,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_Alarm/Seq.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_Alarm/Seq.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -11771,7 +8808,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_Alarm/State.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_Alarm/State.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -11807,7 +8844,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_Alarm/Unacked.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_Alarm/Unacked.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -11861,7 +8898,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_AlarmSink/OnAlarmEvent.method.decl.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_AlarmSink/OnAlarmEvent.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 4,
       "adapted_lines": 4,
@@ -11933,7 +8970,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_AlarmSource/AlarmCount.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_AlarmSource/AlarmCount.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -11969,7 +9006,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_Device/I_Device.itf.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_Device/I_Device.itf.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -12023,7 +9060,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_Device/Available.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_Device/Available.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -12059,7 +9096,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_Device/Fault.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_Device/Fault.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -12095,7 +9132,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_Device/Mode.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_Device/Mode.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -12131,7 +9168,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_Device/Status.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_Device/Status.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -12167,7 +9204,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_Motor/I_Motor.itf.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_Motor/I_Motor.itf.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -12185,7 +9222,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_Motor/CurrentRunSeconds.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_Motor/CurrentRunSeconds.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -12221,7 +9258,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_Motor/ReadyToStart.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_Motor/ReadyToStart.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -12257,7 +9294,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_Motor/Running.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_Motor/Running.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -12293,7 +9330,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_Motor/RunSeconds.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_Motor/RunSeconds.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -12329,7 +9366,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_Motor/Starts.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_Motor/Starts.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -12365,7 +9402,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_MotorVfd/I_MotorVfd.itf.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_MotorVfd/I_MotorVfd.itf.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -12383,7 +9420,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_MotorVfd/SpeedAct.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_MotorVfd/SpeedAct.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -12419,7 +9456,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_MotorVfd/SpeedAutoActive.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_MotorVfd/SpeedAutoActive.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -12455,7 +9492,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/Interfaces/I_MotorVfd/SpeedRef.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/Interfaces/I_MotorVfd/SpeedRef.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -12815,7 +9852,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Alarm/FB_Alarm/ReleaseState.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/ReleaseState.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -12887,7 +9924,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Alarm/FB_Alarm/Transit.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/Transit.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 8,
       "adapted_lines": 8,
@@ -12959,7 +9996,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Alarm/FB_Alarm/UpdateShelve.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/UpdateShelve.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -12995,7 +10032,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Alarm/FB_Alarm/UpdateState.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/UpdateState.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -13031,7 +10068,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Alarm/FB_Alarm/Active.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/Active.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -13067,7 +10104,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Alarm/FB_Alarm/AlarmPriority.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/AlarmPriority.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -13103,7 +10140,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Alarm/FB_Alarm/Id.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/Id.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -13139,7 +10176,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Alarm/FB_Alarm/Seq.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/Seq.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -13175,7 +10212,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Alarm/FB_Alarm/State.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/State.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -13211,7 +10248,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Alarm/FB_Alarm/Unacked.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Alarm/FB_Alarm/Unacked.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -13247,7 +10284,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_AnalogInput/FB_AnalogInput.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_AnalogInput/FB_AnalogInput.decl.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 49,
       "adapted_lines": 49,
@@ -13283,7 +10320,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_AnalogInput/CallLimit.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_AnalogInput/CallLimit.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 10,
       "adapted_lines": 10,
@@ -13319,7 +10356,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_AnalogInput/CheckConfig.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_AnalogInput/CheckConfig.method.decl.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 12,
       "adapted_lines": 12,
@@ -13355,7 +10392,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_AnalogInput/ClassifySignal.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_AnalogInput/ClassifySignal.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 4,
       "adapted_lines": 4,
@@ -13391,7 +10428,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_AnalogInput/ComputeValue.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_AnalogInput/ComputeValue.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 15,
       "adapted_lines": 15,
@@ -13427,7 +10464,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_AnalogInput/FaultBits.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_AnalogInput/FaultBits.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -13463,7 +10500,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_AnalogInput/SelectValue.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_AnalogInput/SelectValue.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 7,
       "adapted_lines": 7,
@@ -13499,7 +10536,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_AnalogInput/SubstRemainSec.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_AnalogInput/SubstRemainSec.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 5,
       "adapted_lines": 5,
@@ -13535,7 +10572,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_AnalogInput/WarningBits.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_AnalogInput/WarningBits.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 4,
       "adapted_lines": 4,
@@ -13571,7 +10608,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_ControlValve/FB_ControlValve.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_ControlValve/FB_ControlValve.decl.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 63,
       "adapted_lines": 63,
@@ -13607,7 +10644,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_ControlValve/CheckConfig.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_ControlValve/CheckConfig.method.decl.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 7,
       "adapted_lines": 7,
@@ -13643,7 +10680,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_ControlValve/OnModeChanged.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_ControlValve/OnModeChanged.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 5,
       "adapted_lines": 5,
@@ -13661,7 +10698,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_ControlValve/OnModeChanged.method.impl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_ControlValve/OnModeChanged.method.impl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 7,
       "adapted_lines": 7,
@@ -13679,7 +10716,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_ControlValve/SelectOutput.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_ControlValve/SelectOutput.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 9,
       "adapted_lines": 9,
@@ -13787,7 +10824,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Base/FB_DeviceBase/FB_DeviceBase.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/FB_DeviceBase.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 37,
       "adapted_lines": 37,
@@ -13823,7 +10860,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Base/FB_DeviceBase/AcceptCfg.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/AcceptCfg.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 4,
       "adapted_lines": 4,
@@ -13895,7 +10932,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Base/FB_DeviceBase/BeginCycle.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/BeginCycle.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -13931,7 +10968,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Base/FB_DeviceBase/CheckAlarmCfg.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/CheckAlarmCfg.method.decl.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 9,
       "adapted_lines": 9,
@@ -13967,7 +11004,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Base/FB_DeviceBase/FinishCycle.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/FinishCycle.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 17,
       "adapted_lines": 17,
@@ -14039,7 +11076,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Base/FB_DeviceBase/OnModeChanged.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/OnModeChanged.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 5,
       "adapted_lines": 5,
@@ -14075,7 +11112,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Base/FB_DeviceBase/ProcessMode.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/ProcessMode.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 17,
       "adapted_lines": 17,
@@ -14093,7 +11130,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Base/FB_DeviceBase/ProcessMode.method.impl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/ProcessMode.method.impl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 44,
       "adapted_lines": 44,
@@ -14183,7 +11220,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Base/FB_DeviceBase/ResolveTime.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/ResolveTime.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -14219,7 +11256,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Base/FB_DeviceBase/RunAlarms.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/RunAlarms.method.decl.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 20,
       "adapted_lines": 20,
@@ -14255,7 +11292,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Base/FB_DeviceBase/SetCmdResult.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/SetCmdResult.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 4,
       "adapted_lines": 4,
@@ -14291,7 +11328,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Base/FB_DeviceBase/SwitchRemoteMode.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/SwitchRemoteMode.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 10,
       "adapted_lines": 10,
@@ -14309,7 +11346,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Base/FB_DeviceBase/SwitchRemoteMode.method.impl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/SwitchRemoteMode.method.impl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 8,
       "adapted_lines": 8,
@@ -14327,7 +11364,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Base/FB_DeviceBase/AlarmCount.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/AlarmCount.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -14363,7 +11400,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Base/FB_DeviceBase/Available.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/Available.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -14399,7 +11436,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Base/FB_DeviceBase/Fault.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/Fault.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -14435,7 +11472,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Base/FB_DeviceBase/Mode.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/Mode.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -14471,7 +11508,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Base/FB_DeviceBase/Status.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Base/FB_DeviceBase/Status.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -14507,7 +11544,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_DigitalInput/FB_DigitalInput.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_DigitalInput/FB_DigitalInput.decl.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 32,
       "adapted_lines": 32,
@@ -14543,7 +11580,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_DigitalInput/CheckConfig.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_DigitalInput/CheckConfig.method.decl.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 7,
       "adapted_lines": 7,
@@ -14579,7 +11616,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_DigitalInput/SelectValue.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_DigitalInput/SelectValue.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 4,
       "adapted_lines": 4,
@@ -14615,7 +11652,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_DigitalInput/SubstRemainSec.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_DigitalInput/SubstRemainSec.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 5,
       "adapted_lines": 5,
@@ -14867,7 +11904,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Motor/FB_Motor.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Motor/FB_Motor.decl.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 111,
       "adapted_lines": 111,
@@ -14885,7 +11922,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Motor/FB_Motor.impl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Motor/FB_Motor.impl.st",
-      "markers": 15,
+      "markers": 14,
       "unmarked_hunks": 0,
       "orig_lines": 418,
       "adapted_lines": 418,
@@ -14903,7 +11940,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Motor/CheckConfig.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Motor/CheckConfig.method.decl.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 7,
       "adapted_lines": 7,
@@ -14939,7 +11976,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Motor/OnModeChanged.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Motor/OnModeChanged.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 5,
       "adapted_lines": 5,
@@ -14957,7 +11994,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Motor/OnModeChanged.method.impl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Motor/OnModeChanged.method.impl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 17,
       "adapted_lines": 17,
@@ -15011,7 +12048,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Motor/CurrentRunSeconds.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Motor/CurrentRunSeconds.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -15047,7 +12084,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Motor/ReadyToStart.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Motor/ReadyToStart.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -15083,7 +12120,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Motor/Running.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Motor/Running.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -15119,7 +12156,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Motor/RunSeconds.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Motor/RunSeconds.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -15155,7 +12192,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Motor/Starts.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Motor/Starts.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -15191,7 +12228,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_MotorVfd/FB_MotorVfd.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_MotorVfd/FB_MotorVfd.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 33,
       "adapted_lines": 33,
@@ -15209,7 +12246,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_MotorVfd/FB_MotorVfd.impl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_MotorVfd/FB_MotorVfd.impl.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 105,
       "adapted_lines": 105,
@@ -15227,7 +12264,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_MotorVfd/CheckConfig.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_MotorVfd/CheckConfig.method.decl.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 8,
       "adapted_lines": 8,
@@ -15245,7 +12282,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_MotorVfd/CheckConfig.method.impl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_MotorVfd/CheckConfig.method.impl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 23,
       "adapted_lines": 23,
@@ -15263,7 +12300,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_MotorVfd/SpeedAct.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_MotorVfd/SpeedAct.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -15299,7 +12336,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_MotorVfd/SpeedAutoActive.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_MotorVfd/SpeedAutoActive.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -15335,7 +12372,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_MotorVfd/SpeedRef.prop.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_MotorVfd/SpeedRef.prop.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -15371,7 +12408,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Control/FB_PID/FB_PID.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Control/FB_PID/FB_PID.decl.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 60,
       "adapted_lines": 60,
@@ -15407,7 +12444,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Control/FB_PID/CalcStep.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Control/FB_PID/CalcStep.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 16,
       "adapted_lines": 16,
@@ -15443,7 +12480,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Control/FB_PID/CheckConfig.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Control/FB_PID/CheckConfig.method.decl.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 7,
       "adapted_lines": 7,
@@ -15479,7 +12516,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Control/FB_PID/OnModeChanged.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Control/FB_PID/OnModeChanged.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 5,
       "adapted_lines": 5,
@@ -15497,7 +12534,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Control/FB_PID/OnModeChanged.method.impl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Control/FB_PID/OnModeChanged.method.impl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 7,
       "adapted_lines": 7,
@@ -15515,7 +12552,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Control/FB_PID/RateStep.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Control/FB_PID/RateStep.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 7,
       "adapted_lines": 7,
@@ -15551,7 +12588,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Control/FB_PID/SelectOutput.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Control/FB_PID/SelectOutput.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 17,
       "adapted_lines": 17,
@@ -15839,7 +12876,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Valve/FB_Valve.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Valve/FB_Valve.decl.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 92,
       "adapted_lines": 92,
@@ -15875,7 +12912,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Valve/CheckConfig.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Valve/CheckConfig.method.decl.st",
-      "markers": 2,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 9,
       "adapted_lines": 9,
@@ -15911,7 +12948,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Valve/CountOperations.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Valve/CountOperations.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 4,
       "adapted_lines": 4,
@@ -15947,7 +12984,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Valve/CurrentTarget.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Valve/CurrentTarget.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -15983,7 +13020,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Valve/DriveToTarget.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Valve/DriveToTarget.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 6,
       "adapted_lines": 6,
@@ -16019,7 +13056,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Valve/HandleCommands.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Valve/HandleCommands.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 9,
       "adapted_lines": 9,
@@ -16055,7 +13092,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Valve/LimitPosition.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Valve/LimitPosition.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 5,
       "adapted_lines": 5,
@@ -16091,7 +13128,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Valve/OnModeChanged.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Valve/OnModeChanged.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 5,
       "adapted_lines": 5,
@@ -16109,7 +13146,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Valve/OnModeChanged.method.impl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Valve/OnModeChanged.method.impl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 13,
       "adapted_lines": 13,
@@ -16127,7 +13164,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Valve/ResetFaults.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Valve/ResetFaults.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 4,
       "adapted_lines": 4,
@@ -16163,7 +13200,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Valve/RunTravelTimers.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Valve/RunTravelTimers.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 1,
       "adapted_lines": 1,
@@ -16199,7 +13236,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Valve/SafeMoveOnFault.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Valve/SafeMoveOnFault.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 5,
       "adapted_lines": 5,
@@ -16235,7 +13272,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Valve/SelectTarget.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Valve/SelectTarget.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 5,
       "adapted_lines": 5,
@@ -16271,7 +13308,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Valve/SetOutputs.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Valve/SetOutputs.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 4,
       "adapted_lines": 4,
@@ -16307,7 +13344,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Valve/SuperviseLimits.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Valve/SuperviseLimits.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 4,
       "adapted_lines": 4,
@@ -16343,7 +13380,7 @@
       "status": "unchanged",
       "orig_path": "upstream/plc-process-lib/src/POUs/Devices/FB_Valve/TrackPosition.method.decl.st",
       "adapted_path": "targets/astra/lib/src/POUs/Devices/FB_Valve/TrackPosition.method.decl.st",
-      "markers": 1,
+      "markers": 0,
       "unmarked_hunks": 0,
       "orig_lines": 5,
       "adapted_lines": 5,

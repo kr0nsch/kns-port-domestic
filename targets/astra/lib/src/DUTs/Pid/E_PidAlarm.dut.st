@@ -7,6 +7,5 @@
 TYPE E_PidAlarm :
 (
     PvInvalid := 0   // PV недостоверна в Auto
-// PORT: [types] проверить в Astra.IDE — перечисление с базовым типом UINT (C7)
 ) UINT;
 END_TYPE

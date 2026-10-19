@@ -40,16 +40,14 @@
 
 | Категория | Причина | Маркеров правки | Объектов с правками | Файлов с правками | Строк оригинала затронуто | Строк добавлено | Маркеров проверки |
 |---|---|---|---|---|---|---|---|
-| `oop` | ООП: наследование ФБ и интерфейсов, SUPER^/THIS^, ABSTRACT, спецификаторы доступа, свойства | 0 | 0 | 0 | 0 | 0 | 131 |
-| `retain` | RETAIN и PERSISTENT | 0 | 0 | 0 | 0 | 0 | 2 |
-| `pragma` | прагмы и атрибуты | 0 | 0 | 0 | 0 | 0 | 27 |
+| `retain` | RETAIN и PERSISTENT | 0 | 0 | 0 | 0 | 0 | 1 |
 | `opcua` | OPC UA и символьная конфигурация | 0 | 0 | 0 | 0 | 0 | 2 |
 | `comm` | связь: Modbus RTU/TCP, последовательные порты | 4 | 3 | 5 | 0 | 68 | 2 |
 | `time` | источник времени | 0 | 0 | 0 | 0 | 0 | 5 |
 | `lib` | библиотеки и пространства имён | 0 | 0 | 0 | 0 | 0 | 5 |
-| `types` | типы данных и конструкции языка | 0 | 0 | 0 | 0 | 0 | 108 |
+| `types` | типы данных и конструкции языка | 0 | 0 | 0 | 0 | 0 | 42 |
 | `other` | прочее | 0 | 0 | 0 | 0 | 0 | 1 |
-| **Всего** |  | 4 | 3 | 5 | 0 | 68 | 283 |
+| **Всего** |  | 4 | 3 | 5 | 0 | 68 | 58 |
 
 ### Маркеры проверки по пунктам чек-листа
 
@@ -60,17 +58,9 @@
 | Пункт | Маркеров проверки | Категории |
 |---|---|---|
 | B3 | 1 | `other` |
-| C1 | 13 | `oop` |
-| C2 | 5 | `oop` |
-| C3 | 110 | `oop` |
-| C4 | 3 | `oop` |
-| C5 | 27 | `pragma` |
-| C7 | 35 | `types` |
 | C10 | 5 | `lib` |
 | C11 | 46 | `types`, `time` |
-| C13 | 31 | `types` |
 | C15 | 1 | `time` |
-| D1 | 1 | `retain` |
 | D4 | 1 | `retain` |
 | E2 | 2 | `comm` |
 | G4 | 2 | `opcua` |
@@ -83,17 +73,17 @@
 
 | Объект | Источник | Статус | Строк оригинала | Без изменений | Изменено | Переписано | Удалено | Добавлено | Различие | PORT |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `E_ControlAct` | kns-pump-station | без изменений | 14 | 14 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_ControlMethod` | kns-pump-station | без изменений | 8 | 8 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_EventKind` | kns-pump-station | без изменений | 8 | 8 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_LogExportState` | kns-pump-station | без изменений | 11 | 11 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_PumpRole` | kns-pump-station | без изменений | 10 | 10 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_RotationMode` | kns-pump-station | без изменений | 9 | 9 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_SimAiFault` | kns-pump-station | без изменений | 14 | 14 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_SimFloatStuck` | kns-pump-station | без изменений | 9 | 9 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_StationAlarm` | kns-pump-station | без изменений | 18 | 18 | 0 | 0 | 0 | 0 | 0 % | 1 |
-| `E_StationEvent` | kns-pump-station | без изменений | 28 | 28 | 0 | 0 | 0 | 0 | 0 % | 1 |
-| `E_StationMode` | kns-pump-station | без изменений | 8 | 8 | 0 | 0 | 0 | 0 | 0 % | 2 |
+| `E_ControlAct` | kns-pump-station | без изменений | 14 | 14 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_ControlMethod` | kns-pump-station | без изменений | 8 | 8 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_EventKind` | kns-pump-station | без изменений | 8 | 8 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_LogExportState` | kns-pump-station | без изменений | 11 | 11 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_PumpRole` | kns-pump-station | без изменений | 10 | 10 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_RotationMode` | kns-pump-station | без изменений | 9 | 9 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_SimAiFault` | kns-pump-station | без изменений | 14 | 14 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_SimFloatStuck` | kns-pump-station | без изменений | 9 | 9 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_StationAlarm` | kns-pump-station | без изменений | 18 | 18 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_StationEvent` | kns-pump-station | без изменений | 28 | 28 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_StationMode` | kns-pump-station | без изменений | 8 | 8 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `ST_AlarmView` | kns-pump-station | без изменений | 9 | 9 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `ST_AlarmViewRow` | kns-pump-station | без изменений | 11 | 11 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `ST_EventFeed` | kns-pump-station | без изменений | 11 | 11 | 0 | 0 | 0 | 0 | 0 % | 0 |
@@ -118,7 +108,7 @@
 | `GVL_Hmi` | kns-pump-station | без изменений | 33 | 33 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `GVL_IO` | kns-pump-station | без изменений | 89 | 89 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `GVL_Log` | kns-pump-station | без изменений | 13 | 13 | 0 | 0 | 0 | 0 | 0 % | 0 |
-| `GVL_Persist` | kns-pump-station | без изменений | 463 | 463 | 0 | 0 | 0 | 0 | 0 % | 1 |
+| `GVL_Persist` | kns-pump-station | без изменений | 463 | 463 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `GVL_Sim` | kns-pump-station | без изменений | 10 | 10 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `GVL_Station` | kns-pump-station | без изменений | 12 | 12 | 0 | 0 | 0 | 0 | 0 % | 1 |
 | `GVL_StationDefaults` | kns-pump-station | без изменений | 14 | 14 | 0 | 0 | 0 | 0 | 0 % | 0 |
@@ -126,38 +116,38 @@
 | `I_StationEventSink` | kns-pump-station | без изменений | 6 | 6 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `F_AlarmCode` | kns-pump-station | без изменений | 74 | 74 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `F_EventCsvLine` | kns-pump-station | без изменений | 27 | 27 | 0 | 0 | 0 | 0 | 0 % | 0 |
-| `F_FaultInjEqual` | kns-pump-station | без изменений | 44 | 44 | 0 | 0 | 0 | 0 | 0 % | 1 |
+| `F_FaultInjEqual` | kns-pump-station | без изменений | 44 | 44 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `F_FloatContact` | kns-pump-station | без изменений | 23 | 23 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `F_PumpCurrent` | kns-pump-station | без изменений | 25 | 25 | 0 | 0 | 0 | 0 | 0 % | 0 |
-| `F_StationCfgCheck` | kns-pump-station | без изменений | 87 | 87 | 0 | 0 | 0 | 0 | 0 % | 1 |
+| `F_StationCfgCheck` | kns-pump-station | без изменений | 87 | 87 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `F_UtcNowMs` | kns-pump-station | без изменений | 10 | 10 | 0 | 0 | 0 | 0 | 0 % | 1 |
 | `F_UtcToIso` | kns-pump-station | без изменений | 73 | 73 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `F_Xorshift32` | kns-pump-station | без изменений | 12 | 12 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `F_ZeroPad` | kns-pump-station | без изменений | 12 | 12 | 0 | 0 | 0 | 0 | 0 % | 0 |
-| `FB_AlarmSummary` | kns-pump-station | без изменений | 223 | 223 | 0 | 0 | 0 | 0 | 0 % | 3 |
+| `FB_AlarmSummary` | kns-pump-station | без изменений | 223 | 223 | 0 | 0 | 0 | 0 | 0 % | 1 |
 | `FB_AnalogSensorSim` | kns-pump-station | без изменений | 43 | 43 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `FB_Annunciator` | kns-pump-station | без изменений | 76 | 76 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `FB_Ats` | kns-pump-station | без изменений | 84 | 84 | 0 | 0 | 0 | 0 | 0 % | 1 |
+| `FB_Ats` | kns-pump-station | без изменений | 84 | 84 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `FB_ControlSelector` | kns-pump-station | без изменений | 39 | 39 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `FB_DeviceAudit` | kns-pump-station | без изменений | 33 | 33 | 0 | 0 | 0 | 0 | 0 % | 0 |
-| `FB_EventLog` | kns-pump-station | без изменений | 158 | 158 | 0 | 0 | 0 | 0 | 0 % | 3 |
-| `FB_EventLogCsv` | kns-pump-station | без изменений | 116 | 116 | 0 | 0 | 0 | 0 | 0 % | 5 |
-| `FB_HydraulicSolver` | kns-pump-station | без изменений | 114 | 114 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `FB_InflowProfile` | kns-pump-station | без изменений | 41 | 41 | 0 | 0 | 0 | 0 | 0 % | 1 |
-| `FB_LevelControlPid` | kns-pump-station | без изменений | 111 | 111 | 0 | 0 | 0 | 0 | 0 % | 1 |
-| `FB_LevelControlStepped` | kns-pump-station | без изменений | 57 | 57 | 0 | 0 | 0 | 0 | 0 % | 1 |
-| `FB_PlantModel` | kns-pump-station | без изменений | 307 | 307 | 0 | 0 | 0 | 0 | 0 % | 6 |
-| `FB_PowerRestore` | kns-pump-station | без изменений | 109 | 109 | 0 | 0 | 0 | 0 | 0 % | 1 |
-| `FB_Protections` | kns-pump-station | без изменений | 161 | 161 | 0 | 0 | 0 | 0 | 0 % | 1 |
-| `FB_PumpProtection` | kns-pump-station | без изменений | 43 | 43 | 0 | 0 | 0 | 0 | 0 % | 1 |
-| `FB_PumpRotation` | kns-pump-station | без изменений | 461 | 461 | 0 | 0 | 0 | 0 | 0 % | 9 |
-| `FB_ScaledClock` | kns-pump-station | без изменений | 88 | 88 | 0 | 0 | 0 | 0 | 0 % | 7 |
-| `FB_StationAlarms` | kns-pump-station | без изменений | 83 | 83 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `FB_StationCore` | kns-pump-station | без изменений | 695 | 695 | 0 | 0 | 0 | 0 | 0 % | 1 |
+| `FB_EventLog` | kns-pump-station | без изменений | 158 | 158 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `FB_EventLogCsv` | kns-pump-station | без изменений | 116 | 116 | 0 | 0 | 0 | 0 | 0 % | 4 |
+| `FB_HydraulicSolver` | kns-pump-station | без изменений | 114 | 114 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `FB_InflowProfile` | kns-pump-station | без изменений | 41 | 41 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `FB_LevelControlPid` | kns-pump-station | без изменений | 111 | 111 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `FB_LevelControlStepped` | kns-pump-station | без изменений | 57 | 57 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `FB_PlantModel` | kns-pump-station | без изменений | 307 | 307 | 0 | 0 | 0 | 0 | 0 % | 3 |
+| `FB_PowerRestore` | kns-pump-station | без изменений | 109 | 109 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `FB_Protections` | kns-pump-station | без изменений | 161 | 161 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `FB_PumpProtection` | kns-pump-station | без изменений | 43 | 43 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `FB_PumpRotation` | kns-pump-station | без изменений | 461 | 461 | 0 | 0 | 0 | 0 | 0 % | 2 |
+| `FB_ScaledClock` | kns-pump-station | без изменений | 88 | 88 | 0 | 0 | 0 | 0 | 0 % | 5 |
+| `FB_StationAlarms` | kns-pump-station | без изменений | 83 | 83 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `FB_StationCore` | kns-pump-station | без изменений | 695 | 695 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `FB_StationMode` | kns-pump-station | без изменений | 106 | 106 | 0 | 0 | 0 | 0 | 0 % | 0 |
-| `FB_StormGenerator` | kns-pump-station | без изменений | 184 | 184 | 0 | 0 | 0 | 0 | 0 % | 4 |
+| `FB_StormGenerator` | kns-pump-station | без изменений | 184 | 184 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `FB_TankModel` | kns-pump-station | без изменений | 61 | 61 | 0 | 0 | 0 | 0 | 0 % | 0 |
-| `FB_Ventilation` | kns-pump-station | без изменений | 24 | 24 | 0 | 0 | 0 | 0 | 0 % | 1 |
+| `FB_Ventilation` | kns-pump-station | без изменений | 24 | 24 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `FB_VfdAdapter_Cond` | kns-pump-station | без изменений | 44 | 44 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `FB_VfdSim` | kns-pump-station | без изменений | 172 | 172 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `PRG_ApplyProjectCfg` | kns-pump-station | без изменений | 32 | 32 | 0 | 0 | 0 | 0 | 0 % | 0 |
@@ -168,30 +158,30 @@
 | `PRG_PlantModel` | kns-pump-station | без изменений | 74 | 74 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `PRG_Slow` | kns-pump-station | без изменений | 15 | 15 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `PRG_Station` | kns-pump-station | без изменений | 128 | 128 | 0 | 0 | 0 | 0 | 0 % | 0 |
-| `E_AiAlarm` | plc-process-lib | без изменений | 11 | 11 | 0 | 0 | 0 | 0 | 0 % | 1 |
-| `E_AiFailValue` | plc-process-lib | без изменений | 8 | 8 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_AiInputType` | plc-process-lib | без изменений | 11 | 11 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_AiSignalState` | plc-process-lib | без изменений | 13 | 13 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_AlarmEventReason` | plc-process-lib | без изменений | 18 | 18 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_AlarmPriority` | plc-process-lib | без изменений | 11 | 11 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_AlarmState` | plc-process-lib | без изменений | 13 | 13 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_CmdResult` | plc-process-lib | без изменений | 17 | 17 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_CvAlarm` | plc-process-lib | без изменений | 9 | 9 | 0 | 0 | 0 | 0 | 0 % | 1 |
-| `E_CvFaultAction` | plc-process-lib | без изменений | 8 | 8 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_DeviceMode` | plc-process-lib | без изменений | 10 | 10 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_DeviceType` | plc-process-lib | без изменений | 14 | 14 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_DiAlarm` | plc-process-lib | без изменений | 7 | 7 | 0 | 0 | 0 | 0 | 0 % | 1 |
-| `E_DiFailValue` | plc-process-lib | без изменений | 9 | 9 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_MotorAlarm` | plc-process-lib | без изменений | 13 | 13 | 0 | 0 | 0 | 0 | 0 % | 1 |
-| `E_MotorState` | plc-process-lib | без изменений | 11 | 11 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_Ne107Status` | plc-process-lib | без изменений | 11 | 11 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_PidAction` | plc-process-lib | без изменений | 8 | 8 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_PidAlarm` | plc-process-lib | без изменений | 6 | 6 | 0 | 0 | 0 | 0 | 0 % | 1 |
-| `E_PidPvFailAction` | plc-process-lib | без изменений | 9 | 9 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_ValveAlarm` | plc-process-lib | без изменений | 12 | 12 | 0 | 0 | 0 | 0 | 0 % | 1 |
-| `E_ValveSafePos` | plc-process-lib | без изменений | 9 | 9 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_ValveState` | plc-process-lib | без изменений | 14 | 14 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `E_ValveType` | plc-process-lib | без изменений | 9 | 9 | 0 | 0 | 0 | 0 | 0 % | 2 |
+| `E_AiAlarm` | plc-process-lib | без изменений | 11 | 11 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_AiFailValue` | plc-process-lib | без изменений | 8 | 8 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_AiInputType` | plc-process-lib | без изменений | 11 | 11 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_AiSignalState` | plc-process-lib | без изменений | 13 | 13 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_AlarmEventReason` | plc-process-lib | без изменений | 18 | 18 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_AlarmPriority` | plc-process-lib | без изменений | 11 | 11 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_AlarmState` | plc-process-lib | без изменений | 13 | 13 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_CmdResult` | plc-process-lib | без изменений | 17 | 17 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_CvAlarm` | plc-process-lib | без изменений | 9 | 9 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_CvFaultAction` | plc-process-lib | без изменений | 8 | 8 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_DeviceMode` | plc-process-lib | без изменений | 10 | 10 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_DeviceType` | plc-process-lib | без изменений | 14 | 14 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_DiAlarm` | plc-process-lib | без изменений | 7 | 7 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_DiFailValue` | plc-process-lib | без изменений | 9 | 9 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_MotorAlarm` | plc-process-lib | без изменений | 13 | 13 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_MotorState` | plc-process-lib | без изменений | 11 | 11 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_Ne107Status` | plc-process-lib | без изменений | 11 | 11 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_PidAction` | plc-process-lib | без изменений | 8 | 8 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_PidAlarm` | plc-process-lib | без изменений | 6 | 6 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_PidPvFailAction` | plc-process-lib | без изменений | 9 | 9 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_ValveAlarm` | plc-process-lib | без изменений | 12 | 12 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_ValveSafePos` | plc-process-lib | без изменений | 9 | 9 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_ValveState` | plc-process-lib | без изменений | 14 | 14 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `E_ValveType` | plc-process-lib | без изменений | 9 | 9 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `ST_AiLimitCfg` | plc-process-lib | без изменений | 10 | 10 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `ST_AlarmCfg` | plc-process-lib | без изменений | 9 | 9 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `ST_AlarmEvent` | plc-process-lib | без изменений | 12 | 12 | 0 | 0 | 0 | 0 | 0 % | 0 |
@@ -220,12 +210,12 @@
 | `U_RealBits` | plc-process-lib | без изменений | 7 | 7 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `GVL_Const` | plc-process-lib | без изменений | 192 | 192 | 0 | 0 | 0 | 0 | 0 % | 2 |
 | `GVL_Lib` | plc-process-lib | без изменений | 4 | 4 | 0 | 0 | 0 | 0 | 0 % | 0 |
-| `I_Alarm` | plc-process-lib | без изменений | 13 | 13 | 0 | 0 | 0 | 0 | 0 % | 6 |
-| `I_AlarmSink` | plc-process-lib | без изменений | 5 | 5 | 0 | 0 | 0 | 0 | 0 % | 1 |
-| `I_AlarmSource` | plc-process-lib | без изменений | 7 | 7 | 0 | 0 | 0 | 0 | 0 % | 1 |
-| `I_Device` | plc-process-lib | без изменений | 10 | 10 | 0 | 0 | 0 | 0 | 0 % | 5 |
-| `I_Motor` | plc-process-lib | без изменений | 6 | 6 | 0 | 0 | 0 | 0 | 0 % | 6 |
-| `I_MotorVfd` | plc-process-lib | без изменений | 4 | 4 | 0 | 0 | 0 | 0 | 0 % | 4 |
+| `I_Alarm` | plc-process-lib | без изменений | 13 | 13 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `I_AlarmSink` | plc-process-lib | без изменений | 5 | 5 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `I_AlarmSource` | plc-process-lib | без изменений | 7 | 7 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `I_Device` | plc-process-lib | без изменений | 10 | 10 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `I_Motor` | plc-process-lib | без изменений | 6 | 6 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `I_MotorVfd` | plc-process-lib | без изменений | 4 | 4 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `I_TimeSource` | plc-process-lib | без изменений | 2 | 2 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `F_IsFinite` | plc-process-lib | без изменений | 13 | 13 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `F_LTimeToSec` | plc-process-lib | без изменений | 5 | 5 | 0 | 0 | 0 | 0 | 0 % | 1 |
@@ -233,20 +223,20 @@
 | `F_RateLimit` | plc-process-lib | без изменений | 22 | 22 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `F_RateLimitLr` | plc-process-lib | без изменений | 21 | 21 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `F_TimeToSec` | plc-process-lib | без изменений | 5 | 5 | 0 | 0 | 0 | 0 | 0 % | 0 |
-| `FB_Alarm` | plc-process-lib | без изменений | 211 | 211 | 0 | 0 | 0 | 0 | 0 % | 14 |
-| `FB_AnalogInput` | plc-process-lib | без изменений | 394 | 394 | 0 | 0 | 0 | 0 | 0 % | 11 |
-| `FB_ControlValve` | plc-process-lib | без изменений | 296 | 296 | 0 | 0 | 0 | 0 | 0 % | 7 |
+| `FB_Alarm` | plc-process-lib | без изменений | 211 | 211 | 0 | 0 | 0 | 0 | 0 % | 4 |
+| `FB_AnalogInput` | plc-process-lib | без изменений | 394 | 394 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `FB_ControlValve` | plc-process-lib | без изменений | 296 | 296 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `FB_Delay` | plc-process-lib | без изменений | 48 | 48 | 0 | 0 | 0 | 0 | 0 % | 2 |
-| `FB_DeviceBase` | plc-process-lib | без изменений | 357 | 357 | 0 | 0 | 0 | 0 | 0 % | 21 |
-| `FB_DigitalInput` | plc-process-lib | без изменений | 148 | 148 | 0 | 0 | 0 | 0 | 0 % | 6 |
+| `FB_DeviceBase` | plc-process-lib | без изменений | 357 | 357 | 0 | 0 | 0 | 0 | 0 % | 1 |
+| `FB_DigitalInput` | plc-process-lib | без изменений | 148 | 148 | 0 | 0 | 0 | 0 | 0 % | 0 |
 | `FB_FakeTime` | plc-process-lib | без изменений | 21 | 21 | 0 | 0 | 0 | 0 | 0 % | 2 |
 | `FB_LimitMonitor` | plc-process-lib | без изменений | 41 | 41 | 0 | 0 | 0 | 0 | 0 % | 0 |
-| `FB_Motor` | plc-process-lib | без изменений | 590 | 590 | 0 | 0 | 0 | 0 | 0 % | 26 |
-| `FB_MotorVfd` | plc-process-lib | без изменений | 175 | 175 | 0 | 0 | 0 | 0 | 0 % | 9 |
-| `FB_PID` | plc-process-lib | без изменений | 419 | 419 | 0 | 0 | 0 | 0 | 0 % | 11 |
+| `FB_Motor` | plc-process-lib | без изменений | 590 | 590 | 0 | 0 | 0 | 0 | 0 % | 14 |
+| `FB_MotorVfd` | plc-process-lib | без изменений | 175 | 175 | 0 | 0 | 0 | 0 | 0 % | 0 |
+| `FB_PID` | plc-process-lib | без изменений | 419 | 419 | 0 | 0 | 0 | 0 | 0 % | 2 |
 | `FB_StartsWindow` | plc-process-lib | без изменений | 78 | 78 | 0 | 0 | 0 | 0 | 0 % | 1 |
 | `FB_SystemTime` | plc-process-lib | без изменений | 3 | 3 | 0 | 0 | 0 | 0 | 0 % | 1 |
-| `FB_Valve` | plc-process-lib | без изменений | 673 | 673 | 0 | 0 | 0 | 0 | 0 % | 20 |
+| `FB_Valve` | plc-process-lib | без изменений | 673 | 673 | 0 | 0 | 0 | 0 | 0 % | 2 |
 | `GVL_ConstRegul` | новые объекты | новый | 0 | 0 | 0 | 0 | 0 | 17 | 100 % | 2 |
 | `F_MbStatusOk_Regul` | новые объекты | новый | 0 | 0 | 0 | 0 | 0 | 8 | 100 % | 1 |
 | `PRG_ModbusMap_Regul` | новые объекты | новый | 0 | 0 | 0 | 0 | 0 | 43 | 100 % | 3 |

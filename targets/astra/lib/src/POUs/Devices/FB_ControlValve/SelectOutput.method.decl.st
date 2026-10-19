@@ -4,7 +4,6 @@
 // Auto/Manual — пределы и рампа (LREAL, F_RateLimitLr). lrRamp_pct — положение до плотного закрытия. Значения из
 // VAR_IN_OUT — параметрами (R2).
 // Шаг тела FB_ControlValve; внутренний: PROTECTED (правило L5 контракта), имя зарезервировано
-// PORT: [oop] проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)
 METHOD PROTECTED SelectOutput
 VAR_INPUT
     rManSp_pct      : REAL;   // stCmd.rPosSpMan_pct — задание оператора, %

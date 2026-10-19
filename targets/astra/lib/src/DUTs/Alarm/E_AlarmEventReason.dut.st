@@ -3,7 +3,6 @@
 // Версия:     0.1.0
 // Документ:   docs/ARCHITECTURE.md, раздел «Тревоги»
 {attribute 'qualified_only'}
-// PORT: [pragma] проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)
 {attribute 'strict'}
 TYPE E_AlarmEventReason :
 (
@@ -19,6 +18,5 @@ TYPE E_AlarmEventReason :
     OosOn         := 9,
     OosOff        := 10,
     Disabled      := 11    // тревога выключена приоритетом None: закрывающее событие
-// PORT: [types] проверить в Astra.IDE — перечисление с базовым типом INT (C7)
 ) INT;
 END_TYPE

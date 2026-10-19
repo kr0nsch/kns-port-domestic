@@ -4,7 +4,6 @@
 // Версия:     0.1.0
 // Документ:   docs/ARCHITECTURE.md, раздел «Тревоги»
 {attribute 'qualified_only'}
-// PORT: [pragma] проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)
 {attribute 'strict'}
 TYPE E_AlarmPriority :
 (
@@ -13,6 +12,5 @@ TYPE E_AlarmPriority :
     Medium   := 2,
     High     := 3,
     Critical := 4    // резерв под аварийный уровень
-// PORT: [types] проверить в Astra.IDE — перечисление с базовым типом INT (C7)
 ) INT;
 END_TYPE

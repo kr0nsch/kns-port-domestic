@@ -15,7 +15,6 @@ VAR_INPUT
     xReset        : BOOL;           // импульс: GVL_Hmi.stP10nCmd.stCommon.xReset, HS501, xResetAll
     itfTime       : PL.I_TimeSource;
 END_VAR
-// PORT: [types] проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)
 VAR_IN_OUT CONSTANT
     stCfg : ST_StationCfg;          // rUnderload_A (0 — выкл.), rUnderloadSpeed_pct, tUnderload
 END_VAR

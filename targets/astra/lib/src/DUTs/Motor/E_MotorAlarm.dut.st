@@ -14,6 +14,5 @@ TYPE E_MotorAlarm :
     InterlockTrip  := 5,   // останов блокировкой в работе
     CommLoss       := 6,   // потеря связи с ПЧ
     SpeedDeviation := 7    // рассогласование задания и фактической скорости ПЧ
-// PORT: [types] проверить в Astra.IDE — перечисление с базовым типом UINT (C7)
 ) UINT;
 END_TYPE

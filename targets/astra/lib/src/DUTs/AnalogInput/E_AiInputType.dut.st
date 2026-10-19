@@ -3,7 +3,6 @@
 // Версия:     0.1.0
 // Документ:   docs/fb/FB_AnalogInput.md
 {attribute 'qualified_only'}
-// PORT: [pragma] проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)
 {attribute 'strict'}
 TYPE E_AiInputType :
 (
@@ -12,6 +11,5 @@ TYPE E_AiInputType :
     Norm01   := 2,   // rIn 0..1 без NE 43 (0–10 В и т. п.)
     Eng      := 3,   // rIn уже в инж. ед. (Modbus REAL, расчёт); NE 43 не применяется
     Raw      := 4    // rIn в единицах канала (отсчёты АЦП, целое из Modbus): rRawLo_cnt..rRawHi_cnt
-// PORT: [types] проверить в Astra.IDE — перечисление с базовым типом INT (C7)
 ) INT;
 END_TYPE

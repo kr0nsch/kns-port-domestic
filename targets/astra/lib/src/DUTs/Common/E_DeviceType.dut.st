@@ -4,7 +4,6 @@
 // Версия:     0.1.0
 // Документ:   docs/ARCHITECTURE.md, раздел «Общие типы»
 {attribute 'qualified_only'}
-// PORT: [pragma] проверить в Astra.IDE — {attribute 'strict'} у перечисления (C5)
 {attribute 'strict'}
 TYPE E_DeviceType :
 (
@@ -16,6 +15,5 @@ TYPE E_DeviceType :
     Valve        := 5,
     ControlValve := 6,
     Pid          := 7
-// PORT: [types] проверить в Astra.IDE — перечисление с базовым типом INT (C7)
 ) INT;
 END_TYPE

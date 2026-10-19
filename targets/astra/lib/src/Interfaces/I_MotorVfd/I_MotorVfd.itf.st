@@ -3,5 +3,4 @@
 // Автор:      kr0nsch
 // Версия:     0.1.0
 // Документ:   docs/fb/FB_MotorVfd.md
-// PORT: [oop] проверить в Astra.IDE — наследование интерфейсов (EXTENDS) (C4)
 INTERFACE I_MotorVfd EXTENDS I_Motor

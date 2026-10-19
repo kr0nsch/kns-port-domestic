@@ -3,7 +3,6 @@
 // совпадают. Сравнение по полям, без байтов выравнивания. Структуры — собственными параметрами
 // метода (правило R2 контракта); метод без состояния, им пользуется и тест умолчаний
 METHOD PUBLIC ChangedParam : UINT
-// PORT: [types] проверить в Astra.IDE — VAR_IN_OUT CONSTANT (C13)
 VAR_IN_OUT CONSTANT
     stOld : ST_StationCfg;          // действующая копия
     stNew : ST_StationCfg;          // записанные уставки

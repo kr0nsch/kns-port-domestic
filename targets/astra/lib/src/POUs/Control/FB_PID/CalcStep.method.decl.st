@@ -3,7 +3,6 @@
 // фильтром Tf = Td/N (обратная разность Эйлера, устойчива при любом dt; в шаге инициализации
 // D := 0); PV_prev := PV; v = P + I + D. Работает только с внутренним состоянием, stCfgLkg и
 // входом rPv_eu (VAR_IN_OUT не трогает, R2)
-// PORT: [oop] проверить в Astra.IDE — спецификатор доступа PROTECTED (C3)
 METHOD PROTECTED CalcStep
 VAR_INPUT
     xInit     : BOOL;    // шаг инициализации: D := 0

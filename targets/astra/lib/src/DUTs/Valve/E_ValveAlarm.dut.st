@@ -13,6 +13,5 @@ TYPE E_ValveAlarm :
     TorqueTrip   := 4,   // муфта в ходе
     ExtFault     := 5,   // авария привода
     InterlockAct := 6    // действует блокировка (по умолчанию выключена)
-// PORT: [types] проверить в Astra.IDE — перечисление с базовым типом UINT (C7)
 ) UINT;
 END_TYPE

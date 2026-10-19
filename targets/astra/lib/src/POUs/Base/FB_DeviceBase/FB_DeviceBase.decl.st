@@ -8,7 +8,6 @@
 // Автор:      kr0nsch
 // Версия:     0.1.0
 // Документ:   docs/fb/FB_DeviceBase.md
-// PORT: [oop] проверить в Astra.IDE — ABSTRACT (C2)
 FUNCTION_BLOCK ABSTRACT FB_DeviceBase IMPLEMENTS I_Device
 VAR_INPUT
     itfTime : I_TimeSource;                  // источник времени; 0 — встроенный fbSysTime
