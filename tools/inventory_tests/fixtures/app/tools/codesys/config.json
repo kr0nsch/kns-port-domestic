@@ -1,0 +1,64 @@
+{
+  "modes": {
+    "normal": {
+      "tasks": [
+        {
+          "name": "MainTask",
+          "interval_ms": 20,
+          "priority": 1,
+          "pous": [
+            "PRG_Main"
+          ]
+        },
+        {
+          "name": "SlowTask",
+          "interval_ms": 200,
+          "priority": 16,
+          "pous": [
+            "PRG_Main"
+          ]
+        },
+        {
+          "name": "ExampleTask",
+          "interval_ms": 50,
+          "pous": [
+            "PRG_Example"
+          ]
+        }
+      ],
+      "libraries": [
+        "pl"
+      ]
+    },
+    "test": {
+      "tasks": [
+        {
+          "name": "TestTask",
+          "interval_ms": 10,
+          "priority": 3,
+          "pous": [
+            "PRG_Main"
+          ]
+        }
+      ],
+      "libraries": [
+        "counit"
+      ]
+    }
+  },
+  "libraries": {
+    "_doc": [
+      "служебная строка"
+    ],
+    "counit": {
+      "label": "coUnit 1.2.0.0",
+      "namespace": "coUnit",
+      "version": "1.2.0.0"
+    },
+    "pl": {
+      "label": "plc-process-lib",
+      "namespace": "PL",
+      "version": "1.0.0.0"
+    }
+  }
+}

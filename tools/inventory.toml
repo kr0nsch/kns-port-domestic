@@ -1,0 +1,49 @@
+# Настройки tools/inventory.py: какие деревья исходников инвентаризировать и куда писать отчёт.
+#
+# path — каталог репозитория или рабочей копии; относительный путь — от корня этого репозитория.
+# path_env — переменная окружения, которая заменяет path (например, PL_REPO=../_wt/plc-process-lib-integrate).
+# rev — ревизия git, из которой читаются файлы (git archive), или список ревизий: берётся первая
+#       существующая. Незафиксированные и неотслеживаемые файлы рабочих копий в отчёт не попадают,
+#       коммит записывается в отчёт. "worktree" — рабочее дерево как есть.
+# rev_env — переменная окружения, которая заменяет rev (список — через запятую: PL_REV=integrate,main).
+# dirs — каталоги раскладки docs/LAYOUT.md внутри источника.
+# baseline — базовая линия: объекты, побайтно совпадающие с ней, пропускаются (пример шаблона — не код проекта);
+#            задачи из config.json, у которых все POU — пропущенные объекты, тоже пропускаются.
+#
+# Ключ командной строки --source ID=ПУТЬ[@РЕВИЗИЯ] заменяет path и rev источника или базовой линии;
+# неизвестный ID добавляет источник.
+#
+# Библиотека: ветка integrate (выпуск 1.0 — все семейства ФБ, влитые в фундамент) видна из основной
+# рабочей копии ../plc-process-lib, потому что git worktree делят одни ветки. Когда integrate
+# вольют в main и удалят, отчёт сам перейдёт на HEAD основной рабочей копии.
+
+[output]
+markdown = "docs/inventory.md"
+json = "docs/inventory.json"
+
+[[source]]
+id = "lib"
+title = "Библиотека plc-process-lib"
+path = "../plc-process-lib"
+path_env = "PL_REPO"
+rev = ["integrate", "HEAD"]
+rev_env = "PL_REV"
+dirs = ["src", "tests"]
+baseline = "template"
+
+[[source]]
+id = "kns"
+title = "Флагман kns-pump-station"
+path = "../kns-pump-station"
+path_env = "KNS_REPO"
+rev = "HEAD"
+rev_env = "KNS_REV"
+dirs = ["src", "tests"]
+baseline = "template"
+
+[baseline.template]
+title = "пример шаблона plc-repo-template"
+path = "../plc-repo-template"
+path_env = "TEMPLATE_REPO"
+rev = "HEAD"
+rev_env = "TEMPLATE_REV"

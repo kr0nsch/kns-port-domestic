@@ -1,0 +1,1 @@
+Value := stCfg.iLimit;

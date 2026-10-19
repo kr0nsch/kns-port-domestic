@@ -1,0 +1,16 @@
+{
+  "modes": {
+    "normal": {
+      "tasks": [
+        {
+          "name": "ExampleTask",
+          "interval_ms": 50,
+          "pous": [
+            "PRG_Example"
+          ]
+        }
+      ]
+    }
+  },
+  "libraries": {}
+}
