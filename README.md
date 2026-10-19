@@ -1,252 +1,343 @@
-# kns-port-domestic
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/media/banner-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="docs/media/banner-light.svg">
+    <img alt="Баннер kns-port-domestic: проект CODESYS с кодом и визуализацией переносится в Astra.IDE — код с отметками правок на полях, экраны на виртуальном ПЛК REGUL" src="docs/media/banner-light.svg" width="100%">
+  </picture>
+</p>
 
-[![CI](https://github.com/kr0nsch/kns-port-domestic/actions/workflows/ci.yml/badge.svg)](https://github.com/kr0nsch/kns-port-domestic/actions/workflows/ci.yml)
+<p align="center"><b>Перенос проекта CODESYS V3.5 на отечественную Astra.IDE (ПЛК REGUL) с расчётом цены переноса: что работает как есть, что проверить, что переписать</b></p>
 
-Перенос флагмана КНС-1 ([kns-pump-station](https://github.com/kr0nsch/kns-pump-station)) и
-библиотеки [plc-process-lib](https://github.com/kr0nsch/plc-process-lib) из CODESYS V3.5 SP17
-Patch 3 (3.5.17.30) в отечественную среду Astra.IDE (РегЛаб, ПЛК REGUL) с подсчётом цены переноса.
-Здесь готовятся код и документы, а компилирует и испытывает в Astra.IDE инженер: ошибки среды
-возвращаются в репозиторий через [docs/BUILD_ERRORS.md](docs/BUILD_ERRORS.md) и закрываются правками
-с маркером `// PORT:`.
+<p align="center">
+  <a href="https://github.com/kr0nsch/kns-port-domestic/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/kr0nsch/kns-port-domestic/actions/workflows/ci.yml/badge.svg?branch=main"></a>
+  <a href="LICENSE"><img alt="Лицензия MIT" src="https://img.shields.io/badge/license-MIT-56677D?style=flat-square&labelColor=1B2736"></a>
+  <img alt="Исходная платформа: CODESYS 3.5.17.30" src="https://img.shields.io/badge/CODESYS-3.5.17.30-C2410C?style=flat-square&labelColor=1B2736">
+  <img alt="Целевая среда: Astra.IDE 1.7.2, сборка в среде ещё не выполнялась" src="https://img.shields.io/badge/Astra.IDE-1.7.2%20%C2%B7%20%D0%BD%D0%B5%20%D1%81%D0%BE%D0%B1%D0%B8%D1%80%D0%B0%D0%BB%D1%81%D1%8F-56677D?style=flat-square&labelColor=1B2736">
+  <img alt="IEC 61131-3" src="https://img.shields.io/badge/IEC%2061131--3-56677D?style=flat-square">
+  <a href="#тесты-и-качество"><img alt="Тесты локального прогона 19.10.2026: pytest 782" src="https://img.shields.io/badge/tests-pytest%20782-3A4B60?style=flat-square&labelColor=1B2736"></a>
+</p>
 
-## Статус
+<p align="center"><a href="#что-это-и-зачем">Что это</a> · <a href="#как-это-выглядит">Как выглядит</a> · <a href="#быстрый-старт">Быстрый старт</a> · <a href="#как-использовать-в-своём-проекте">Свой перенос</a> · <a href="#как-устроено">Как устроено</a> · <a href="#документация">Документация</a> · <a href="#summary-en">Summary (EN)</a></p>
 
-**Этап 1 — инструменты и анализ (готово).** Адаптированного кода (`targets/astra/src/`) пока нет:
-он появится после первой сборки в Astra.IDE, которая покажет, нужна ли замена ООП.
+**Перенос флагмана КНС-1 и библиотеки ФБ plc-process-lib из CODESYS 3.5.17.30 в Astra.IDE (РегЛаб,
+ПЛК REGUL R500 и его виртуальный ПЛК).** Когда проект на CODESYS нужно перевести на отечественную
+среду, обычно непонятно, сколько кода переживёт перенос и что сломается: документация вендора
+подтверждает не всё, а пробная сборка в среде — работа на дни. Здесь код уже подготовлен к сборке, каждое
+неподтверждённое место помечено пунктом чек-листа, цена переноса посчитана по маркерам, а повторить
+оценку на своём проекте можно теми же инструментами. Для инженеров АСУ ТП и техлидов интеграторов.
 
-| Этап | Что | Состояние |
-|---|---|---|
-| 1. Анализ | исследование Astra.IDE: 93 факта со ссылками, риски, чек-лист «проверить вручную» → [differences.md](docs/differences.md) | готово |
-| 1. Инвентаризация | `tools/inventory.py` → [inventory.md](docs/inventory.md): что из CODESYS используется в коде и где | готово |
-| 1. Конвертер | `tools/st_to_plcopen.py`: раскладка → PLCopen XML; проверен импортом и сборкой в CODESYS 3.5.17.30 → [plcopen.md](docs/plcopen.md) | готово |
-| 1. Метрики | `tools/port_metrics.py`: строки без изменений, изменённые, переписанные; маркеры `// PORT:` → [port_metrics.md](docs/port_metrics.md) | инструмент готов, отчёта нет (нет кода) |
-| 1. Документы | [чек-лист миграции](docs/migration_checklist.md), [журнал сборки](docs/BUILD_ERRORS.md), [бланк протокола ПМИ](docs/test_protocol_astra.md) | готово |
-| 2. Пробная сборка | инженер собирает в Astra.IDE XML фикстуры конструкций и библиотеки как есть (итерация 1) | ждёт инженера |
-| 2. Адаптированный код | `targets/astra/src/`: правки только там, где без них нельзя, каждая с `// PORT: [категория] причина` | после итерации 1 |
-| 3. Испытания | та же ПМИ флагмана в Astra.IDE (ВПЛК REGUL R500) → [test_protocol_astra.md](docs/test_protocol_astra.md) | после сборки без ошибок |
+## Что это и зачем
 
-Порядок сред — решение инженера: первой — Astra.IDE (она у него установлена), MasterSCADA 4D — позже,
-отдельным этапом ([ASSUMPTIONS.md](docs/ASSUMPTIONS.md#цель-и-порядок-переноса)).
+Флагман КНС-1 — канализационная насосная станция на CODESYS: три насоса с ПЧ по Modbus RTU, модель
+объекта, журнал событий, WebVisu; устройства — из библиотеки plc-process-lib (наследование ФБ,
+интерфейсы, свойства). Astra.IDE — OEM-сборка той же линейки CODESYS V3.5 SP17, но её документация
+не описывает наследование ФБ, `SUPER^`, `ABSTRACT`, спецификаторы доступа и ещё десяток конструкций, на
+которых построен код. Репозиторий переводит этот вопрос из «неизвестно» в список проверок с числом мест.
 
-## Демонстрация
+**Что даёт:**
 
-> _Плейсхолдер: снимки импорта PLCopen XML и сборки в Astra.IDE появятся после первой итерации
-> `BUILD_ERRORS.md` — их снимает инженер на своей установке. Проверка того же файла в CODESYS
-> 3.5.17.30 — таблица в [docs/plcopen.md](docs/plcopen.md#эталонная-проверка-в-codesys-351730)._
+- Адаптированный код для Astra.IDE: [`targets/astra/src`](targets/astra/src) (приложение) и
+  [`targets/astra/lib/src`](targets/astra/lib/src) (библиотека `PL`), с зафиксированными коммитами
+  оригиналов; файлы импорта PLCopen XML собираются одной командой и в CI.
+- 283 маркера `// PORT: … проверить в Astra.IDE — что (пункт)` у каждой конструкции, которую
+  документация РегЛаб не подтверждает; пункты — в [чек-листе миграции](docs/migration_checklist.md#9-проверить-вручную),
+  факты о среде — 93 штуки со ссылками на документы вендора ([differences.md](docs/differences.md)).
+- Цена переноса в строках и маркерах по категориям ([port_metrics.md](docs/port_metrics.md)), которая
+  считается заново в CI и после каждой итерации сборки.
+- Готовый цикл с инженером в среде: сообщения компилятора → [BUILD_ERRORS.md](docs/BUILD_ERRORS.md) →
+  правки с маркерами или подтверждение пункта одной командой.
+- Перенос новых версий флагмана: дельта и трёхстороннее слияние с правками переноса
+  (`tools/upstream_delta.py`).
 
-## Архитектура
+**Для кого.** Инженеры АСУ ТП, которым поручили перевести проект CODESYS на Astra.IDE и нужно назвать
+сроки до пробной сборки; техлиды интеграторов, которые оценивают импортозамещение ПЛК; вендоры и
+заказчики — как пример того, как переносится реальный проект с ООП.
 
-```mermaid
-flowchart LR
-    lib["plc-process-lib<br/>src/, tests/"] --> inv["tools/inventory.py"] --> invmd["docs/inventory.md"]
-    kns["kns-pump-station<br/>src/, tests/"] --> inv
-    res["исследование Astra.IDE<br/>F01…F93"] --> diff["docs/differences.md<br/>migration_checklist.md"]
-    invmd --> diff
-    lib --> astra["targets/astra/src/<br/>правки // PORT:"]
-    kns --> astra
-    diff --> astra
-    astra --> conv["tools/st_to_plcopen.py"] --> xml["PLCopen XML<br/>TC6 2.01"]
-    xml --> cds["CODESYS 3.5.17.30<br/>verify_codesys.py: импорт, сборка"]
-    xml --> ide["Astra.IDE<br/>импорт и сборка (инженер)"]
-    ide --> be["docs/BUILD_ERRORS.md"] -- "разбор и правки" --> astra
-    astra --> pm["tools/port_metrics.py"] --> pmmd["docs/port_metrics.md"]
-    ide --> pmi["ПМИ флагмана<br/>test_protocol_astra.md"]
-```
-
-Исходники библиотеки и флагмана читаются из соседних рабочих копий и не копируются сюда до этапа 2.
-Раскладка исходников — та же, что у всего портфолио ([docs/LAYOUT.md](docs/LAYOUT.md)): один объект
-CODESYS — один файл или папка.
-
-## Что переносится
-
-| Источник | Объём (по `docs/inventory.md`) | Состояние |
-|---|---|---|
-| Библиотека `plc-process-lib`, ветка `integrate` (выпуск 1.0) | 115 объектов; `src` — 79 объектов, 4199 строк кода; `tests` — 36 объектов, 13876 строк кода | исходники готовы |
-| Флагман КНС-1 `kns-pump-station` | собственного кода пока нет (в `src/` только пример шаблона) | пишется; инвентаризация повторяется командой |
-
-Главные риски для Astra.IDE (счёт `src / tests`, полная таблица — в
-[inventory.md](docs/inventory.md#главные-риски)):
-
-| Риск | Возможность | Мест | Что делаем |
-|---|---|---|---|
-| высокий | юнит-тесты coUnit | 0 / 3622 | собрать тестовый проект с coUnit; при отказе тесты логики остаются в CODESYS 3.5.17.30, на REGUL — сценарии ПМИ |
-| высокий | наследование ФБ (`EXTENDS`) | 7 / 18 | пробная сборка; при отказе — композиция и интерфейсы (`[oop]`) |
-| высокий | `SUPER^` | 6 / 3 | вместе с `EXTENDS` |
-| средний | `PRIVATE` / `PROTECTED` | 0 / 428, 49 / 5 | при отказе — без спецификатора, поведение то же |
-| средний | `LTIME`: тип, литералы, преобразования | 37 / 19, 13 / 86, 19 / 0 | проверить компиляцией и на ВПЛК |
-| средний | свойства ФБ и интерфейсов | 19 + 19 / 2 | при отказе — методы `GetX`/`SetX` |
-
-В документации РегЛаб наследование ФБ, `SUPER^`, `ABSTRACT` и спецификаторы доступа не описаны
-([differences.md](docs/differences.md#главное), F23), хотя основа среды — та же линейка CODESYS SP17.
-Поэтому первым собирается код как есть: собирается — код библиотеки не меняется. Устройства, Modbus
-RTU/TCP, OPC UA, задачи, HMI и рантайм настраиваются в проекте REGUL заново, по
-[чек-листу миграции](docs/migration_checklist.md).
-
-## Быстрый старт без железа
-
-Нужен Python 3.11+ (в CI — 3.12). CODESYS и Astra.IDE не нужны.
-
-```bash
-python -m venv .venv
-source .venv/bin/activate              # Windows: .venv\Scripts\activate
-python -m pip install -r requirements-dev.txt
-python -m pytest                       # тесты всех инструментов
-```
-
-### Инвентаризация возможностей CODESYS
-
-Нужны соседние каталоги `../plc-process-lib` и `../kns-pump-station` (пути — в `tools/inventory.toml`,
-переменные `PL_REPO`, `KNS_REPO`, ревизия библиотеки — `PL_REV`).
-
-```bash
-python tools/inventory.py                  # пересобрать docs/inventory.md и docs/inventory.json
-python tools/inventory.py --check          # отчёт актуален? код 1 — устарел
-python tools/inventory.py --source lib=../_wt/plc-process-lib-integrate@worktree   # рабочее дерево как есть
-python tools/inventory.py --source astra=targets/astra    # добавить дерево, например адаптированный код
-```
-
-Файлы читаются из коммитов (`git archive`), коммит записывается в отчёт; объекты, побайтно совпадающие с
-примером шаблона, пропускаются; счёт ведётся по разобранному тексту, комментарии и строки не учитываются
-([ASSUMPTIONS.md](docs/ASSUMPTIONS.md#инвентаризация-toolsinventorypy)).
-
-### PLCopen XML
-
-```bash
-# любая раскладка (--root — каталог с src/), с проверкой по официальной схеме TC6 2.01
-python tools/st_to_plcopen.py --root ../plc-process-lib --out build/plcopen/plc-process-lib.xml --xsd auto
-python tools/st_to_plcopen.py --src targets/astra/src --out build/plcopen/astra.xml --xsd auto
-python tools/st_to_plcopen.py --namespace tc6_0200 ...                    # как пишет экспорт Astra.IDE
-python tools/st_to_plcopen.py --reverse export.xml --to build/from-xml     # XML -> раскладка
-python tools/plcopen/verify_codesys.py     # эталон: импорт и сборка в CODESYS 3.5.17.30 (Windows с CODESYS)
-```
-
-Формат, подмножество и ограничения — [docs/plcopen.md](docs/plcopen.md).
-
-### Метрики переноса
-
-```bash
-# когда появится targets/astra/src; полная команда с метками и исключениями — в docs/port_metrics.md
-python tools/port_metrics.py --strict      # код 1 — правка без маркера // PORT:
-```
-
-## Цикл BUILD_ERRORS: как инженер собирает в Astra.IDE
-
-Полный формат — в [docs/BUILD_ERRORS.md](docs/BUILD_ERRORS.md), подготовка проекта REGUL — в разделе 1
-[чек-листа](docs/migration_checklist.md#1-подготовка).
-
-1. **Репозиторий:** PLCopen XML собран `tools/st_to_plcopen.py` и проверен импортом в CODESYS
-   3.5.17.30 (`tools/plcopen/verify_codesys.py`). Для итерации 1 это фикстура конструкций
-   (`--root tools/plcopen/tests/fixtures/constructs`: наследование, `SUPER^`/`THIS^`,
-   `ABSTRACT`/`FINAL`, спецификаторы, свойства, наследование интерфейсов, `strict`, перечисления с
-   базовым типом, `STRUCT EXTENDS`, `UNION`, `VAR_IN_OUT CONSTANT`) и библиотека как есть; дальше —
-   `targets/astra/src/`.
-2. **Инженер, Astra.IDE:** проект мастером Regul (R500, ЦП CU 00 071-W), в «Менеджере библиотек» —
-   Standard и нужные коду библиотеки; Application → «Импорт PLCopenXML…»; затем «Очистить всё» и
-   «Генерировать код».
-3. **Инженер:** окно «Сообщения» → Ctrl+A, Ctrl+C → новая итерация в `BUILD_ERRORS.md`: версии
-   Astra.IDE, пакета и СПО, коммит этого репозитория, сообщения как есть.
-4. **Разбор:** у каждого сообщения — номер `N.k`, причина и решение: правка в `targets/astra/src/` с
-   маркером `// PORT: [категория] BUILD_ERRORS N.k: причина`, ручной шаг в чек-листе, строка в
-   `differences.md` или новый пункт «проверить вручную».
-5. **Следующая итерация:** новый XML, `tools/port_metrics.py --strict` (правка без маркера — ошибка),
-   снова шаги 2–4. Цикл закончен, когда инженер записывает в сводке `BUILD_ERRORS.md`: 0 ошибок,
-   предупреждения разобраны.
-
-## Цена переноса
+### Цена переноса
 
 | Показатель | Значение |
 |---|---|
-| Строки без изменений / изменённые / переписанные | появятся в [port_metrics.md](docs/port_metrics.md) с первой правкой в `targets/astra/src/` |
-| Правки по категориям (`[oop]`, `[types]`, `[lib]`, `[comm]`…) | там же, по маркерам `// PORT:` |
-| Итераций сборки до 0 ошибок | по сводке [BUILD_ERRORS.md](docs/BUILD_ERRORS.md#сводка) |
+| Значимых строк оригинала | 10 874: флагман — 6 453 (коммит `505ce14`), библиотека — 4 421 (тег `v1.0.0`) |
+| Без изменений / изменено / переписано | 100 % / 0 % / 0 % — до первой сборки в Astra.IDE |
+| Новый код | 3 объекта, 68 строк: слой Modbus RTU для ПЛК REGUL (`[comm]`) |
+| Маркеров проверки | 283 по 15 пунктам; от C1–C4 (наследование, 131 маркер) зависит главная возможная статья затрат |
+| Итераций сборки до 0 ошибок | ещё ни одной ([BUILD_ERRORS.md](docs/BUILD_ERRORS.md#сводка)) |
 | Трудозатраты, ч | _впишет инженер_ |
 
-### Что не перенеслось и почему
+**Что не перенеслось и почему:**
 
-| Объект или функция | Почему | Чем заменено |
+| Что | Почему | Что вместо |
 |---|---|---|
-| _заполняется по итогам итераций_ | | |
+| Тесты coUnit (библиотека — 15 134, флагман — 9 716 строк кода тестов) | сборка coUnit в Astra.IDE не подтверждена (пункт H2) | юнит-тесты логики идут в CODESYS 3.5.17.30 в репозиториях оригиналов — код перенесён без правок |
+| `PRG_Main` библиотеки | программа рабочей сборки библиотеки, в саму библиотеку не входит | — |
+| Визуализация, задачи, дерево устройств, Modbus, символьная конфигурация OPC UA | PLCopen XML переносит только объекты кода | ручные шаги в проекте REGUL по [чек-листу](docs/migration_checklist.md) |
 
-Каждая строка дублируется в [differences.md](docs/differences.md) со ссылкой на сообщение `N.k`; удалённые
-объекты видны в таблице файлов [port_metrics.md](docs/port_metrics.md) со статусом «не перенесён».
+Цифры тестов — по [инвентаризации](docs/inventory.md) (строки кода без комментариев).
 
-### Среда, в которой подтверждена сборка
+## Как это выглядит
 
-| Компонент | Версия |
+**Проверки переноса без Astra.IDE** — метрики, маркеры проверки по пунктам чек-листа, файл импорта и
+дельта флагмана после переноса (`main` ушёл на `0fedf61`, в `src` изменений нет):
+
+<p align="center">
+  <img alt="Терминал PowerShell: port_metrics — 10874 строки оригинала без изменений, 3 правки и 283 проверки; port_checks — таблица пунктов C1…G4, у 277 мест по правилам есть маркеры; st_to_plcopen — 88 объектов, схема TC6 2.01 без ошибок; upstream_delta — 505ce14 → 0fedf61, изменений нет" src="docs/media/demo-port-checks.gif" width="900">
+</p>
+<p align="center"><sub>Реальный прогон в клоне репозитория, Windows PowerShell, 19.10.2026; снято term2gif.py, ускорено в 1,5 раза</sub></p>
+
+**Что проверить первой сборкой** — маркеры проверки по пунктам чек-листа из отчёта
+[port_metrics.json](docs/port_metrics.json):
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/media/chart-check-items-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="docs/media/chart-check-items-light.png">
+    <img alt="Горизонтальные столбцы: C3 спецификаторы доступа и свойства — 110 маркеров, C11 LTIME — 46, C7 перечисления с базовым типом — 35, C13 VAR_IN_OUT CONSTANT — 31, C5 strict — 27, C1 EXTENDS и SUPER^ — 13, остальные пункты — от 1 до 5" src="docs/media/chart-check-items-light.png" width="900">
+  </picture>
+</p>
+<p align="center"><sub>Данные отчёта docs/port_metrics.json на коммите переноса; снимков Astra.IDE пока нет — первую сборку выполняет инженер</sub></p>
+
+Маркер в коде выглядит так (`targets/astra/lib/src/POUs/Devices/FB_MotorVfd/FB_MotorVfd.decl.st`):
+
+```
+// PORT: [oop] проверить в Astra.IDE — наследование ФБ (EXTENDS) (C1)
+FUNCTION_BLOCK FB_MotorVfd EXTENDS FB_Motor IMPLEMENTS I_MotorVfd
+```
+
+## Быстрый старт
+
+### Без Astra.IDE: проверки и файлы импорта
+
+Нужны Python 3.11+ (в CI — 3.12) и git; Windows или Linux. CODESYS, Astra.IDE и ПЛК не нужны.
+
+1. Клонировать и установить зависимости (ruff, mypy, pytest, hypothesis, lxml):
+
+   ```bash
+   git clone https://github.com/kr0nsch/kns-port-domestic.git
+   cd kns-port-domestic
+   python -m pip install -r requirements-dev.txt
+   ```
+
+   На Linux, где `pip` без окружения отказывает (`externally-managed-environment`), — сначала
+   `python3 -m venv .venv` и `. .venv/bin/activate`.
+
+2. Метрики переноса — отчёт в репозитории совпадает с пересчётом, все правки помечены:
+
+   ```bash
+   python tools/port_metrics.py --check --strict
+   ```
+
+   Увидите: `port_metrics: строк оригинала 10874 — без изменений 100,0 %, … добавлено 68; маркеров PORT 286 (правок 3, проверок 283), правок без маркера 0`.
+
+3. Маркеры проверки — у каждого места из правил есть маркер своего пункта:
+
+   ```bash
+   python tools/port_checks.py --strict
+   ```
+
+   Увидите таблицу пунктов (B3, C1…C15, D1, D4, E2, G4) и строку
+   `port_checks: файлов 545, мест по правилам 277, маркеров проверки 283; без маркера 0, лишних 0, проваленных пунктов 0`.
+
+4. Файлы импорта для Astra.IDE — библиотека и приложение:
+
+   ```bash
+   python tools/st_to_plcopen.py --root targets/astra/lib --name plc-process-lib --out build/plcopen/astra-lib.xml --xsd auto
+   python tools/st_to_plcopen.py --root targets/astra --name kns-pump-station --out build/plcopen/astra-app.xml --xsd auto
+   ```
+
+   Увидите: `объектов 79` и `объектов 88`, `XSD TC6 2.01 — без ошибок` (схема скачивается с plcopen.org
+   в `build/xsd/`; без сети проверка схемы пропускается). Те же файлы CI кладёт в артефакт `build-reports`.
+
+5. Тесты инструментов:
+
+   ```bash
+   python -m pytest
+   ```
+
+   Увидите `774 passed, 10 skipped` за полминуты; с iec_checker 0.4 и RuSTy 1.0.6 на машине (где их
+   взять — [tools/README.md](tools/README.md#checkrun_iec_checkerpy--статанализ)) — `782 passed, 2 skipped`
+   (два теста ждут код в пустом `src/`). Без сети пропускается и проверка XML по схеме.
+
+### В Astra.IDE: сборка (шаг инженера)
+
+Нужны Astra.IDE 1.7.2.x с пакетом Regul и ВПЛК REGUL R500 (образ `.ova`) или ПЛК — дистрибутивы
+выдаёт РегЛаб после курсов. **Этот шаг ещё не выполнялся.**
+
+1. Библиотека: проект-библиотека, «Импорт PLCopenXML» файла `astra-lib.xml`, пространство имён `PL`,
+   сборка, установка в репозиторий библиотек.
+2. Приложение: проект «Мастером конфигурации Regul» (R500, ЦП CU 00 071-W), библиотеки `PL`, Standard,
+   CAA File, SysTimeRtc, импорт `astra-app.xml`, задачи по таблице
+   [сборки ВПЛК](targets/astra/README.md#две-сборки), «Генерировать код».
+3. Сообщения — итерацией в [docs/BUILD_ERRORS.md](docs/BUILD_ERRORS.md) (заготовка итерации 1 там же);
+   по каждому проверенному пункту — `python tools/port_checks.py --resolve <пункт>` или `--fail <пункт>`.
+
+Полный порядок, ввод-вывод, Modbus, HMI и испытания по той же ПМИ — [чек-лист миграции](docs/migration_checklist.md).
+
+## Как использовать в своём проекте
+
+**Сценарий — оценить перенос своего проекта CODESYS до первой сборки.** Свой код в раскладке
+[LAYOUT.md](docs/LAYOUT.md) рядом с клоном (`../my-project/src`; из `.project` — экспорт PLCopenXML и
+`st_to_plcopen.py --reverse`). Дальше:
+
+1. `python tools/inventory.py --source my=../my-project@HEAD --allow-missing --md build/my-inventory.md --json build/my-inventory.json`
+   — какие возможности CODESYS используются и с каким риском для Astra.IDE.
+2. `python tools/port_checks.py --tree ../my-project/src --config build/my-checks.json` — без записи в
+   файлы: сколько мест зависит от каждого пункта чек-листа.
+3. Число мест по пунктам × цена правки при отказе пункта (по [differences.md](docs/differences.md)) —
+   оценка кода; ручные шаги устройства, связи и HMI — по разделам 1, 3–5 чек-листа.
+4. Перенос: копия в `targets/<среда>/src`, `port_checks.py --fix`, правки с маркерами, `port_metrics.py
+   --strict`, файл импорта, цикл `BUILD_ERRORS.md`.
+
+**Пример — шаблон `plc-repo-template` как «свой проект».** Шаг 2 на его `src` и `tests`:
+
+```text
+$ python tools/port_checks.py --tree ../plc-repo-template/src --tree ../plc-repo-template/tests --config build/my-checks.json
+...
+Пункт | состояние | метка | мест по правилам | маркеров | нарушений
+C1 | открыт | oop | 2 | 0 | 2
+C3 | открыт | oop | 19 | 0 | 19
+C5 | открыт | pragma | 1 | 0 | 1
+port_checks: файлов 60, мест по правилам 22, маркеров проверки 0; без маркера 22, лишних 0, проваленных пунктов 0
+```
+
+Читается так: два наследования ФБ (наборы тестов coUnit — `EXTENDS coUnit.FB_TestSuite`), 18
+спецификаторов `PRIVATE` у методов-тестов и одно свойство ФБ (вместе — 19 мест C3), один `strict`. Если в Astra.IDE подтвердятся C1 и C3, код
+шаблона переносится без правок. Пошагово, с таблицей оценки и примером КНС-1, — [docs/USAGE.md](docs/USAGE.md).
+
+## Как устроено
+
+```mermaid
+flowchart LR
+    orig["Оригиналы<br/>kns-pump-station 505ce14<br/>plc-process-lib v1.0.0"] -- "git archive" --> up["upstream/*/src<br/>снимки + SOURCES.json"]
+    up --> tgt["targets/astra/src, lib/src<br/>код в форме CODESYS"]
+    rules["tools/port_checks.py<br/>17 правил, пункты чек-листа"] --> tgt
+    tgt --> pm["tools/port_metrics.py<br/>docs/port_metrics.md"]
+    up --> pm
+    tgt --> xml["tools/st_to_plcopen.py<br/>astra-lib.xml, astra-app.xml"]
+    xml --> ide["Astra.IDE<br/>сборка — инженер"]
+    ide --> be["docs/BUILD_ERRORS.md"]
+    be -- "правки // PORT:<br/>--resolve / --fail" --> tgt
+    orig -. "новые коммиты" .-> delta["tools/upstream_delta.py<br/>трёхстороннее слияние"]
+    up --> delta --> tgt
+```
+
+- **Код переносится как есть, пока среда не сказала иначе.** Где поведение Astra.IDE не подтверждено,
+  остаётся форма CODESYS и маркер проверки; правка — по ошибке сборки или там, где без неё нельзя
+  наверняка (Modbus RTU на REGUL настраивается устройствами вендора — отсюда адаптер
+  `PRG_ModbusMap_Regul`).
+- **Источник закреплён коммитом.** Снимок оригинала лежит в репозитории: метрики считаются в CI, а при
+  обновлении флагмана снимок — общий предок трёхстороннего слияния.
+- **Две сборки одного кода:** ВПЛК (имитация, ПМИ) и ПЛК (Modbus, модули RegulBus) отличаются
+  константой `SIM_ALLOWED` и составом задач ([targets/astra/README.md](targets/astra/README.md#две-сборки)).
+
+| Каталог | Что внутри |
 |---|---|
-| Astra.IDE / пакет Regul / СПО ВПЛК или ПЛК | _впишет инженер_ (совпадение версий — риск R22) |
-| Устройство | REGUL R500, ЦП CU 00 071-W (ВПЛК) — _подтвердит инженер_ |
-| Коммит этого репозитория | _из сводки BUILD_ERRORS.md_ |
+| `targets/astra/src/` | приложение КНС-1 для Astra.IDE и объекты сборки REGUL (`POUs/Regul`, `GVLs/Regul`) |
+| `targets/astra/lib/src/` | библиотека plc-process-lib для Astra.IDE (пространство имён `PL`) |
+| `targets/astra/` | `port_checks.json` (решения по пунктам), `iec_checker_allow.toml`, [README](targets/astra/README.md): коммиты, сборки, перенос дельты |
+| `upstream/` | снимки `src` оригиналов на коммитах переноса, [SOURCES.json](upstream/SOURCES.json) |
+| `tools/` | инструменты переноса (`inventory.py`, `port_checks.py`, `port_metrics.py`, `upstream_delta.py`, `st_to_plcopen.py`) и шаблона (`assemble.py`, `check/`, `codesys/`) |
+| `docs/` | различия сред, чек-лист, журнал сборки, протокол ПМИ, метрики, инвентаризация |
+| `src/`, `tests/` | пусты: пример шаблона удалён, раскладка нужна инструментам шаблона |
 
-## Тесты и проверки
+Подробно — [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
-| Проверка | Где | Что |
+## Тесты и качество
+
+| Что проверяется | Где | Итог (19.10.2026) |
 |---|---|---|
-| ruff, ruff format, mypy --strict, pytest | CI | инструменты на Python: шаблона и переноса (`tools/inventory_tests`, `tools/port_metrics_tests`, `tools/plcopen/tests`) |
-| PLCopen XML | pytest; CI | эталоны XML, цикл XML → раскладка, схема TC6 2.01, разбор настоящего экспорта CODESYS |
-| `st_lint --strict`, assemble, iec_checker v0.4 | CI | ST в `src/` и `tests/` (сейчас пусты — пример шаблона удалён) |
-| `targets/astra/src/` | CI | `st_lint --strict` и PLCopen XML для Astra.IDE в артефакте `build-reports`; пока каталога нет — шаг пропускается |
-| импорт XML в CODESYS 3.5.17.30 | Windows с CODESYS: `tools/plcopen/verify_codesys.py` | импорт в приложение и в пул POU, сверка дерева и текстов, сборка, обратный экспорт |
-| сборка в Astra.IDE | инженер | [BUILD_ERRORS.md](docs/BUILD_ERRORS.md) |
+| инструменты: инвентаризация, конвертер PLCopen XML, метрики, маркеры проверки, дельта (на временном репозитории git), инструменты шаблона | pytest | 782 passed, 2 skipped (Windows, с iec_checker и RuSTy); 774 passed, 10 skipped без них |
+| линтер ST по `targets/astra/` | `st_lint --strict` | 545 файлов, 0 ошибок |
+| маркеры проверки и пометка правок | `port_checks --strict`, `port_metrics --check --strict` | без нарушений |
+| статанализ адаптированного кода | iec_checker 0.4 с обоснованиями оригиналов | приложение — 88 объектов, библиотека — 79; необоснованных 0 ([STATIC_ANALYSIS.md](docs/STATIC_ANALYSIS.md)) |
+| файлы импорта | `st_to_plcopen --xsd auto` | схема TC6 2.01 — без ошибок |
 
-**Проверено в CODESYS 3.5.17.30** (19.10.2026): фикстура всех конструкций (61 элемент дерева:
-объекты, методы, свойства, аксессоры, папки) и `src/` библиотеки (`main` — 184 элемента, `integrate` —
-244) импортируются в приложение и в пул POU без потерь, тексты совпадают с файлами, сборка — 0 ошибок
-и 0 предупреждений, экспорт CODESYS читается обратно в ту же раскладку; оба пространства имён
-(`tc6_0201`, `tc6_0200`). Файл проходит официальную схему TC6 2.01. **Импорт в Astra.IDE не проверен**
-— это шаг инженера.
+Что где выполнялось:
 
-## Инструменты шаблона
+- **Astra.IDE** — не выполнялось: среды нет на стенде разработки; сборку подтверждает только инженер
+  записью в `BUILD_ERRORS.md`.
+- **CODESYS 3.5.17.30** — конвертер PLCopen XML проверен импортом и сборкой фикстуры всех конструкций и
+  исходников библиотеки (этап 1, [plcopen.md](docs/plcopen.md#эталонная-проверка-в-codesys-351730));
+  файлы `targets/astra` в CODESYS не импортировались. Код оригиналов собирается и проходит тесты в
+  CODESYS в их репозиториях.
+- **ПЛК REGUL и ВПЛК** — не проверялось; адаптер Modbus `PRG_ModbusMap_Regul` не запускался нигде.
+- **CI GitHub Actions** (Linux): ruff, mypy, pytest, линтер, iec_checker v0.4, шаг «Код для Astra.IDE»
+  (маркеры, метрики, XML, iec_checker по `targets/astra`); необязательные — iec_checker nightly и RuSTy.
 
-Репозиторий создан из [plc-repo-template](https://github.com/kr0nsch/plc-repo-template): раскладка
-ST, линтер, сборка для статанализа и `tools/codesys/cds.py` (импорт, сборка и тесты в CODESYS из консоли)
-остаются без изменений. Ими пользуется эталонная проверка XML; описание — в
-[tools/README.md](tools/README.md) и [docs/MANUAL_STEPS.md](docs/MANUAL_STEPS.md).
+Проверки Python перед коммитом:
+
+```bash
+python -m ruff check .
+python -m ruff format --check .
+python -m mypy
+python -m pytest
+```
 
 ## Документация
 
-- [differences.md](docs/differences.md) — различия CODESYS 3.5.17 и Astra.IDE: аспект, как у нас,
-  как в Astra.IDE, решение, источник; приложение — 93 факта со ссылками на документы РегЛаб
-- [inventory.md](docs/inventory.md) — какие возможности CODESYS используют библиотека и флагман, где и
-  с каким риском
-- [migration_checklist.md](docs/migration_checklist.md) — подготовка, типы и библиотеки, ввод-вывод,
-  связь, HMI, испытания, риски, пункты «проверить вручную»
-- [BUILD_ERRORS.md](docs/BUILD_ERRORS.md) — журнал сборки в Astra.IDE
-- [plcopen.md](docs/plcopen.md) — конвертер PLCopen XML: формат, подмножество, ограничения, проверка в CODESYS
-- [port_metrics.md](docs/port_metrics.md) — метрики переноса и методика
-- [test_protocol_astra.md](docs/test_protocol_astra.md) — бланк протокола ПМИ в Astra.IDE
-- [ARCHITECTURE.md](docs/ARCHITECTURE.md), [ASSUMPTIONS.md](docs/ASSUMPTIONS.md),
-  [LAYOUT.md](docs/LAYOUT.md), [MANUAL_STEPS.md](docs/MANUAL_STEPS.md)
+| Документ | На какой вопрос отвечает |
+|---|---|
+| [docs/USAGE.md](docs/USAGE.md) | как оценить и выполнить перенос своего проекта CODESYS в Astra.IDE этими инструментами |
+| [targets/astra/README.md](targets/astra/README.md) | что и с каких коммитов перенесено, что изменено, как собрать в Astra.IDE, как перенести обновление флагмана |
+| [docs/differences.md](docs/differences.md) | чем Astra.IDE отличается от CODESYS 3.5.17 и что решено; 93 факта со ссылками на документы РегЛаб |
+| [docs/migration_checklist.md](docs/migration_checklist.md) | в каком порядке переносить: подготовка, библиотеки, ввод-вывод, связь, HMI, испытания, риски, 61 пункт «проверить вручную» |
+| [docs/BUILD_ERRORS.md](docs/BUILD_ERRORS.md) | куда инженер вставляет сообщения Astra.IDE и как они разбираются |
+| [docs/port_metrics.md](docs/port_metrics.md) | сколько кода перенесено без изменений, сколько маркеров по категориям и пунктам; методика |
+| [docs/inventory.md](docs/inventory.md) | какие возможности CODESYS используют флагман и библиотека, где и с каким риском |
+| [docs/test_protocol_astra.md](docs/test_protocol_astra.md) | бланк протокола ПМИ флагмана (39 проверок) в Astra.IDE |
+| [docs/plcopen.md](docs/plcopen.md) | что переносит PLCopen XML, ограничения, проверка в CODESYS |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), [docs/ASSUMPTIONS.md](docs/ASSUMPTIONS.md) | как устроен репозиторий; какие решения приняты и почему |
+| [docs/STATIC_ANALYSIS.md](docs/STATIC_ANALYSIS.md) | статанализ адаптированного кода и обоснования находок |
+| [upstream/README.md](upstream/README.md) | зачем в репозитории снимки оригиналов |
+| [tools/README.md](tools/README.md), [docs/MANUAL_STEPS.md](docs/MANUAL_STEPS.md), [docs/LAYOUT.md](docs/LAYOUT.md) | инструменты шаблона, ручные шаги, раскладка исходников ST |
+| [CHANGELOG.md](CHANGELOG.md) | что изменилось |
 
-## Ограничения и дальнейшие шаги
+## Ограничения и планы
 
-- Сборку в Astra.IDE подтверждает только инженер: на стенде разработки Astra.IDE нет, поэтому здесь
-  нигде не написано «собирается в Astra.IDE» без записи в `BUILD_ERRORS.md`.
-- Факты о среде — на 16.10.2026, Astra.IDE 1.7.2.x, пакет 1.7.2.6. Где документации нет, пункт вынесен
-  в «проверить вручную» (чек-лист, раздел 9).
-- PLCopen XML переносит только объекты раскладки: задачи, дерево устройств, Modbus, символьная
-  конфигурация OPC UA, визуализация и ссылки на библиотеки настраиваются в проекте вручную. Режим
-  `--no-plaintext` (только TC6) теряет `VAR_INST`, `ABSTRACT`, а метод с `PRIVATE FINAL` CODESYS
-  из такой структуры не восстанавливает ([plcopen.md](docs/plcopen.md#только-tc6---no-plaintext)).
-- Флагман ещё пишется: инвентаризация и перенос его кода — после появления исходников в
-  `kns-pump-station`.
-- Обслуживание на REGUL (выгрузка RETAIN перед полной загрузкой и обновлением СПО, восстановление после)
-  появится здесь после проверки команд `saveretain`/`restoreretain` (пункт D3 чек-листа): в руководстве
-  их имена записаны по-разному.
-- Дальше: итерация 1 в Astra.IDE → `targets/astra/src/` → итерации до 0 ошибок → ПМИ на ВПЛК →
-  метрики и трудозатраты в README. MasterSCADA 4D — отдельным этапом после Astra.IDE.
+- **В Astra.IDE код не компилировался.** Всё, что здесь сказано о среде, — по документации РегЛаб на
+  16.10.2026 (Astra.IDE 1.7.2.x, пакет 1.7.2.6); где её нет — маркер проверки и пункт чек-листа. Метрики
+  «100 % без изменений» — состояние до первой сборки: если не подтвердится наследование ФБ (C1–C4),
+  библиотеку придётся перевести на композицию.
+- Адаптер Modbus RTU для ПЛК REGUL написан по описанию драйвера вендора и нигде не запускался; какие
+  значения статуса канала означают «обмен исправен», в документации нет — до проверки адаптер
+  показывает потерю связи.
+- Визуализация, дерево устройств, задачи, Modbus, символьная конфигурация OPC UA переносятся вручную по
+  чек-листу; юнит-тесты coUnit не перенесены.
+- Метрики считают строки, а не часы: трудозатраты записывает инженер.
+- Дальше: итерация 1 сборки в Astra.IDE → правки по `BUILD_ERRORS.md` до 0 ошибок → ПМИ на ВПЛК →
+  трудозатраты; MasterSCADA 4D — отдельным этапом после Astra.IDE.
+
+## Связанные проекты
+
+Репозиторий — часть портфолио АСУ ТП (таблица ниже). Переносится библиотека
+[plc-process-lib](https://github.com/kr0nsch/plc-process-lib) 1.0.0 и флагман КНС-1 (готовится к
+публикации). Раскладка ST в git, линтер и `cds.py` — из шаблона
+[plc-repo-template](https://github.com/kr0nsch/plc-repo-template); общий CI для таких репозиториев —
+[plc-ci-toolkit](https://github.com/kr0nsch/plc-ci-toolkit). Другие переносы и генерация: конвертер
+SCL → ST [s7-to-codesys](https://github.com/kr0nsch/s7-to-codesys) (тот же подход «отчёт о
+переносе»), [iolistgen](https://github.com/kr0nsch/iolistgen) — генератор `GVL_IO` и карт Modbus флагмана,
+[sis-interlock-demo](https://github.com/kr0nsch/sis-interlock-demo) — ПАЗ на той же библиотеке.
 
 ## Summary (EN)
 
-Port of the KNS-1 sewage pump station flagship and the plc-process-lib library from CODESYS V3.5 SP17
-Patch 3 (3.5.17.30) to the Russian Astra.IDE (RegLab, REGUL PLCs), with the cost of the port measured.
-Stage 1 is done: a sourced comparison of the two environments (93 vendor-documented facts), a feature
-inventory of the code (`tools/inventory.py`), a layout → PLCopen XML (TC6 2.01) converter verified by
-import and build in CODESYS 3.5.17.30 (`tools/st_to_plcopen.py`), port metrics based on `// PORT:`
-markers (`tools/port_metrics.py`), a migration checklist and a test protocol form. The engineer
-compiles in Astra.IDE and pastes the compiler messages into `docs/BUILD_ERRORS.md`; fixes go to
-`targets/astra/src/`. Astra.IDE import is not verified yet. Docs are in Russian.
+Port of the KNS-1 sewage pump station flagship and the plc-process-lib function block library from
+CODESYS 3.5.17.30 to the Russian Astra.IDE (RegLab, REGUL PLCs), with the cost of the port measured.
+The adapted code (`targets/astra/`) is pinned to exact source commits (snapshots in `upstream/`) and
+keeps the CODESYS form wherever Astra.IDE behaviour is not documented: 283 `// PORT: … проверить в
+Astra.IDE` markers tie each such place to a checklist item, so the first build answers concrete
+questions. Tools: `port_checks.py` (rule-based markers, resolve/fail per item), `port_metrics.py`
+(unchanged/changed/rewritten lines by category), `upstream_delta.py` (three-way merge of new flagship
+commits), `st_to_plcopen.py` (PLCopen XML). Not compiled in Astra.IDE yet — the engineer pastes compiler
+messages into `docs/BUILD_ERRORS.md`. Docs are in Russian.
 
 ## Лицензия
 
 [MIT](LICENSE) © 2026 kr0nsch
+
+---
+
+<p align="center"><b>Портфолио АСУ ТП</b></p>
+<table>
+<tr><td width="33%"><a href="https://github.com/kr0nsch/plc-repo-template">01 · plc-repo-template</a><br><sub>ST в git, сборка проекта скриптом, CI</sub></td><td width="33%"><a href="https://github.com/kr0nsch/plc-process-lib">02 · plc-process-lib</a><br><sub>ФБ: AI, двигатель, ПЧ, задвижка, ПИД, тревоги</sub></td><td width="33%"><span data-repo="kns-pump-station">03 · kns-pump-station</span> <sub>(готовится)</sub><br><sub>флагман: КНС, три насоса с ПЧ, модель, HMI</sub></td></tr>
+<tr><td width="33%"><span data-repo="kns-port-domestic"><b>04 · kns-port-domestic</b></span> <sub>(готовится)</sub><br><sub>перенос на Astra.IDE / MasterSCADA 4D</sub></td><td width="33%"><span data-repo="plc-iiot-stack">05 · plc-iiot-stack</span> <sub>(готовится)</sub><br><sub>OPC UA / MQTT → InfluxDB → Grafana</sub></td><td width="33%"><a href="https://github.com/kr0nsch/iolistgen">06 · iolistgen</a><br><sub>перечень сигналов → ST, карты Modbus, SCADA</sub></td></tr>
+<tr><td width="33%"><a href="https://github.com/kr0nsch/plc-ci-toolkit">07 · plc-ci-toolkit</a><br><sub>линтеры, сборка CODESYS, тесты, JUnit</sub></td><td width="33%"><a href="https://github.com/kr0nsch/s7-to-codesys">08 · s7-to-codesys</a><br><sub>конвертер SCL → ST с отчётом о переносе</sub></td><td width="33%"><a href="https://github.com/kr0nsch/sis-interlock-demo">09 · sis-interlock-demo</a><br><sub>ПАЗ: MooN, матрица причин и следствий</sub></td></tr>
+</table>

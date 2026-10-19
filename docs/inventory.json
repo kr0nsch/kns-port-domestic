@@ -6151,6 +6151,11 @@
   ],
   "references": {
     "facts": {
+      "F01": {
+        "text": "В выпуске 1.7.0.0 (17.05.2022) Epsilon LD переименована в Astra.IDE, рантайм обновлён до 3.5.17.30 (CODESYS V3.5 SP17 Patch 3)",
+        "where": "reglab.ru/soft, «Релиз Regul 1.7.0.0»",
+        "url": "https://reglab.ru/soft/"
+      },
       "F04": {
         "text": "Описание устройства REGUL R500 71-W совместимо с 3.5.17.*; плейсхолдеры системных библиотек разрешаются на 3.5.17.0 (SysFile, SysDir, SysTime, SysTimeRtc, CAA File, CAA Memory, CAA SerialCom, CmpLog, CmpApp, CmpIecTask и др.); задачи: приоритет по умолчанию 2, максимальный 15, до 100 задач",
         "where": "пакет 1.7.2.6, REGUL R500 71-W.devdesc.xml",
@@ -6255,6 +6260,11 @@
         "text": "CAA File в документации нет; плейсхолдер в описании устройства разрешается на CAA File 3.5.17.0",
         "where": "пакет 1.7.2.6, REGUL R500 71-W.devdesc.xml",
         "url": "https://reglab.ru/upload/iblock/0fd/bkk3sngi1qu0kz62c3j1so8iykr78fr6/RegLab_Ltd_Regul_1.7.2.6.package"
+      },
+      "F54": {
+        "text": "Библиотеки вендора: PsJsonConvertions, PsLog, PsSysFile, PsTime, PsUnittest, PsUtils и др. (префикс Ps)",
+        "where": "DPA-302 v2.20, прил. Л, с. 315–398",
+        "url": "https://reglab.ru/upload/iblock/86e/aqrzbeuk0bjd3jdn1au63e8i2r5d63wk/Astra-IDE-User-Guide-_DPA_302_v2_20_rus.pdf"
       },
       "F73": {
         "text": "coUnit 1.2.0.0 ссылается на 16 библиотек, в том числе Breakpoint Logging Functions 3.5.5.0 (фиксированная версия), IECStringUtils, Base Interfaces",

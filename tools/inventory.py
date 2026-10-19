@@ -1419,7 +1419,8 @@ def _where(summaries: Sequence[FeatureSummary], inv: Inventory, json_name: str) 
 
 
 def _used_refs(summaries: Sequence[FeatureSummary], inv: Inventory) -> list[str]:
-    refs: set[str] = set()
+    # Раздел «Идентификаторы» ссылается на F01 и на факты префикса Ps всегда, даже если мест нет
+    refs: set[str] = {"F01", *C.feature("ident.vendor_prefix").refs}
     for s in summaries:
         if s.total:
             refs.update(s.feature.refs)
