@@ -44,12 +44,12 @@
 | `retain` | RETAIN и PERSISTENT | 0 | 0 | 0 | 0 | 0 | 2 |
 | `pragma` | прагмы и атрибуты | 0 | 0 | 0 | 0 | 0 | 27 |
 | `opcua` | OPC UA и символьная конфигурация | 0 | 0 | 0 | 0 | 0 | 2 |
-| `comm` | связь: Modbus RTU/TCP, последовательные порты | 3 | 3 | 5 | 0 | 68 | 2 |
+| `comm` | связь: Modbus RTU/TCP, последовательные порты | 4 | 3 | 5 | 0 | 68 | 2 |
 | `time` | источник времени | 0 | 0 | 0 | 0 | 0 | 5 |
 | `lib` | библиотеки и пространства имён | 0 | 0 | 0 | 0 | 0 | 5 |
 | `types` | типы данных и конструкции языка | 0 | 0 | 0 | 0 | 0 | 108 |
 | `other` | прочее | 0 | 0 | 0 | 0 | 0 | 1 |
-| **Всего** |  | 3 | 3 | 5 | 0 | 68 | 283 |
+| **Всего** |  | 4 | 3 | 5 | 0 | 68 | 283 |
 
 ### Маркеры проверки по пунктам чек-листа
 
@@ -249,7 +249,7 @@
 | `FB_Valve` | plc-process-lib | без изменений | 673 | 673 | 0 | 0 | 0 | 0 | 0 % | 20 |
 | `GVL_ConstRegul` | новые объекты | новый | 0 | 0 | 0 | 0 | 0 | 17 | 100 % | 2 |
 | `F_MbStatusOk_Regul` | новые объекты | новый | 0 | 0 | 0 | 0 | 0 | 8 | 100 % | 1 |
-| `PRG_ModbusMap_Regul` | новые объекты | новый | 0 | 0 | 0 | 0 | 0 | 43 | 100 % | 2 |
+| `PRG_ModbusMap_Regul` | новые объекты | новый | 0 | 0 | 0 | 0 | 0 | 43 | 100 % | 3 |
 
 ## По файлам
 
@@ -260,7 +260,7 @@
 | `targets/astra/src/GVLs/Regul/GVL_ConstRegul.gvl.st` | новый | 0 | 17 | 0 | 0 | 0 | 0 | 17 | 100 % | 2 |
 | `targets/astra/src/POUs/Regul/F_MbStatusOk_Regul/F_MbStatusOk_Regul.decl.st` | новый | 0 | 4 | 0 | 0 | 0 | 0 | 4 | 100 % | 1 |
 | `targets/astra/src/POUs/Regul/F_MbStatusOk_Regul/F_MbStatusOk_Regul.impl.st` | новый | 0 | 4 | 0 | 0 | 0 | 0 | 4 | 100 % | 0 |
-| `targets/astra/src/POUs/Regul/PRG_ModbusMap_Regul/PRG_ModbusMap_Regul.decl.st` | новый | 0 | 15 | 0 | 0 | 0 | 0 | 15 | 100 % | 2 |
+| `targets/astra/src/POUs/Regul/PRG_ModbusMap_Regul/PRG_ModbusMap_Regul.decl.st` | новый | 0 | 15 | 0 | 0 | 0 | 0 | 15 | 100 % | 3 |
 | `targets/astra/src/POUs/Regul/PRG_ModbusMap_Regul/PRG_ModbusMap_Regul.impl.st` | новый | 0 | 28 | 0 | 0 | 0 | 0 | 28 | 100 % | 0 |
 
 ## Методика

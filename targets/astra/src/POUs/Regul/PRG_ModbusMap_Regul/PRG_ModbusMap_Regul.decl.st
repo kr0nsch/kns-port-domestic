@@ -19,10 +19,12 @@ VAR
     awP103Wr : ARRAY[0..GVL_ConstRegul.MB_VFD_WR_LAST] OF WORD;  // слейв 3: то же
     awTT403Rd : ARRAY[0..GVL_ConstRegul.MB_REAL_LAST] OF WORD;   // RS485-2, слейв 10: канал FC4 3x 0, 2 регистра
     // Status каналов чтения — привязать к Status тех же каналов
-    // PORT: [comm] проверить в Astra.IDE — тип PsModbusSerialMaster.ChannelStatus, привязка Status [F58] (E2)
-    eP101Status : PsModbusSerialMaster.ChannelStatus;
-    eP102Status : PsModbusSerialMaster.ChannelStatus;
-    eP103Status : PsModbusSerialMaster.ChannelStatus;
-    eTT403Status : PsModbusSerialMaster.ChannelStatus;
+    // PORT: [comm] BUILD_ERRORS 1.1: ChannelStatus — в пространстве имён PsIoDrvModbusSerialMaster
+    // (имя библиотеки драйвера; PsModbusSerialMaster из DPA-302.1 в Astra.IDE 1.7.2.2 не находится — C0077)
+    // PORT: [comm] проверить в Astra.IDE — привязка Status каналов к этим переменным [F58] (E2)
+    eP101Status : PsIoDrvModbusSerialMaster.ChannelStatus;
+    eP102Status : PsIoDrvModbusSerialMaster.ChannelStatus;
+    eP103Status : PsIoDrvModbusSerialMaster.ChannelStatus;
+    eTT403Status : PsIoDrvModbusSerialMaster.ChannelStatus;
     uTT403 : PL.U_RealBits;     // REAL из двух регистров
 END_VAR

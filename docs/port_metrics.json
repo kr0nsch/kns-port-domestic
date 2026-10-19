@@ -90,8 +90,8 @@
     }
   },
   "markers": {
-    "total": 286,
-    "changes": 3,
+    "total": 287,
+    "changes": 4,
     "checks": 283,
     "by_category": {
       "oop": {
@@ -119,9 +119,9 @@
         "checks": 2
       },
       "comm": {
-        "markers": 5,
+        "markers": 6,
         "implicit": 0,
-        "changes": 3,
+        "changes": 4,
         "checks": 2
       },
       "time": {
@@ -3872,7 +3872,18 @@
         "category": "comm",
         "explicit": true,
         "raw_tag": "comm",
-        "reason": "проверить в Astra.IDE — тип PsModbusSerialMaster.ChannelStatus, привязка Status [F58] (E2)",
+        "reason": "BUILD_ERRORS 1.1: ChannelStatus — в пространстве имён PsIoDrvModbusSerialMaster",
+        "used": true,
+        "check": false,
+        "items": []
+      },
+      {
+        "path": "targets/astra/src/POUs/Regul/PRG_ModbusMap_Regul/PRG_ModbusMap_Regul.decl.st",
+        "line": 24,
+        "category": "comm",
+        "explicit": true,
+        "raw_tag": "comm",
+        "reason": "проверить в Astra.IDE — привязка Status каналов к этим переменным [F58] (E2)",
         "used": true,
         "check": true,
         "items": [
@@ -3920,7 +3931,7 @@
     },
     {
       "category": "comm",
-      "change_markers": 3,
+      "change_markers": 4,
       "check_markers": 2,
       "objects": 3,
       "files": 5,
@@ -6629,7 +6640,7 @@
       "source": "новые объекты",
       "kind": "program",
       "status": "new",
-      "markers": 2,
+      "markers": 3,
       "orig_lines": 0,
       "adapted_lines": 43,
       "unchanged": 0,
@@ -16422,7 +16433,7 @@
       "status": "new",
       "orig_path": null,
       "adapted_path": "targets/astra/src/POUs/Regul/PRG_ModbusMap_Regul/PRG_ModbusMap_Regul.decl.st",
-      "markers": 2,
+      "markers": 3,
       "unmarked_hunks": 0,
       "orig_lines": 0,
       "adapted_lines": 15,
