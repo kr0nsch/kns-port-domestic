@@ -6,7 +6,7 @@
   </picture>
 </p>
 
-<p align="center"><b>Перенос проекта CODESYS V3.5 на отечественную Astra.IDE (ПЛК REGUL) с расчётом цены переноса: что работает как есть, что проверить, что переписать</b></p>
+<p align="center"><b>Миграция с ОВЕН ПЛК210 (CODESYS V3.5 SP17) на REGUL R500 (Astra.IDE) с расчётом цены переноса: что работает как есть, что проверить, что переписать</b></p>
 
 <p align="center">
   <a href="https://github.com/kr0nsch/kns-port-domestic/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/kr0nsch/kns-port-domestic/actions/workflows/ci.yml/badge.svg?branch=main"></a>
@@ -25,7 +25,9 @@
 подтверждает не всё, а пробная сборка в среде — работа на дни. Здесь код подготовлен и собран в
 Astra.IDE 1.7.2.2 без ошибок (на ПЛК ещё не запускался), каждое место, которое осталось проверить, помечено
 пунктом чек-листа, цена переноса посчитана по маркерам, а повторить оценку на своём проекте можно теми
-же инструментами. Для инженеров АСУ ТП и техлидов интеграторов.
+же инструментами. Исходный проект собирается и под ОВЕН ПЛК210 (флагман, `targets/plc210`), здесь — его вариант
+для REGUL с полевым слоем REGUL: одно приложение, два полевых слоя. Для инженеров АСУ ТП и техлидов интеграторов,
+которые переводят объекты с ОВЕН на REGUL или держат обе платформы.
 
 ## Что это и зачем
 
@@ -54,7 +56,8 @@ Astra.IDE 1.7.2.2 без ошибок (на ПЛК ещё не запускал�
 - Перенос новых версий флагмана: дельта и трёхстороннее слияние с правками переноса
   (`tools/upstream_delta.py`).
 
-**Для кого.** Инженеры АСУ ТП, которым поручили перевести проект CODESYS на Astra.IDE и нужно назвать
+**Для кого.** Инженеры АСУ ТП, которым поручили перевести проект с ОВЕН ПЛК210 или другого ПЛК на CODESYS на
+Astra.IDE (REGUL R500) и нужно назвать
 сроки до пробной сборки; техлиды интеграторов, которые оценивают импортозамещение ПЛК; вендоры и
 заказчики — как пример того, как переносится реальный проект с ООП.
 
@@ -160,8 +163,8 @@ Now := LTIME();
    python -m pytest
    ```
 
-   Увидите `774 passed, 10 skipped` за полминуты; с iec_checker 0.4 и RuSTy 1.0.6 на машине (где их
-   взять — [tools/README.md](tools/README.md#checkrun_iec_checkerpy--статанализ)) — `782 passed, 2 skipped`
+   Увидите `776 passed, 10 skipped` за полминуты; с iec_checker 0.4 и RuSTy 1.0.6 на машине (где их
+   взять — [tools/README.md](tools/README.md#checkrun_iec_checkerpy--статанализ)) — `784 passed, 2 skipped`
    (два теста ждут код в пустом `src/`). Без сети пропускается и проверка XML по схеме.
 
 ### В Astra.IDE: сборка
@@ -342,8 +345,9 @@ SCL → ST [s7-to-codesys](https://github.com/kr0nsch/s7-to-codesys) (тот ж�
 
 ## Summary (EN)
 
-Port of the KNS-1 sewage pump station flagship and the plc-process-lib function block library from
-CODESYS 3.5.17.30 to the Russian Astra.IDE (RegLab, REGUL PLCs), with the cost of the port measured.
+Migration of the KNS-1 sewage pump station flagship and the plc-process-lib function block library from
+CODESYS 3.5.17.30 (the OWEN PLC210 environment; the flagship itself builds for the PLC210) to the Russian
+Astra.IDE (RegLab, REGUL R500), with the cost of the port measured.
 The adapted code (`targets/astra/`) is pinned to exact source commits (snapshots in `upstream/`) and
 keeps the CODESYS form wherever Astra.IDE behaviour is not documented: 283 `// PORT: … проверить в
 Astra.IDE` markers tied each such place to a checklist item, so the first build answered concrete
@@ -360,9 +364,9 @@ on REGUL R500 61 and R500 71-W after one fix (Modbus status type namespace), log
 
 ---
 
-<p align="center"><b>Портфолио АСУ ТП</b></p>
+<p align="center"><b>Портфолио АСУ ТП</b> · <sub>инструменты и практики для ПЛК ОВЕН и REGUL</sub></p>
 <table>
-<tr><td width="33%"><a href="https://github.com/kr0nsch/plc-repo-template">01 · plc-repo-template</a><br><sub>ST в git, сборка проекта скриптом, CI</sub></td><td width="33%"><a href="https://github.com/kr0nsch/plc-process-lib">02 · plc-process-lib</a><br><sub>ФБ: AI, двигатель, ПЧ, задвижка, ПИД, тревоги</sub></td><td width="33%"><a href="https://github.com/kr0nsch/kns-pump-station">03 · kns-pump-station</a><br><sub>флагман: КНС, три насоса с ПЧ, модель, ПМИ</sub></td></tr>
-<tr><td width="33%"><a href="https://github.com/kr0nsch/kns-port-domestic"><b>04 · kns-port-domestic</b></a><br><sub>перенос на Astra.IDE / MasterSCADA 4D</sub></td><td width="33%"><a href="https://github.com/kr0nsch/plc-iiot-stack">05 · plc-iiot-stack</a><br><sub>OPC UA / MQTT → InfluxDB → Grafana</sub></td><td width="33%"><a href="https://github.com/kr0nsch/iolistgen">06 · iolistgen</a><br><sub>перечень сигналов → ST, карты Modbus, SCADA</sub></td></tr>
+<tr><td width="33%"><a href="https://github.com/kr0nsch/plc-repo-template">01 · plc-repo-template</a><br><sub>ST в git, сборка для ПЛК210 и R500, CI</sub></td><td width="33%"><a href="https://github.com/kr0nsch/plc-process-lib">02 · plc-process-lib</a><br><sub>ФБ: AI, двигатель, ПЧ, задвижка, ПИД, тревоги</sub></td><td width="33%"><a href="https://github.com/kr0nsch/kns-pump-station">03 · kns-pump-station</a><br><sub>флагман: КНС, ПМИ на модели, сборка ПЛК210</sub></td></tr>
+<tr><td width="33%"><a href="https://github.com/kr0nsch/kns-port-domestic"><b>04 · kns-port-domestic</b></a><br><sub>перенос КНС на REGUL R500 (Astra.IDE)</sub></td><td width="33%"><a href="https://github.com/kr0nsch/plc-iiot-stack">05 · plc-iiot-stack</a><br><sub>OPC UA / MQTT → InfluxDB → Grafana</sub></td><td width="33%"><a href="https://github.com/kr0nsch/iolistgen">06 · iolistgen</a><br><sub>перечень сигналов → ST, карты Modbus, SCADA</sub></td></tr>
 <tr><td width="33%"><a href="https://github.com/kr0nsch/plc-ci-toolkit">07 · plc-ci-toolkit</a><br><sub>линтеры, сборка CODESYS, тесты, JUnit</sub></td><td width="33%"><a href="https://github.com/kr0nsch/s7-to-codesys">08 · s7-to-codesys</a><br><sub>конвертер SCL → ST с отчётом о переносе</sub></td><td width="33%"><a href="https://github.com/kr0nsch/sis-interlock-demo">09 · sis-interlock-demo</a><br><sub>ПАЗ: MooN, матрица причин и следствий</sub></td></tr>
 </table>

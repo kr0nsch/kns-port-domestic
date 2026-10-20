@@ -7,6 +7,12 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Инструменты шаблона plc-repo-template: `device.keep_tasks` (импорт не удаляет задачу `OwenCloudTask` устройства
+  ОВЕН ПЛК210 и СПК210), `CDS_DEVICE_TITLE`, варианты устройств ПЛК210, СПК210 и REGUL R500 в `config.json`.
+- README: перенос как миграция с ОВЕН ПЛК210 (CODESYS SP17) на REGUL R500; флагман собирается и под ПЛК210.
+
 ## [1.0.0] - 2026-10-19
 
 Первый выпуск: перенос флагмана КНС-1 и библиотеки plc-process-lib 1.0.0 из CODESYS 3.5.17.30 в Astra.IDE 1.7.2.2
